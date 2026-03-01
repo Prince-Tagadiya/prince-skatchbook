@@ -1,0 +1,402 @@
+/* ========================================
+   Portfolio Styles — Prince Tagadiya
+   ======================================== */
+
+/* === Material Symbols === */
+.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar {
+    width: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(236, 19, 19, 0.3);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(236, 19, 19, 0.6);
+}
+
+/* === Paper Texture === */
+.paper-texture {
+    background-color: #f8f6f6;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAqPEYl4f4km0_XOUmRlAf4J459tr-ErVK0NryJWeMw9bWVi8h_qKdeQhYA5c72PIuiTpWv3cKFjdGVdAKs8u6lo4Pr_Hyjj-xbKycoZH81NlPPIrTtz7u_0prFWlr1tfXGg2fQ1X2amkRQyVcxqa2gArj7MOaWucidwrh5D_JZymXiBgLguLZckr2i7xrujk9y6Tasb2Nvr00FWgkfUbwWVCpGNjpK3CkrDD4RHS1sJIl28JeUEV_thoinQy7ESYE-BHfLDbqmCic);
+}
+.dark .paper-texture {
+    background-color: #221010;
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBVers8vAktBNCWQEUiNDLiHW3lGfbD50y7BIEIB4hbrOp8BtZL6zZGGvo21fNUZDx7sbnwMCw4lZscvGgbnR9SVJFG9uMXtPtS7OLgV0nWhXNlXnhIJqK2G23DOllKb9ZU48ogFgYt5orTM-FNQKi45eoHitw0V024KlwGQRKYrhlf54OKk9LlQObF9WMDvJ53O3Dz2OHhz3Et3TGyyMK4fyJSNFrwEZ9CAHpnjgd4LBkou2hYtnSWaUx__hZddbVFa0PI0D6A53c);
+}
+
+/* === Mask Tape === */
+.mask-tape {
+    background-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(2px);
+    transform: rotate(-2deg);
+}
+
+/* ============================================
+   SCRIBBLE / DRAWING ANIMATIONS
+   ============================================ */
+@keyframes draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+.scribble-path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    animation: draw 2s ease-out forwards;
+}
+
+/* ============================================
+   LOADING SCREEN
+   ============================================ */
+@keyframes letterBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+@keyframes loadingLine {
+    0% { width: 0; }
+    100% { width: 100%; }
+}
+@keyframes subtitleFade {
+    0%, 50% { opacity: 0; transform: translateY(10px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.loading-letter {
+    display: inline-block;
+    animation: letterBounce 0.6s ease-in-out calc(var(--i) * 0.1s) infinite;
+}
+.loading-line {
+    height: 4px;
+    background: #ec1313;
+    border-radius: 2px;
+    margin-top: 12px;
+    animation: loadingLine 1.5s ease-out forwards;
+}
+.loading-subtitle {
+    animation: subtitleFade 1s ease-out 0.5s forwards;
+    opacity: 0;
+}
+
+/* ============================================
+   ENTRANCE ANIMATIONS
+   ============================================ */
+
+/* Slide in from left */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+.animate-slide-in-left {
+    opacity: 0;
+    animation: slideInLeft 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0s) forwards;
+}
+
+/* Slide up */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(60px) skewY(3deg);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) skewY(0deg);
+    }
+}
+.animate-slide-up {
+    opacity: 0;
+    animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--delay, 0s) forwards;
+}
+
+/* Pop in */
+@keyframes popIn {
+    from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-5deg);
+    }
+    50% {
+        transform: scale(1.05) rotate(1deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+    }
+}
+.animate-pop-in {
+    opacity: 0;
+    animation: popIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) var(--delay, 0s) forwards;
+}
+
+/* Fade in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out var(--delay, 0s) forwards;
+}
+
+/* ============================================
+   FLOATING / CONTINUOUS ANIMATIONS
+   ============================================ */
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(12deg); }
+    50% { transform: translateY(-15px) rotate(15deg); }
+}
+.doodle-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes floatReverse {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(10px) rotate(-5deg); }
+}
+.doodle-float-reverse {
+    animation: floatReverse 5s ease-in-out infinite;
+}
+
+/* Blob animations */
+@keyframes blobPulse {
+    0%, 100% { transform: scale(1); opacity: 0.1; }
+    50% { transform: scale(1.2); opacity: 0.15; }
+}
+.blob-animate {
+    animation: blobPulse 8s ease-in-out infinite;
+}
+@keyframes blobPulseReverse {
+    0%, 100% { transform: scale(1.2); opacity: 0.15; }
+    50% { transform: scale(1); opacity: 0.1; }
+}
+.blob-animate-reverse {
+    animation: blobPulseReverse 7s ease-in-out infinite;
+}
+
+/* Sticker wobble */
+@keyframes wobble {
+    0%, 100% { transform: rotate(12deg) scale(1); }
+    25% { transform: rotate(8deg) scale(1.02); }
+    75% { transform: rotate(15deg) scale(0.98); }
+}
+.sticker-wobble {
+    animation: wobble 4s ease-in-out infinite;
+}
+
+/* ============================================
+   CURSOR BLINK (for typed text)
+   ============================================ */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+.cursor-blink::after {
+    content: '|';
+    animation: blink 1s infinite;
+    color: #ec1313;
+    font-weight: 300;
+}
+
+/* ============================================
+   PARALLAX TILT ON HOVER (card)
+   ============================================ */
+.tilt-card {
+    transition: transform 0.3s ease;
+    transform-style: preserve-3d;
+}
+
+/* ============================================
+   NAV LINK ANIMATIONS
+   ============================================ */
+.nav-link {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+}
+.nav-link.active {
+    background-color: #ec1313 !important;
+    color: white !important;
+}
+.nav-link.active .material-symbols-outlined {
+    color: white !important;
+}
+.nav-link:not(.active):hover {
+    padding-left: 1.5rem;
+}
+
+/* ============================================
+   ADMIN PANEL STYLES
+   ============================================ */
+.admin-body {
+    background-color: #0f0f0f;
+    color: #e5e5e5;
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+}
+.admin-card {
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.3s ease;
+}
+.admin-card:hover {
+    border-color: #ec1313;
+    box-shadow: 0 0 20px rgba(236, 19, 19, 0.1);
+}
+.admin-input {
+    background: #0f0f0f;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #e5e5e5;
+    font-family: 'Space Grotesk', sans-serif;
+    width: 100%;
+    transition: border-color 0.3s ease;
+    font-size: 14px;
+}
+.admin-input:focus {
+    outline: none;
+    border-color: #ec1313;
+    box-shadow: 0 0 0 3px rgba(236, 19, 19, 0.15);
+}
+.admin-input::placeholder {
+    color: #555;
+}
+.admin-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+.admin-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+}
+.admin-btn {
+    background: #ec1313;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 28px;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Space Grotesk', sans-serif;
+}
+.admin-btn:hover {
+    background: #d10f0f;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(236, 19, 19, 0.3);
+}
+.admin-btn:active {
+    transform: translateY(0);
+}
+.admin-btn-secondary {
+    background: #2a2a2a;
+    color: #ccc;
+}
+.admin-btn-secondary:hover {
+    background: #333;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+.admin-header {
+    background: linear-gradient(135deg, #1a0a0a 0%, #0f0f0f 100%);
+    border-bottom: 1px solid #2a2a2a;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.admin-toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #1a1a1a;
+    border: 1px solid #ec1313;
+    color: white;
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    z-index: 9999;
+    animation: toastSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 30px rgba(236, 19, 19, 0.2);
+}
+@keyframes toastSlideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.admin-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+.admin-status.connected {
+    background: rgba(34, 197, 94, 0.15);
+    color: #22c55e;
+}
+.admin-status.disconnected {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+
+/* Login form */
+.login-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding-top: 15vh;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .animate-slide-in-left,
+    .animate-slide-up,
+    .animate-pop-in,
+    .animate-fade-in {
+        /* Speed up on mobile */
+        animation-duration: 0.5s;
+    }
+
+    #mobile-menu.show {
+        display: flex !important;
+    }
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+    background: rgba(236, 19, 19, 0.2);
+    color: inherit;
+}
