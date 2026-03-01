@@ -182,14 +182,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ------- Nav active state on scroll using IntersectionObserver -------
-    const sections = document.querySelectorAll('#main-content > .snap-start');
+    const sectionIds = ['home', 'projects', 'about', 'contact'];
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
     const navLinks = document.querySelectorAll('.nav-link');
 
     if (sections.length > 0 && navLinks.length > 0) {
         const observerOptions = {
             root: document.getElementById('main-content'),
             rootMargin: '0px',
-            threshold: 0.5
+            threshold: 0.3
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -210,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                         // Apply active styles to the current link
                         const href = link.getAttribute('href');
-                        // Handle links like #projects vs index.html#projects
                         if (href && (href === `#${currentId}` || href === `index.html#${currentId}`)) {
                             link.classList.add('active', 'bg-primary', 'text-white', 'shadow-[2px_4px_0px_rgba(0,0,0,0.1)]', 'hover:-translate-y-1');
                             link.classList.remove('hover:bg-primary/10', 'dark:hover:bg-primary/20', 'hover:pl-6', 'text-[#181111]', 'dark:text-gray-200');
