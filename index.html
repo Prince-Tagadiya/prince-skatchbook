@@ -311,7 +311,7 @@
         </aside>
 
         <!-- Main Content Area -->
-        <main class="flex-1 relative paper-texture bg-grid-pattern bg-[length:24px_24px] overflow-y-auto h-screen scroll-smooth" id="main-content">
+        <main class="flex-1 relative paper-texture bg-grid-pattern bg-[length:24px_24px] overflow-y-auto h-screen scroll-smooth snap-y snap-mandatory" id="main-content">
             <!-- Decorative Doodles -->
             <div class="absolute top-20 right-20 opacity-20 dark:opacity-10 pointer-events-none rotate-12 doodle-float">
                 <svg class="text-primary" fill="none" height="120" stroke="currentColor" stroke-width="2" viewBox="0 0 100 100" width="120">
@@ -331,7 +331,7 @@
                 </svg>
             </div>
 
-            <div class="layout-container flex flex-col min-h-screen px-6 md:px-20 lg:px-32 max-w-7xl mx-auto" id="home">
+            <div class="layout-container flex flex-col min-h-screen px-6 md:px-20 lg:px-32 max-w-7xl mx-auto snap-start" id="home">
                 <div class="flex-1 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center justify-center">
                     <!-- Text Content -->
                     <div class="flex-1 flex flex-col items-start gap-5 relative z-10 w-full">
@@ -399,7 +399,7 @@
             <!-- ==========================================
                  PROJECTS SECTION (The Lab)
                  ========================================== -->
-            <div class="px-6 md:px-20 lg:px-32 max-w-7xl mx-auto py-16 md:py-24" id="projects">
+            <div class="px-6 md:px-20 lg:px-32 max-w-7xl mx-auto py-16 md:py-24 snap-start relative min-h-screen flex flex-col justify-center" id="projects">
                 <header class="flex flex-col gap-6 relative mb-10">
                     <!-- Decorative doodle -->
                     <div class="absolute -top-6 -left-6 opacity-20 pointer-events-none rotate-[-10deg]">

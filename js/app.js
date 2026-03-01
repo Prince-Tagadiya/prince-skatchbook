@@ -12,6 +12,25 @@ document.addEventListener('DOMContentLoaded', () => {
     let dataLoaded = false;
     let animationDone = false;
 
+    // Check if we should skip splash (if navigating via hash or already seen)
+    const hasHash = window.location.hash && window.location.hash !== '#home';
+    const hasSeenSplash = sessionStorage.getItem('hasSeenSplash');
+
+    if (hasHash || hasSeenSplash) {
+        // Skip splash entirely
+        if (splashScreen) splashScreen.style.display = 'none';
+        if (loadingScreen) loadingScreen.style.display = 'none';
+        if (portfolioWrapper) {
+            portfolioWrapper.style.opacity = '1';
+            portfolioWrapper.style.pointerEvents = 'auto';
+        }
+        
+        // Start loading data immediately
+        loadPortfolioData();
+        loadProjects();
+        return; // Skip attaching enter listeners
+    }
+
     // ------- PHASE 1: Splash Screen -------
     // Listen for Enter key press
     document.addEventListener('keydown', (e) => {
@@ -68,9 +87,12 @@ document.addEventListener('DOMContentLoaded', () => {
             loadingScreen.style.display = 'none';
             
             // Show portfolio with reveal animation
-            portfolioWrapper.style.opacity = '1';
-            portfolioWrapper.style.pointerEvents = 'auto';
-            portfolioWrapper.classList.add('portfolio-reveal');
+            if (portfolioWrapper) {
+                portfolioWrapper.style.opacity = '1';
+                portfolioWrapper.style.pointerEvents = 'auto';
+                portfolioWrapper.classList.add('portfolio-reveal');
+            }
+            sessionStorage.setItem('hasSeenSplash', 'true');
         }, 500);
     }
 
@@ -159,27 +181,49 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ------- Nav active state on scroll -------
-    const mainContent = document.getElementById('main-content');
-    if (mainContent) {
-        mainContent.addEventListener('scroll', () => {
-            const sections = ['home', 'projects'];
-            const navLinks = document.querySelectorAll('.nav-link');
-            let current = 'home';
-            sections.forEach(id => {
-                const section = document.getElementById(id);
-                if (section && section.offsetTop - 200 <= mainContent.scrollTop) {
-                    current = id;
+    // ------- Nav active state on scroll using IntersectionObserver -------
+    const sections = document.querySelectorAll('#main-content > .snap-start');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (sections.length > 0 && navLinks.length > 0) {
+        const observerOptions = {
+            root: document.getElementById('main-content'),
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentId = entry.target.getAttribute('id');
+                    
+                    navLinks.forEach(link => {
+                        // Base styles for inactive links
+                        link.classList.remove('active', 'bg-primary', 'text-white', 'shadow-[2px_4px_0px_rgba(0,0,0,0.1)]', 'hover:-translate-y-1');
+                        link.classList.add('hover:bg-primary/10', 'dark:hover:bg-primary/20', 'hover:pl-6', 'text-[#181111]', 'dark:text-gray-200');
+                        
+                        // Icon styles override for inactive links
+                        const icon = link.querySelector('.material-symbols-outlined');
+                        if (icon) {
+                            icon.classList.add('text-[#896161]', 'group-hover:text-primary');
+                        }
+
+                        // Apply active styles to the current link
+                        const href = link.getAttribute('href');
+                        // Handle links like #projects vs index.html#projects
+                        if (href && (href === `#${currentId}` || href === `index.html#${currentId}`)) {
+                            link.classList.add('active', 'bg-primary', 'text-white', 'shadow-[2px_4px_0px_rgba(0,0,0,0.1)]', 'hover:-translate-y-1');
+                            link.classList.remove('hover:bg-primary/10', 'dark:hover:bg-primary/20', 'hover:pl-6', 'text-[#181111]', 'dark:text-gray-200');
+                            if (icon) {
+                                icon.classList.remove('text-[#896161]', 'group-hover:text-primary');
+                            }
+                        }
+                    });
                 }
             });
-            navLinks.forEach(link => {
-                link.classList.remove('active', 'bg-primary', 'text-white');
-                const href = link.getAttribute('href');
-                if (href === `#${current}`) {
-                    link.classList.add('active', 'bg-primary', 'text-white');
-                }
-            });
-        });
+        }, observerOptions);
+
+        sections.forEach(sec => observer.observe(sec));
     }
 });
 
@@ -317,7 +361,7 @@ function renderProjects(projects) {
         const detailUrl = `project.html?id=${project.id}`;
 
         return `
-        <a href="${detailUrl}" class="group relative flex flex-col bg-white dark:bg-[#1a1a1a] p-4 text-[#181111] dark:text-white border-2 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#ec1313] dark:hover:shadow-[8px_8px_0px_0px_#ec1313] transition-all duration-200 ${rot} no-underline cursor-pointer" data-category="${(project.category || '').toLowerCase()}">
+        <a href="${detailUrl}" onclick="localStorage.setItem('currentProjectId', '${project.id}')" class="group relative flex flex-col bg-white dark:bg-[#1a1a1a] p-4 text-[#181111] dark:text-white border-2 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#ec1313] dark:hover:shadow-[8px_8px_0px_0px_#ec1313] transition-all duration-200 ${rot} no-underline cursor-pointer" data-category="${(project.category || '').toLowerCase()}">
             ${project.tag ? `<div class="${tagPos} ${tagColor} px-2 py-1 text-xs font-bold border border-black shadow-sm z-10">${project.tag}</div>` : ''}
             ${wip ? `<div class="absolute -bottom-3 right-4 bg-primary text-white px-3 py-1 text-xs font-bold border border-black shadow-sm rotate-[2deg] z-10">Work in Progress</div>` : ''}
             <div class="relative w-full aspect-[4/3] bg-gray-100 dark:bg-gray-800 border border-black dark:border-white mb-4 overflow-hidden">
@@ -336,8 +380,11 @@ function renderProjects(projects) {
 
     // Add the "More cooking" placeholder at the end
     grid.innerHTML += `
-        <div class="flex flex-col items-center justify-center bg-gray-50 dark:bg-white/5 p-4 text-gray-400 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg min-h-[300px]">
-            <span class="material-symbols-outlined text-4xl mb-2 opacity-50">edit</span>
+        <div class="flex flex-col items-center justify-center bg-gray-50 dark:bg-[#1a1a1a] p-4 text-gray-400 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg min-h-[300px]">
+            <div class="flex gap-2 mb-2">
+                <span class="material-symbols-outlined text-4xl opacity-50 animate-bounce text-orange-500">local_fire_department</span>
+                <span class="material-symbols-outlined text-4xl opacity-50 animate-pulse text-gray-500">restaurant</span>
+            </div>
             <p class="font-hand font-bold text-lg rotate-[-2deg]">More cooking...</p>
         </div>`;
 }

@@ -103,49 +103,67 @@
 
     <div class="flex flex-col md:flex-row min-h-screen w-full overflow-hidden bg-[length:20px_20px] bg-dot-pattern dark:bg-dot-pattern-dark">
 
+        <!-- Mobile Header -->
+        <div id="mobile-header" class="md:hidden flex items-center justify-between p-4 border-b border-[#e5e5e5] dark:border-[#333] bg-white/50 dark:bg-[#1a0e0e]/50 backdrop-blur-sm sticky top-0 z-50 w-full">
+            <a href="index.html#home" class="no-underline"><h1 class="text-xl font-bold font-marker text-[#181111] dark:text-white" id="mobile-brand">Prince<span class="text-primary">.</span></h1></a>
+            <button id="mobile-menu-toggle" class="text-primary material-symbols-outlined cursor-pointer">menu</button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white/95 dark:bg-[#1a0e0e]/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-6 transition-all duration-300 md:hidden">
+            <button id="mobile-menu-close" class="absolute top-4 right-4 text-primary material-symbols-outlined text-3xl cursor-pointer">close</button>
+            <nav class="flex flex-col gap-4 items-center">
+                <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="index.html#home">
+                    <span class="material-symbols-outlined">home</span> Home
+                </a>
+                <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="index.html#projects">
+                    <span class="material-symbols-outlined">grid_view</span> Projects
+                </a>
+                <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="index.html#about">
+                    <span class="material-symbols-outlined">person</span> About
+                </a>
+                <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="index.html#contact">
+                    <span class="material-symbols-outlined">mail</span> Contact
+                </a>
+            </nav>
+        </div>
+
         <!-- Sidebar Navigation -->
-        <nav class="w-full md:w-64 flex-shrink-0 flex flex-col justify-between border-b md:border-b-0 md:border-r-2 border-black/10 dark:border-white/10 bg-white/80 dark:bg-black/20 backdrop-blur-sm p-6 z-20 h-auto md:h-screen md:sticky md:top-0">
-            <div class="flex flex-col gap-8">
-                <!-- Branding -->
-                <div class="flex flex-col gap-1">
-                    <a href="index.html" class="no-underline">
-                        <h1 class="text-2xl font-bold text-ink dark:text-white font-marker tracking-wide" id="sidebar-brand">Prince<span class="text-primary">.</span></h1>
+        <aside class="hidden md:flex flex-col w-64 flex-shrink-0 h-screen sticky top-0 border-r border-[#e5e5e5] dark:border-[#333] bg-white/80 dark:bg-[#1a0e0e]/80 backdrop-blur-md z-40">
+            <div class="flex flex-col h-full p-8 justify-between">
+                <div class="flex flex-col gap-2">
+                    <a href="index.html#home" class="no-underline">
+                        <h1 class="text-2xl font-bold text-[#181111] dark:text-white font-marker tracking-wide" id="sidebar-brand">Prince<span class="text-primary">.</span></h1>
                     </a>
                     <p class="text-[#896161] dark:text-[#a08080] text-sm font-medium font-hand -rotate-2 origin-left" id="sidebar-tagline">Available for hire!</p>
                 </div>
-                <!-- Nav Links -->
-                <div class="flex flex-col gap-2">
-                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-ink dark:text-gray-200" href="index.html#home">
+
+                <nav class="flex flex-col gap-4">
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200" href="index.html#home">
                         <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">home</span>
                         <span class="text-base font-medium">Home</span>
                     </a>
-                    <a class="group nav-link active flex items-center gap-3 px-4 py-3 rounded-shaky bg-primary text-white transition-all" href="index.html#projects">
+                    <a class="group nav-link active flex items-center gap-3 px-4 py-3 rounded-shaky bg-primary text-white transition-all shadow-[2px_4px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1" href="index.html#projects">
                         <span class="material-symbols-outlined text-[20px]">grid_view</span>
                         <span class="text-base font-bold">Projects</span>
                     </a>
-                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-ink dark:text-gray-200" href="index.html#about">
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200" href="index.html#about">
                         <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">person</span>
                         <span class="text-base font-medium">About</span>
                     </a>
-                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-ink dark:text-gray-200" href="index.html#contact">
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200" href="index.html#contact">
                         <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">mail</span>
                         <span class="text-base font-medium">Contact</span>
                     </a>
-                </div>
-            </div>
-            <!-- Footer -->
-            <div class="hidden md:block mt-auto pt-6 border-t-2 border-dashed border-gray-300 dark:border-gray-700">
-                <div class="flex items-center gap-2 text-xs font-medium text-gray-500 dark:text-gray-400">
-                    <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                        Open to work
-                </div>
-                <div class="flex gap-4 items-center mt-4">
-                    <button id="theme-toggle" class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform cursor-pointer">
+                </nav>
+
+                <div class="flex gap-4 items-center">
+                    <button id="theme-toggle" class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform cursor-pointer ml-auto">
                         <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
                     </button>
                 </div>
             </div>
-        </nav>
+        </aside>
 
         <!-- Main Content -->
         <main class="flex-1 overflow-y-auto relative h-auto md:h-screen">
@@ -172,7 +190,7 @@
                 <div id="project-dynamic" style="display: none;">
 
                     <!-- Header -->
-                    <header class="relative border-b-2 border-black dark:border-white pb-8">
+                    <header class="relative pb-8">
                         <svg class="absolute bottom-0 left-0 w-full h-4 text-primary translate-y-1/2" fill="none" preserveAspectRatio="none" viewBox="0 0 400 15">
                             <path d="M5 5C100 15 200 -5 395 10" stroke="currentColor" stroke-dasharray="10 5" stroke-linecap="round" stroke-width="3"></path>
                         </svg>
@@ -193,7 +211,7 @@
                         <div class="absolute -top-4 -left-4 w-8 h-8 border-t-4 border-l-4 border-primary"></div>
                         <div class="absolute -bottom-4 -right-4 w-8 h-8 border-b-4 border-r-4 border-primary"></div>
                         <div class="w-full h-full bg-gray-200 dark:bg-gray-700 overflow-hidden relative group">
-                            <img id="proj-hero-image" alt="" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                            <img id="proj-hero-image" alt="" class="w-full h-full object-cover transition-all duration-500" />
                         </div>
                         <p class="absolute -bottom-10 left-0 w-full text-center font-hand text-gray-500 dark:text-gray-400 text-sm italic" id="proj-hero-caption"></p>
                     </div>
@@ -286,6 +304,12 @@
 
             </div>
         </main>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="fixed inset-0 z-[10000] bg-black/90 backdrop-blur-md hidden flex-col items-center justify-center p-4 md:p-12 opacity-0 transition-opacity duration-300 cursor-zoom-out">
+        <button id="lightbox-close" class="absolute top-6 right-6 text-white hover:text-primary transition-colors material-symbols-outlined text-4xl cursor-pointer bg-black/50 p-2 rounded-full z-50">close</button>
+        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300 cursor-default" />
     </div>
 
     <!-- Firebase SDK -->

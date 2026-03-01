@@ -27,9 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Get project ID from URL
+    // Get project ID from URL or fallback to localStorage (solves clean-URL redirect dropping query strings)
     const params = new URLSearchParams(window.location.search);
-    const projectId = params.get('id');
+    let projectId = params.get('id');
+
+    if (projectId) {
+        localStorage.setItem('currentProjectId', projectId);
+    } else {
+        projectId = localStorage.getItem('currentProjectId');
+    }
 
     if (!projectId) {
         showError();
@@ -118,6 +124,10 @@ function renderProject(project) {
     if (project.imageUrl) {
         const heroWrapper = document.getElementById('proj-hero-wrapper');
         heroWrapper.style.display = 'block';
+        heroWrapper.classList.add('cursor-pointer', 'lightbox-trigger');
+        heroWrapper.dataset.img = project.imageUrl;
+        heroWrapper.title = "Click to view full screen";
+        
         document.getElementById('proj-hero-image').src = project.imageUrl;
         document.getElementById('proj-hero-image').alt = project.title || '';
         document.getElementById('proj-hero-caption').textContent = project.heroCaption || `The ${project.title} project`;
@@ -143,10 +153,10 @@ function renderProject(project) {
             galleryEl.style.display = 'grid';
             galleryEl.innerHTML = galleryImgs.map((img, i) => `
                 <div class="flex flex-col gap-3 group ${i % 2 === 1 ? 'mt-8 md:mt-0' : ''}">
-                    <div class="bg-white dark:bg-[#1a1a1a] p-2 border-2 ${i === 0 ? 'border-dashed border-gray-300 dark:border-gray-600 rounded-lg' : 'border-black dark:border-white rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'} relative">
+                    <div class="bg-white dark:bg-[#1a1a1a] p-2 border-2 ${i === 0 ? 'border-dashed border-gray-300 dark:border-gray-600 rounded-lg' : 'border-black dark:border-white rounded-lg shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'} relative cursor-pointer hover:scale-[1.02] transition-transform lightbox-trigger" data-img="${img.url}">
                         ${i === 0 ? '<div class="absolute -top-3 -right-3 bg-blue-600 text-white text-xs font-bold px-2 py-1 rotate-6 shadow-md">Preview</div>' : ''}
-                        <div class="aspect-[4/3] bg-gray-50 dark:bg-black/40 overflow-hidden">
-                            <img alt="${img.caption}" class="w-full h-full object-cover ${i === 0 ? 'opacity-80 mix-blend-multiply dark:mix-blend-normal grayscale contrast-125' : 'grayscale contrast-125'}" src="${img.url}" />
+                        <div class="aspect-[4/3] bg-gray-50 dark:bg-black/40 overflow-hidden flex items-center justify-center p-2">
+                            <img alt="${img.caption}" class="w-full h-full object-contain drop-shadow-sm pointer-events-none" src="${img.url}" />
                         </div>
                     </div>
                     <p class="font-hand text-center text-gray-500">${img.caption}</p>
@@ -194,8 +204,17 @@ function renderProject(project) {
     // External link
     if (project.link) {
         document.getElementById('proj-link-wrapper').style.display = 'block';
-        document.getElementById('proj-external-link').href = project.link;
+        const linkEl = document.getElementById('proj-external-link');
+        linkEl.href = project.link;
+        if (project.link.includes('fliphtml5.com') || project.link.toLowerCase().includes('efy')) {
+            linkEl.innerHTML = `<span class="material-symbols-outlined">menu_book</span> Read EFY Magazine`;
+        } else {
+            linkEl.innerHTML = `<span class="material-symbols-outlined">open_in_new</span> View Live Project`;
+        }
     }
+    
+    // Initialize lightbox after content is rendered
+    initLightbox();
 }
 
 // ==========================================
@@ -234,8 +253,61 @@ function loadNextProject(currentOrder) {
 function showNextProject(id, title) {
     const wrapper = document.getElementById('next-project-wrapper');
     wrapper.style.display = 'block';
-    document.getElementById('next-project-link').href = `project.html?id=${id}`;
+    const linkEl = document.getElementById('next-project-link');
+    linkEl.href = `project.html?id=${id}`;
+    linkEl.onclick = () => localStorage.setItem('currentProjectId', id);
     document.getElementById('next-project-title').textContent = title;
+}
+
+// ==========================================
+// Lightbox Implementation
+// ==========================================
+function initLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+    
+    // Add click listeners to triggers
+    const triggers = document.querySelectorAll('.lightbox-trigger');
+    triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+            const imgSrc = trigger.dataset.img;
+            if (imgSrc) {
+                lightboxImg.src = imgSrc;
+                lightbox.style.display = 'flex';
+                // Trigger reflow then set opacity
+                void lightbox.offsetWidth;
+                lightbox.classList.remove('opacity-0');
+                lightbox.classList.add('opacity-100');
+                lightboxImg.classList.remove('scale-95');
+                lightboxImg.classList.add('scale-100');
+                document.body.style.overflow = 'hidden'; // prevent scrolling behind
+            }
+        });
+    });
+
+    const closeLightbox = () => {
+        lightbox.classList.remove('opacity-100');
+        lightbox.classList.add('opacity-0');
+        lightboxImg.classList.remove('scale-100');
+        lightboxImg.classList.add('scale-95');
+        document.body.style.overflow = '';
+        setTimeout(() => {
+            lightbox.style.display = 'none';
+        }, 300); // match transition duration
+    };
+
+    lightbox?.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    lightboxClose?.addEventListener('click', closeLightbox);
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.style.display === 'flex') {
+            closeLightbox();
+        }
+    });
 }
 
 // ==========================================
