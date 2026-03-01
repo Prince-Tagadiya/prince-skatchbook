@@ -103,8 +103,8 @@ function updateUI(data) {
     if (data.brandName) {
         const brandParts = data.brandName.split('.');
         const brandBase = brandParts[0] || data.brandName;
-        setTextSafe('sidebar-brand', `${brandBase}<span class="text-primary">.</span>`);
-        setTextSafe('mobile-brand', `${brandBase}<span class="text-primary">.</span>`);
+        setHTMLSafe('sidebar-brand', `${brandBase}<span class="text-primary">.</span>`);
+        setHTMLSafe('mobile-brand', `${brandBase}<span class="text-primary">.</span>`);
     }
 
     if (data.tagline) setTextSafe('sidebar-tagline', data.tagline);
