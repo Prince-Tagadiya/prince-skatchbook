@@ -1,39 +1,95 @@
 // ==========================================
 // Portfolio App — Main Script
-// Loads data from Firestore and populates UI
+// 3-Phase Flow: Splash → Loading → Portfolio
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-    // ------- Loading Screen -------
+    const splashScreen = document.getElementById('splash-screen');
     const loadingScreen = document.getElementById('loading-screen');
-    
-    // Remove loading screen after animations + data load
-    setTimeout(() => {
+    const portfolioWrapper = document.getElementById('portfolio-wrapper');
+    const enterBtn = document.getElementById('enter-btn');
+
+    let dataLoaded = false;
+    let animationDone = false;
+
+    // ------- PHASE 1: Splash Screen -------
+    // Listen for Enter key press
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && splashScreen.style.display !== 'none') {
+            triggerEnter();
+        }
+    });
+
+    // Listen for Enter button click
+    enterBtn?.addEventListener('click', () => {
+        triggerEnter();
+    });
+
+    function triggerEnter() {
+        // Add exit animation to splash
+        splashScreen.classList.add('splash-exit');
+        
+        setTimeout(() => {
+            splashScreen.style.display = 'none';
+            startLoadingPhase();
+        }, 600);
+    }
+
+    // ------- PHASE 2: Loading Screen -------
+    function startLoadingPhase() {
+        loadingScreen.style.opacity = '1';
+        loadingScreen.style.pointerEvents = 'auto';
+        loadingScreen.classList.add('loading-active');
+
+        // Start loading Firebase data
+        loadPortfolioData();
+
+        // Set animation done after loading animation finishes (3.5s)
+        setTimeout(() => {
+            animationDone = true;
+            checkReady();
+        }, 4000);
+    }
+
+    // ------- PHASE 3: Show Portfolio -------
+    function checkReady() {
+        if (dataLoaded && animationDone) {
+            showPortfolio();
+        }
+    }
+
+    function showPortfolio() {
+        // Fade out loading screen
         loadingScreen.style.opacity = '0';
         loadingScreen.style.pointerEvents = 'none';
+
         setTimeout(() => {
             loadingScreen.style.display = 'none';
-        }, 700);
-    }, 2200);
+            
+            // Show portfolio with reveal animation
+            portfolioWrapper.style.opacity = '1';
+            portfolioWrapper.style.pointerEvents = 'auto';
+            portfolioWrapper.classList.add('portfolio-reveal');
+        }, 500);
+    }
 
     // ------- Dark Mode Toggle -------
     const themeToggle = document.getElementById('theme-toggle');
     const themeIcon = document.getElementById('theme-icon');
     const htmlEl = document.documentElement;
 
-    // Check saved preference
     const savedTheme = localStorage.getItem('portfolio-theme');
     if (savedTheme === 'dark') {
         htmlEl.classList.add('dark');
         htmlEl.classList.remove('light');
-        themeIcon.textContent = 'light_mode';
+        if (themeIcon) themeIcon.textContent = 'light_mode';
     }
 
     themeToggle?.addEventListener('click', () => {
         htmlEl.classList.toggle('dark');
         htmlEl.classList.toggle('light');
         const isDark = htmlEl.classList.contains('dark');
-        themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
+        if (themeIcon) themeIcon.textContent = isDark ? 'light_mode' : 'dark_mode';
         localStorage.setItem('portfolio-theme', isDark ? 'dark' : 'light');
     });
 
@@ -52,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenu.style.display = 'none';
     });
 
-    // Close mobile menu on link click
     mobileMenu?.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             mobileMenu.classList.remove('show');
@@ -61,10 +116,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // ------- Load Portfolio Data from Firestore -------
-    loadPortfolioData();
+    function loadPortfolioData() {
+        try {
+            db.collection('portfolio').doc('main').onSnapshot((doc) => {
+                if (doc.exists) {
+                    const data = doc.data();
+                    updateUI(data);
+                } else {
+                    console.log('No portfolio data found. Using defaults.');
+                }
+                dataLoaded = true;
+                checkReady();
+            }, (error) => {
+                console.warn('Firestore connection error, using defaults:', error.message);
+                dataLoaded = true;
+                checkReady();
+            });
+        } catch (error) {
+            console.warn('Firebase not configured yet. Using default content.');
+            dataLoaded = true;
+            checkReady();
+        }
+    }
 
     // ------- Parallax-like subtle mouse move effect on hero image -------
-    const heroCard = document.querySelector('.tilt-card, .animate-pop-in');
+    const heroCard = document.querySelector('.animate-pop-in');
     if (heroCard) {
         document.addEventListener('mousemove', (e) => {
             const x = (e.clientX / window.innerWidth - 0.5) * 10;
@@ -73,27 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-// ==========================================
-// Load data from Firestore
-// ==========================================
-function loadPortfolioData() {
-    try {
-        // Listen to real-time changes
-        db.collection('portfolio').doc('main').onSnapshot((doc) => {
-            if (doc.exists) {
-                const data = doc.data();
-                updateUI(data);
-            } else {
-                console.log('No portfolio data found. Using defaults.');
-            }
-        }, (error) => {
-            console.warn('Firestore connection error, using defaults:', error.message);
-        });
-    } catch (error) {
-        console.warn('Firebase not configured yet. Using default content.');
-    }
-}
 
 // ==========================================
 // Update UI with Firestore data

@@ -38,7 +38,12 @@
                         "lg": "0.5rem",
                         "xl": "0.75rem",
                         "full": "9999px",
-                        "shaky": "255px 15px 225px 15px / 15px 225px 15px 255px"
+                        "shaky": "255px 15px 225px 15px / 15px 225px 15px 255px",
+                        "paper": "2px 255px 3px 25px / 255px 5px 225px 5px"
+                    },
+                    boxShadow: {
+                        "paper-lg": "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 2px 2px 0px rgba(0,0,0,0.1)",
+                        "paper-sm": "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 1px 1px 0px rgba(0,0,0,0.1)",
                     },
                 },
             },
@@ -46,223 +51,381 @@
     </script>
     <link rel="stylesheet" href="css/style.css" />
 </head>
-<body class="flex flex-col md:flex-row h-screen bg-background-light dark:bg-background-dark font-display text-[#181111] dark:text-white transition-colors duration-200 overflow-hidden">
+<body class="h-screen w-screen overflow-hidden bg-background-light font-display text-[#181111]">
 
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="fixed inset-0 z-[9999] bg-background-light dark:bg-background-dark flex flex-col items-center justify-center transition-opacity duration-700">
-        <div class="loading-name-container">
-            <h1 class="text-5xl md:text-7xl font-black tracking-tighter text-[#181111] dark:text-white loading-letter-animate">
-                <span class="loading-letter" style="--i:0">P</span>
-                <span class="loading-letter" style="--i:1">R</span>
-                <span class="loading-letter" style="--i:2">I</span>
-                <span class="loading-letter" style="--i:3">N</span>
-                <span class="loading-letter" style="--i:4">C</span>
-                <span class="loading-letter" style="--i:5">E</span>
-            </h1>
-            <div class="loading-line"></div>
-        </div>
-        <p class="font-hand text-xl text-primary mt-4 loading-subtitle">Loading portfolio...</p>
-    </div>
+    <!-- ==========================================
+         PHASE 1: SPLASH SCREEN (Paper Collage)
+         ========================================== -->
+    <div id="splash-screen" class="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden" style="background-color: #f8f6f6;">
+        <!-- Background grid dots -->
+        <div class="absolute inset-0 z-0 pointer-events-none opacity-20 bg-grid-pattern bg-[length:40px_40px]"></div>
+        
+        <!-- Decorative SVG doodles -->
+        <svg class="absolute top-10 left-10 w-48 h-48 text-gray-300 pointer-events-none opacity-40 animate-pulse" viewBox="0 0 200 200">
+            <path d="M20,100 Q60,20 100,100 T180,100" fill="none" stroke="currentColor" stroke-dasharray="10 10" stroke-width="4"></path>
+        </svg>
+        <svg class="absolute bottom-20 right-20 w-32 h-32 text-gray-300 pointer-events-none opacity-40 animate-pulse" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-dasharray="5 5" stroke-width="2"></circle>
+            <path d="M30,30 L70,70 M30,70 L70,30" stroke="currentColor" stroke-width="2"></path>
+        </svg>
 
-    <!-- Mobile Header -->
-    <div id="mobile-header" class="md:hidden flex items-center justify-between p-4 border-b border-[#e5e5e5] dark:border-[#333] bg-white/50 dark:bg-black/50 backdrop-blur-sm sticky top-0 z-50">
-        <h1 class="text-xl font-bold font-marker" id="mobile-brand">Prince<span class="text-primary">.</span></h1>
-        <button id="mobile-menu-toggle" class="text-primary material-symbols-outlined cursor-pointer">menu</button>
-    </div>
-
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white/95 dark:bg-[#1a0e0e]/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-6 transition-all duration-300 md:hidden">
-        <button id="mobile-menu-close" class="absolute top-4 right-4 text-primary material-symbols-outlined text-3xl cursor-pointer">close</button>
-        <nav class="flex flex-col gap-4 items-center">
-            <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#home">
-                <span class="material-symbols-outlined">home</span> Home
-            </a>
-            <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#work">
-                <span class="material-symbols-outlined">design_services</span> Work
-            </a>
-            <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#experiments">
-                <span class="material-symbols-outlined">science</span> Experiments
-            </a>
-            <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#about">
-                <span class="material-symbols-outlined">person</span> About
-            </a>
-            <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#contact">
-                <span class="material-symbols-outlined">mail</span> Contact
-            </a>
-        </nav>
-    </div>
-
-    <!-- Sidebar Navigation -->
-    <aside class="hidden md:flex flex-col w-64 h-screen sticky top-0 border-r border-[#e5e5e5] dark:border-[#333] bg-white/80 dark:bg-[#1a0e0e]/80 backdrop-blur-md z-40">
-        <div class="flex flex-col h-full p-8 justify-between">
-            <!-- Branding -->
-            <div class="flex flex-col gap-2 animate-slide-in-left" style="--delay: 0.3s">
-                <h1 class="text-2xl font-bold text-[#181111] dark:text-white font-marker tracking-wide" id="sidebar-brand">Prince<span class="text-primary">.</span></h1>
-                <p class="text-[#896161] dark:text-[#a08080] text-sm font-medium font-hand -rotate-2 origin-left" id="sidebar-tagline">Available for hire!</p>
+        <div class="relative w-full max-w-6xl h-full max-h-[800px] flex items-center justify-center">
+            <!-- Work Card (top-left) -->
+            <div class="absolute top-20 left-4 md:top-32 md:left-20 z-10 splash-fly-in-1 origin-top-left">
+                <div class="bg-blue-100 p-4 w-48 h-48 shadow-paper-sm -rotate-[6deg] rounded-bl-[30px] transform transition-transform hover:scale-110 hover:z-50 cursor-pointer">
+                    <div class="tape absolute -top-2 right-10 w-12 h-6 rotate-45"></div>
+                    <h3 class="font-marker text-2xl text-blue-900 mb-2">Work</h3>
+                    <p class="font-hand text-sm text-blue-800 leading-tight">
+                        Check out my latest case studies. Just finished a big project for...
+                    </p>
+                    <div class="mt-4 flex gap-1">
+                        <div class="w-2 h-2 rounded-full bg-blue-400"></div>
+                        <div class="w-2 h-2 rounded-full bg-blue-400"></div>
+                        <div class="w-2 h-2 rounded-full bg-blue-400"></div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Nav Links -->
-            <nav class="flex flex-col gap-4">
-                <a class="group nav-link active flex items-center gap-3 px-4 py-3 rounded-shaky bg-primary text-white transition-all shadow-[2px_4px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1 animate-slide-in-left" href="#home" style="--delay: 0.4s">
-                    <span class="material-symbols-outlined text-[20px]">home</span>
-                    <span class="text-base font-bold">Home</span>
+            <!-- Photo Card (top-right) -->
+            <div class="absolute top-10 right-4 md:top-20 md:right-32 z-10 splash-fly-in-2 origin-top-right">
+                <div class="bg-white p-3 pb-12 w-48 shadow-paper-lg rotate-[12deg] transform transition-transform hover:scale-105 hover:rotate-0 hover:z-50 cursor-pointer">
+                    <div class="tape absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-6 -rotate-3"></div>
+                    <div class="bg-gray-200 w-full aspect-square mb-2 overflow-hidden filter grayscale contrast-125">
+                        <img alt="Prince Tagadiya" class="object-cover w-full h-full mix-blend-multiply opacity-80" src="img/prince.jpg" />
+                    </div>
+                    <div class="text-center font-hand font-bold text-lg text-gray-800 relative">
+                        <span class="relative z-10">About Me</span>
+                        <svg class="absolute left-1/2 -translate-x-1/2 top-full -mt-1 w-16 h-2 text-primary opacity-60" viewBox="0 0 100 10">
+                            <path d="M0,5 Q50,10 100,5" fill="none" stroke="currentColor" stroke-width="4"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Experiments Card (bottom-left) -->
+            <div class="absolute bottom-10 left-4 md:bottom-20 md:left-20 z-10 splash-fly-in-3 origin-bottom-left">
+                <div class="bg-yellow-100 p-6 w-56 h-56 shadow-paper-lg rotate-[-3deg] transform transition-transform hover:scale-105 hover:z-50 cursor-pointer">
+                    <div class="tape absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 rotate-2"></div>
+                    <h3 class="font-marker text-xl mb-2 text-primary">Experiments</h3>
+                    <div class="border-t border-dashed border-gray-400 my-2"></div>
+                    <ul class="font-hand text-sm leading-6 list-disc list-inside text-gray-700">
+                        <li>Three.js sketches</li>
+                        <li>CSS Art</li>
+                        <li>WebGL Shaders</li>
+                    </ul>
+                    <div class="absolute bottom-4 right-4 text-4xl text-yellow-500 opacity-20 material-symbols-outlined">science</div>
+                </div>
+            </div>
+
+            <!-- Contact Card (bottom-right) -->
+            <div class="absolute bottom-20 right-4 md:bottom-32 md:right-24 z-10 splash-fly-in-4 origin-bottom-right">
+                <div class="bg-[#222] text-white p-6 w-64 h-40 shadow-paper-lg rotate-[5deg] torn-edge transform transition-transform hover:scale-105 hover:z-50 cursor-pointer group">
+                    <h3 class="font-display font-bold text-xl uppercase tracking-widest mb-1 group-hover:text-primary transition-colors">Contact</h3>
+                    <p class="font-mono text-xs text-gray-400">let's build something crazy together.</p>
+                    <div class="mt-4 flex items-center gap-2 text-sm font-hand text-gray-300">
+                        <span>email me</span>
+                        <span class="material-symbols-outlined text-base animate-bounce">arrow_forward</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Center Card -->
+            <div class="relative z-30 splash-fly-in-main">
+                <div class="bg-paper p-8 md:p-12 max-w-2xl w-full shadow-2xl rounded-paper border border-gray-100 relative transform rotate-1 transition-transform hover:rotate-0">
+                    <!-- Paper clips -->
+                    <div class="absolute -top-4 left-1/4 w-8 h-12 bg-gray-300 rounded-full border-2 border-gray-400 shadow-sm z-20 flex items-center justify-center">
+                        <div class="w-1 h-8 bg-gray-400 rounded-full"></div>
+                    </div>
+                    <div class="absolute -top-4 right-1/4 w-8 h-12 bg-gray-300 rounded-full border-2 border-gray-400 shadow-sm z-20 flex items-center justify-center">
+                        <div class="w-1 h-8 bg-gray-400 rounded-full"></div>
+                    </div>
+
+                    <div class="text-center relative">
+                        <div class="inline-block px-3 py-1 bg-black text-white font-mono text-xs -rotate-2 mb-4">PORTFOLIO v3.0</div>
+                        <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-[#181111] mb-2 relative inline-block">
+                            PRINCE
+                            <span class="block text-primary transform -rotate-2 -mt-2">TAGADIYA</span>
+                            <svg class="absolute -bottom-4 left-0 w-full h-8 text-black opacity-20 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 200 20">
+                                <path d="M0,10 Q50,20 100,5 T200,10" fill="none" stroke="currentColor" stroke-width="3"></path>
+                            </svg>
+                        </h1>
+                        <p class="font-hand text-xl md:text-2xl text-gray-600 mt-6 max-w-md mx-auto leading-relaxed">
+                            Creative Developer & Digital Craftsman.
+                            <br />
+                            <span class="text-sm bg-yellow-200 px-2 py-0.5 transform rotate-1 inline-block mt-2 text-black font-bold">Based in the Cloud ☁️</span>
+                        </p>
+
+                        <!-- ENTER Button -->
+                        <div class="mt-10 relative inline-block group cursor-pointer" id="enter-btn">
+                            <svg class="absolute inset-0 w-full h-full text-black group-hover:text-primary transition-colors duration-300" preserveAspectRatio="none" viewBox="0 0 200 60">
+                                <path d="M5,30 Q50,5 195,30 Q150,55 5,30 Z" fill="none" stroke="currentColor" stroke-dasharray="500" stroke-dashoffset="0" stroke-width="2"></path>
+                            </svg>
+                            <span class="relative z-10 block px-12 py-3 font-marker text-xl md:text-2xl hover:scale-105 transition-transform select-none">
+                                Enter ↵
+                            </span>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-3 font-hand">or press Enter key</p>
+                    </div>
+
+                    <!-- Coffee stain decoration -->
+                    <div class="absolute -bottom-10 -right-10 w-32 h-32 opacity-10 pointer-events-none rounded-full border-[12px] border-[#6f4e37] blur-sm transform scale-[1.2]"></div>
+                </div>
+
+                <!-- Floating stickers -->
+                <div class="absolute -top-10 -left-10 bg-pink-200 w-16 h-16 shadow-md rotate-[-15deg] z-20 flex items-center justify-center font-bold text-2xl text-pink-500 splash-float" style="animation-delay: 0.5s;">
+                    ?
+                    <div class="tape absolute -top-2 left-4 w-8 h-4 rotate-90"></div>
+                </div>
+                <div class="absolute bottom-10 -right-5 bg-green-200 w-24 h-12 shadow-md rotate-[10deg] z-20 flex items-center justify-center font-hand text-sm text-green-800 splash-float" style="animation-delay: 1s;">
+                    available!
+                    <div class="tape absolute -top-3 right-8 w-8 h-4 rotate-0"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         PHASE 2: LOADING SCREEN (Sketching Intro)
+         ========================================== -->
+    <div id="loading-screen" class="fixed inset-0 z-[9998] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500" style="background-color: #fdfbf7;">
+        <div class="relative w-full max-w-3xl h-64 flex items-center justify-center">
+            <!-- SVG "Prince" being drawn -->
+            <svg class="w-full h-full max-w-[600px]" fill="none" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
+                <path class="sketch-draw-path" d="M50,120 L50,30 C50,30 50,20 60,20 C80,20 100,20 100,50 C100,80 80,80 50,80" stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"></path>
+                <path class="sketch-draw-path" d="M120,120 L120,60 C120,60 120,50 130,50 C140,50 150,60 160,60" stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" style="animation-delay: 0.5s;"></path>
+                <path class="sketch-draw-path" d="M180,120 L180,60 M180,30 L180,35" stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" style="animation-delay: 0.8s;"></path>
+                <path class="sketch-draw-path" d="M210,120 L210,60 C210,60 210,50 220,50 C240,50 250,60 250,120" stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" style="animation-delay: 1.1s;"></path>
+                <path class="sketch-draw-path" d="M300,60 C280,60 270,70 270,90 C270,110 280,120 300,120" stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" style="animation-delay: 1.5s;"></path>
+                <path class="sketch-draw-path" d="M320,90 L360,90 C360,90 360,60 340,60 C320,60 320,90 320,100 C320,120 340,120 360,120" stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" style="animation-delay: 1.9s;"></path>
+                <!-- Red underline -->
+                <path class="sketch-draw-path" d="M40,140 Q 200,150, 380,135" stroke="#ec1313" stroke-linecap="round" stroke-width="6" style="animation-delay: 2.4s;"></path>
+            </svg>
+
+            <!-- Pencil cursor -->
+            <div class="pencil-cursor">
+                <svg class="transform -rotate-90" fill="none" height="60" viewBox="0 0 60 60" width="60" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 55 L15 55 L55 15 L45 5 L5 45 Z" fill="#F4D03F" stroke="#333" stroke-linejoin="round" stroke-width="2"></path>
+                    <path d="M5 45 L5 55 L15 55 Z" fill="#F5B041" stroke="#333" stroke-linejoin="round" stroke-width="2"></path>
+                    <path d="M5 55 L0 60 L15 55" fill="#333"></path>
+                    <path d="M45 5 L55 15" stroke="#333" stroke-width="2"></path>
+                    <rect fill="#E74C3C" height="16" rx="2" stroke="#333" stroke-width="2" transform="rotate(45 50 10)" width="16" x="42" y="2"></rect>
+                </svg>
+            </div>
+
+            <!-- Doodle decorations -->
+            <div class="absolute top-10 right-20 sketch-doodle-star">
+                <svg fill="none" height="40" viewBox="0 0 40 40" width="40">
+                    <path d="M20 0 L25 15 L40 20 L25 25 L20 40 L15 25 L0 20 L15 15 Z" fill="#ec1313" stroke="#333" stroke-width="2"></path>
+                </svg>
+            </div>
+            <div class="absolute bottom-4 left-10 sketch-doodle-arrow rotate-12">
+                <svg fill="none" height="30" viewBox="0 0 50 30" width="50">
+                    <path d="M0 15 Q 25 5, 45 15 M 45 15 L 35 10 M 45 15 L 35 20" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                </svg>
+            </div>
+            <div class="absolute -top-5 left-1/4 sketch-doodle-sparkle">
+                <svg fill="none" height="30" viewBox="0 0 30 30" width="30">
+                    <path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="#FFD700" stroke="#333" stroke-width="1.5"></path>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="mt-12 flex flex-col items-center gap-4 w-64">
+            <p class="font-hand text-xl text-[#555] animate-pulse">Loading creativity...</p>
+            <div class="w-full h-6 border-2 border-[#333] rounded-shaky p-1 relative overflow-hidden bg-white shadow-sm transform -rotate-1">
+                <div class="scribble-bar-fill w-0" id="scribble-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         PHASE 3: MAIN PORTFOLIO
+         ========================================== -->
+    <div id="portfolio-wrapper" class="flex flex-col md:flex-row h-screen w-screen bg-background-light dark:bg-background-dark font-display text-[#181111] dark:text-white transition-colors duration-200 overflow-hidden opacity-0 pointer-events-none">
+
+        <!-- Mobile Header -->
+        <div id="mobile-header" class="md:hidden flex items-center justify-between p-4 border-b border-[#e5e5e5] dark:border-[#333] bg-white/50 dark:bg-black/50 backdrop-blur-sm sticky top-0 z-50">
+            <h1 class="text-xl font-bold font-marker" id="mobile-brand">Prince<span class="text-primary">.</span></h1>
+            <button id="mobile-menu-toggle" class="text-primary material-symbols-outlined cursor-pointer">menu</button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white/95 dark:bg-[#1a0e0e]/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-6 transition-all duration-300 md:hidden">
+            <button id="mobile-menu-close" class="absolute top-4 right-4 text-primary material-symbols-outlined text-3xl cursor-pointer">close</button>
+            <nav class="flex flex-col gap-4 items-center">
+                <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#home">
+                    <span class="material-symbols-outlined">home</span> Home
                 </a>
-                <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#work" style="--delay: 0.5s">
-                    <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">design_services</span>
-                    <span class="text-base font-medium">Work</span>
+                <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#work">
+                    <span class="material-symbols-outlined">design_services</span> Work
                 </a>
-                <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#experiments" style="--delay: 0.6s">
-                    <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">science</span>
-                    <span class="text-base font-medium">Experiments</span>
+                <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#experiments">
+                    <span class="material-symbols-outlined">science</span> Experiments
                 </a>
-                <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#about" style="--delay: 0.7s">
-                    <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">person</span>
-                    <span class="text-base font-medium">About</span>
+                <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#about">
+                    <span class="material-symbols-outlined">person</span> About
                 </a>
-                <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#contact" style="--delay: 0.8s">
-                    <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">mail</span>
-                    <span class="text-base font-medium">Contact</span>
+                <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#contact">
+                    <span class="material-symbols-outlined">mail</span> Contact
                 </a>
             </nav>
-
-            <!-- Mini Footer in Nav -->
-            <div class="flex gap-4 items-center animate-slide-in-left" style="--delay: 0.9s">
-                <a class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform" href="#" id="nav-email-link">
-                    <span class="material-symbols-outlined">alternate_email</span>
-                </a>
-                <a class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform" href="#" id="nav-github-link" target="_blank">
-                    <span class="material-symbols-outlined">code_blocks</span>
-                </a>
-                <!-- Dark mode toggle -->
-                <button id="theme-toggle" class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform cursor-pointer ml-auto">
-                    <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
-                </button>
-            </div>
-        </div>
-    </aside>
-
-    <!-- Main Content Area -->
-    <main class="flex-1 relative paper-texture bg-grid-pattern bg-[length:24px_24px] overflow-hidden h-screen scroll-smooth" id="main-content">
-
-        <!-- Decorative Doodles -->
-        <div class="absolute top-20 right-20 opacity-20 dark:opacity-10 pointer-events-none rotate-12 doodle-float">
-            <svg class="text-primary" fill="none" height="120" stroke="currentColor" stroke-width="2" viewBox="0 0 100 100" width="120">
-                <path class="scribble-path" d="M50 0 L61 35 L98 35 L68 57 L79 91 L50 70 L21 91 L32 57 L2 35 L39 35 Z" stroke-linejoin="round"></path>
-            </svg>
-        </div>
-        <div class="absolute bottom-40 left-10 opacity-30 dark:opacity-10 pointer-events-none -rotate-12">
-            <svg class="text-[#181111] dark:text-white" fill="none" height="80" stroke="currentColor" stroke-width="2" viewBox="0 0 200 100" width="150">
-                <path class="scribble-path" d="M10 50 Q 50 10, 100 50 T 190 50"></path>
-                <path class="scribble-path" d="M10 60 Q 50 20, 100 60 T 190 60" style="animation-delay: 0.2s"></path>
-                <path class="scribble-path" d="M10 70 Q 50 30, 100 70 T 190 70" style="animation-delay: 0.4s"></path>
-            </svg>
         </div>
 
-        <!-- Extra floating doodles -->
-        <div class="absolute top-1/2 right-10 opacity-10 dark:opacity-5 pointer-events-none doodle-float-reverse">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" class="text-primary">
-                <circle class="scribble-path" cx="30" cy="30" r="25" stroke-width="2" style="animation-delay: 1s" />
-            </svg>
-        </div>
-
-        <div class="layout-container flex flex-col h-full px-6 md:px-20 lg:px-32 max-w-7xl mx-auto" id="home">
-            <div class="flex-1 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center justify-center">
-                <!-- Text Content -->
-                <div class="flex-1 flex flex-col items-start gap-5 relative z-10 w-full">
-                    <!-- Tagline with handwritten font -->
-                    <div class="inline-flex items-center justify-center px-4 py-2 border-2 border-primary/30 rounded-shaky bg-white dark:bg-white/5 -rotate-2 shadow-sm animate-pop-in" style="--delay: 0.8s">
-                        <span class="font-hand text-lg md:text-xl font-bold text-primary" id="hero-greeting">👋 Hello, world!</span>
-                    </div>
-                    <div class="flex flex-col relative">
-                        <!-- Scribbled Underline SVG for name -->
-                        <h1 class="text-6xl md:text-8xl font-black text-[#181111] dark:text-white tracking-tighter leading-[0.9] mb-4">
-                            <span class="inline-block animate-slide-up" style="--delay: 0.9s" id="hero-first-name">PRINCE</span> <br />
-                            <span class="relative inline-block animate-slide-up" style="--delay: 1.1s">
-                                <span id="hero-last-name">TAGADIYA</span>
-                                <svg class="absolute w-[110%] h-[30px] -bottom-2 -left-2 text-primary z-[-1] pointer-events-none" preserveAspectRatio="none" viewBox="0 0 200 20">
-                                    <path class="scribble-path" d="M0,10 Q100,20 200,5" fill="none" opacity="0.4" stroke="currentColor" stroke-width="8"></path>
-                                </svg>
-                            </span>
-                        </h1>
-                        <div class="flex flex-wrap gap-x-3 gap-y-1 text-xl md:text-2xl text-[#896161] dark:text-[#bcaaaa] font-hand mt-4 pl-2 border-l-4 border-primary/50 animate-slide-in-left" style="--delay: 1.3s" id="hero-roles">
-                            <span>Designer</span>
-                            <span class="text-primary font-bold">/</span>
-                            <span>Developer</span>
-                            <span class="text-primary font-bold">/</span>
-                            <span>Creative Thinker</span>
-                        </div>
-                    </div>
-                    <p class="text-lg md:text-xl text-[#4a4a4a] dark:text-[#cccccc] max-w-xl leading-relaxed font-light animate-fade-in" style="--delay: 1.5s" id="hero-bio">
-                        Building digital products that feel handmade. I specialize in bridging the gap between <strong class="font-medium text-[#181111] dark:text-white border-b-2 border-primary/30">clean code</strong> and <strong class="font-medium text-[#181111] dark:text-white border-b-2 border-primary/30">creative chaos</strong>.
-                    </p>
-                    <div class="flex flex-col sm:flex-row gap-4 mt-3 items-start sm:items-center relative w-full animate-fade-in" style="--delay: 1.7s">
-
-
-                        <a href="#work" class="relative group cursor-pointer no-underline">
-                            <div class="absolute inset-0 bg-black rounded-shaky translate-y-1 translate-x-1 transition-transform group-hover:translate-y-2 group-hover:translate-x-2"></div>
-                            <div class="relative bg-primary text-white text-lg font-bold px-8 py-4 rounded-shaky border-2 border-black flex items-center gap-2 hover:-translate-y-1 hover:-translate-x-1 transition-transform active:translate-y-0 active:translate-x-0">
-                                <span>See my work</span>
-                                <span class="material-symbols-outlined">arrow_forward</span>
-                            </div>
-                        </a>
-                        <a class="group flex items-center gap-2 px-6 py-4 text-[#181111] dark:text-white font-medium hover:text-primary transition-colors no-underline" href="#contact" id="hero-contact-link">
-                            <span class="font-hand text-lg underline decoration-wavy decoration-primary/40 underline-offset-4 group-hover:decoration-primary">Contact me</span>
-                        </a>
-                    </div>
+        <!-- Sidebar Navigation -->
+        <aside class="hidden md:flex flex-col w-64 h-screen sticky top-0 border-r border-[#e5e5e5] dark:border-[#333] bg-white/80 dark:bg-[#1a0e0e]/80 backdrop-blur-md z-40">
+            <div class="flex flex-col h-full p-8 justify-between">
+                <div class="flex flex-col gap-2 animate-slide-in-left" style="--delay: 0.3s">
+                    <h1 class="text-2xl font-bold text-[#181111] dark:text-white font-marker tracking-wide" id="sidebar-brand">Prince<span class="text-primary">.</span></h1>
+                    <p class="text-[#896161] dark:text-[#a08080] text-sm font-medium font-hand -rotate-2 origin-left" id="sidebar-tagline">Available for hire!</p>
                 </div>
 
-                <!-- Visual/Image Area -->
-                <div class="w-full lg:w-5/12 relative lg:mt-0 flex justify-center animate-pop-in" style="--delay: 1.2s">
-                    <!-- Background blobs -->
-                    <div class="absolute top-10 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl z-0 blob-animate"></div>
-                    <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl z-0 blob-animate-reverse"></div>
-                    <!-- Card Container -->
-                    <div class="relative z-10 transform rotate-2 hover:rotate-0 transition-transform duration-500 ease-out group">
-                        <!-- Top Tape -->
-                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 mask-tape z-20"></div>
-                        <div class="bg-white p-3 pb-12 shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.1)] dark:shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.5)] border border-gray-200 dark:border-gray-700 rounded-sm max-w-[400px]">
-                            <!-- Image -->
-                            <div class="relative overflow-hidden bg-gray-100 aspect-[4/5] w-full filter grayscale group-hover:grayscale-0 transition-all duration-500">
-                                <img id="hero-photo" alt="Portrait of Prince Tagadiya" class="object-cover w-full h-full mix-blend-multiply dark:mix-blend-normal" src="img/prince.jpg" />
-                                <!-- Overlay Texture -->
-                                <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            </div>
-                            <!-- Handwritten Caption on Polaroid -->
-                            <div class="absolute bottom-4 left-0 w-full text-center">
-                                <p class="font-marker text-xl text-[#181111] rotate-1" id="hero-photo-caption">Me @ Work</p>
-                            </div>
-                        </div>
-                        <!-- Decorative Sticker -->
-                        <div class="absolute -bottom-6 -right-6 bg-yellow-300 text-black font-marker p-4 rounded-full shadow-lg border-2 border-black rotate-12 z-30 transform hover:scale-110 transition-transform sticker-wobble" id="hero-sticker">
-                            Open for<br />Collabs!
-                        </div>
-                    </div>
+                <nav class="flex flex-col gap-4">
+                    <a class="group nav-link active flex items-center gap-3 px-4 py-3 rounded-shaky bg-primary text-white transition-all shadow-[2px_4px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1 animate-slide-in-left" href="#home" style="--delay: 0.4s">
+                        <span class="material-symbols-outlined text-[20px]">home</span>
+                        <span class="text-base font-bold">Home</span>
+                    </a>
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#work" style="--delay: 0.5s">
+                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">design_services</span>
+                        <span class="text-base font-medium">Work</span>
+                    </a>
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#experiments" style="--delay: 0.6s">
+                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">science</span>
+                        <span class="text-base font-medium">Experiments</span>
+                    </a>
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#about" style="--delay: 0.7s">
+                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">person</span>
+                        <span class="text-base font-medium">About</span>
+                    </a>
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#contact" style="--delay: 0.8s">
+                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">mail</span>
+                        <span class="text-base font-medium">Contact</span>
+                    </a>
+                </nav>
+
+                <div class="flex gap-4 items-center animate-slide-in-left" style="--delay: 0.9s">
+                    <a class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform" href="#" id="nav-email-link">
+                        <span class="material-symbols-outlined">alternate_email</span>
+                    </a>
+                    <a class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform" href="#" id="nav-github-link" target="_blank">
+                        <span class="material-symbols-outlined">code_blocks</span>
+                    </a>
+                    <button id="theme-toggle" class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform cursor-pointer ml-auto">
+                        <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+                    </button>
                 </div>
             </div>
+        </aside>
 
-            <!-- Footer Section embedded in main flow -->
-            <footer class="shrink-0 py-4 border-t-2 border-dashed border-[#e5e5e5] dark:border-[#333] flex flex-col md:flex-row justify-between items-center gap-3 opacity-70 hover:opacity-100 transition-opacity animate-fade-in" style="--delay: 2s">
-                <div class="flex items-center gap-2">
-                    <span class="material-symbols-outlined text-primary">copyright</span>
-                    <p class="text-sm font-medium" id="footer-text">2025 Prince Tagadiya. Built with passion.</p>
+        <!-- Main Content Area -->
+        <main class="flex-1 relative paper-texture bg-grid-pattern bg-[length:24px_24px] overflow-hidden h-screen scroll-smooth" id="main-content">
+            <!-- Decorative Doodles -->
+            <div class="absolute top-20 right-20 opacity-20 dark:opacity-10 pointer-events-none rotate-12 doodle-float">
+                <svg class="text-primary" fill="none" height="120" stroke="currentColor" stroke-width="2" viewBox="0 0 100 100" width="120">
+                    <path class="scribble-path" d="M50 0 L61 35 L98 35 L68 57 L79 91 L50 70 L21 91 L32 57 L2 35 L39 35 Z" stroke-linejoin="round"></path>
+                </svg>
+            </div>
+            <div class="absolute bottom-40 left-10 opacity-30 dark:opacity-10 pointer-events-none -rotate-12">
+                <svg class="text-[#181111] dark:text-white" fill="none" height="80" stroke="currentColor" stroke-width="2" viewBox="0 0 200 100" width="150">
+                    <path class="scribble-path" d="M10 50 Q 50 10, 100 50 T 190 50"></path>
+                    <path class="scribble-path" d="M10 60 Q 50 20, 100 60 T 190 60" style="animation-delay: 0.2s"></path>
+                    <path class="scribble-path" d="M10 70 Q 50 30, 100 70 T 190 70" style="animation-delay: 0.4s"></path>
+                </svg>
+            </div>
+            <div class="absolute top-1/2 right-10 opacity-10 dark:opacity-5 pointer-events-none doodle-float-reverse">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none" stroke="currentColor" class="text-primary">
+                    <circle class="scribble-path" cx="30" cy="30" r="25" stroke-width="2" style="animation-delay: 1s" />
+                </svg>
+            </div>
+
+            <div class="layout-container flex flex-col h-full px-6 md:px-20 lg:px-32 max-w-7xl mx-auto" id="home">
+                <div class="flex-1 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center justify-center">
+                    <!-- Text Content -->
+                    <div class="flex-1 flex flex-col items-start gap-5 relative z-10 w-full">
+                        <div class="inline-flex items-center justify-center px-4 py-2 border-2 border-primary/30 rounded-shaky bg-white dark:bg-white/5 -rotate-2 shadow-sm animate-pop-in" style="--delay: 0.8s">
+                            <span class="font-hand text-lg md:text-xl font-bold text-primary" id="hero-greeting">👋 Hello, world!</span>
+                        </div>
+                        <div class="flex flex-col relative">
+                            <h1 class="text-6xl md:text-8xl font-black text-[#181111] dark:text-white tracking-tighter leading-[0.9] mb-4">
+                                <span class="inline-block animate-slide-up" style="--delay: 0.9s" id="hero-first-name">PRINCE</span> <br />
+                                <span class="relative inline-block animate-slide-up" style="--delay: 1.1s">
+                                    <span id="hero-last-name">TAGADIYA</span>
+                                    <svg class="absolute w-[110%] h-[30px] -bottom-2 -left-2 text-primary z-[-1] pointer-events-none" preserveAspectRatio="none" viewBox="0 0 200 20">
+                                        <path class="scribble-path" d="M0,10 Q100,20 200,5" fill="none" opacity="0.4" stroke="currentColor" stroke-width="8"></path>
+                                    </svg>
+                                </span>
+                            </h1>
+                            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xl md:text-2xl text-[#896161] dark:text-[#bcaaaa] font-hand mt-4 pl-2 border-l-4 border-primary/50 animate-slide-in-left" style="--delay: 1.3s" id="hero-roles">
+                                <span>Designer</span>
+                                <span class="text-primary font-bold">/</span>
+                                <span>Developer</span>
+                                <span class="text-primary font-bold">/</span>
+                                <span>Creative Thinker</span>
+                            </div>
+                        </div>
+                        <p class="text-lg md:text-xl text-[#4a4a4a] dark:text-[#cccccc] max-w-xl leading-relaxed font-light animate-fade-in" style="--delay: 1.5s" id="hero-bio">
+                            Building digital products that feel handmade. I specialize in bridging the gap between <strong class="font-medium text-[#181111] dark:text-white border-b-2 border-primary/30">clean code</strong> and <strong class="font-medium text-[#181111] dark:text-white border-b-2 border-primary/30">creative chaos</strong>.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4 mt-3 items-start sm:items-center relative w-full animate-fade-in" style="--delay: 1.7s">
+                            <a href="#work" class="relative group cursor-pointer no-underline">
+                                <div class="absolute inset-0 bg-black rounded-shaky translate-y-1 translate-x-1 transition-transform group-hover:translate-y-2 group-hover:translate-x-2"></div>
+                                <div class="relative bg-primary text-white text-lg font-bold px-8 py-4 rounded-shaky border-2 border-black flex items-center gap-2 hover:-translate-y-1 hover:-translate-x-1 transition-transform active:translate-y-0 active:translate-x-0">
+                                    <span>See my work</span>
+                                    <span class="material-symbols-outlined">arrow_forward</span>
+                                </div>
+                            </a>
+                            <a class="group flex items-center gap-2 px-6 py-4 text-[#181111] dark:text-white font-medium hover:text-primary transition-colors no-underline" href="#contact" id="hero-contact-link">
+                                <span class="font-hand text-lg underline decoration-wavy decoration-primary/40 underline-offset-4 group-hover:decoration-primary">Contact me</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Visual/Image Area -->
+                    <div class="w-full lg:w-5/12 relative lg:mt-0 flex justify-center animate-pop-in" style="--delay: 1.2s">
+                        <div class="absolute top-10 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl z-0 blob-animate"></div>
+                        <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl z-0 blob-animate-reverse"></div>
+                        <div class="relative z-10 transform rotate-2 hover:rotate-0 transition-transform duration-500 ease-out group">
+                            <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 mask-tape z-20"></div>
+                            <div class="bg-white p-3 pb-12 shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.1)] dark:shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.5)] border border-gray-200 dark:border-gray-700 rounded-sm max-w-[400px]">
+                                <div class="relative overflow-hidden bg-gray-100 aspect-[4/5] w-full filter grayscale group-hover:grayscale-0 transition-all duration-500">
+                                    <img id="hero-photo" alt="Portrait of Prince Tagadiya" class="object-cover w-full h-full mix-blend-multiply dark:mix-blend-normal" src="img/prince.jpg" />
+                                    <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                                </div>
+                                <div class="absolute bottom-4 left-0 w-full text-center">
+                                    <p class="font-marker text-xl text-[#181111] rotate-1" id="hero-photo-caption">Me @ Work</p>
+                                </div>
+                            </div>
+                            <div class="absolute -bottom-6 -right-6 bg-yellow-300 text-black font-marker p-4 rounded-full shadow-lg border-2 border-black rotate-12 z-30 transform hover:scale-110 transition-transform sticker-wobble" id="hero-sticker">
+                                Open for<br />Collabs!
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="flex gap-6" id="social-links">
-                    <a class="text-[#181111] dark:text-white hover:text-primary transition-transform hover:-translate-y-1 no-underline" href="#" id="footer-twitter" target="_blank">
-                        <span class="sr-only">Twitter</span>
-                        <span class="font-bold border-b-2 border-transparent hover:border-primary">Twitter / X</span>
-                    </a>
-                    <a class="text-[#181111] dark:text-white hover:text-primary transition-transform hover:-translate-y-1 no-underline" href="#" id="footer-github" target="_blank">
-                        <span class="sr-only">GitHub</span>
-                        <span class="font-bold border-b-2 border-transparent hover:border-primary">GitHub</span>
-                    </a>
-                    <a class="text-[#181111] dark:text-white hover:text-primary transition-transform hover:-translate-y-1 no-underline" href="#" id="footer-linkedin" target="_blank">
-                        <span class="sr-only">LinkedIn</span>
-                        <span class="font-bold border-b-2 border-transparent hover:border-primary">LinkedIn</span>
-                    </a>
-                </div>
-            </footer>
-        </div>
-    </main>
+
+                <!-- Footer -->
+                <footer class="shrink-0 py-4 border-t-2 border-dashed border-[#e5e5e5] dark:border-[#333] flex flex-col md:flex-row justify-between items-center gap-3 opacity-70 hover:opacity-100 transition-opacity animate-fade-in" style="--delay: 2s">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary">copyright</span>
+                        <p class="text-sm font-medium" id="footer-text">2025 Prince Tagadiya. Built with passion.</p>
+                    </div>
+                    <div class="flex gap-6" id="social-links">
+                        <a class="text-[#181111] dark:text-white hover:text-primary transition-transform hover:-translate-y-1 no-underline" href="#" id="footer-twitter" target="_blank">
+                            <span class="sr-only">Twitter</span>
+                            <span class="font-bold border-b-2 border-transparent hover:border-primary">Twitter / X</span>
+                        </a>
+                        <a class="text-[#181111] dark:text-white hover:text-primary transition-transform hover:-translate-y-1 no-underline" href="#" id="footer-github" target="_blank">
+                            <span class="sr-only">GitHub</span>
+                            <span class="font-bold border-b-2 border-transparent hover:border-primary">GitHub</span>
+                        </a>
+                        <a class="text-[#181111] dark:text-white hover:text-primary transition-transform hover:-translate-y-1 no-underline" href="#" id="footer-linkedin" target="_blank">
+                            <span class="sr-only">LinkedIn</span>
+                            <span class="font-bold border-b-2 border-transparent hover:border-primary">LinkedIn</span>
+                        </a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
