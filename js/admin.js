@@ -313,29 +313,46 @@ function showProjectForm(data) {
     const wrapper = document.getElementById('project-form-wrapper');
     wrapper.style.display = 'block';
 
-    // Reset form
-    document.getElementById('project-edit-id').value = '';
-    document.getElementById('proj-title').value = '';
-    document.getElementById('proj-category').value = '';
-    document.getElementById('proj-description').value = '';
-    document.getElementById('proj-tag').value = '';
-    document.getElementById('proj-tech').value = '';
-    document.getElementById('proj-imageUrl').value = '';
-    document.getElementById('proj-link').value = '';
+    // All project field IDs
+    const projFields = [
+        'project-edit-id', 'proj-title', 'proj-category', 'proj-description',
+        'proj-tag', 'proj-tech', 'proj-imageUrl', 'proj-link',
+        'proj-duration', 'proj-teamSize', 'proj-tools', 'proj-heroCaption',
+        'proj-problem', 'proj-solution',
+        'proj-galleryImage1', 'proj-galleryImage2',
+        'proj-result1Value', 'proj-result1Label', 'proj-result1Note',
+        'proj-result2Value', 'proj-result2Label', 'proj-result2Note',
+        'proj-result3Value', 'proj-result3Label', 'proj-result3Note',
+    ];
+
+    // Reset all fields
+    projFields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.value = '';
+    });
     document.getElementById('proj-status').value = 'published';
     document.getElementById('proj-order').value = '1';
     document.getElementById('proj-image-preview').style.display = 'none';
     document.getElementById('project-form-title').textContent = 'Add New Project';
 
     if (data) {
-        document.getElementById('project-edit-id').value = data.id || '';
-        document.getElementById('proj-title').value = data.title || '';
-        document.getElementById('proj-category').value = data.category || '';
-        document.getElementById('proj-description').value = data.description || '';
-        document.getElementById('proj-tag').value = data.tag || '';
-        document.getElementById('proj-tech').value = data.tech || '';
-        document.getElementById('proj-imageUrl').value = data.imageUrl || '';
-        document.getElementById('proj-link').value = data.link || '';
+        // Map data keys to field IDs
+        const fieldMap = {
+            'project-edit-id': 'id', 'proj-title': 'title', 'proj-category': 'category',
+            'proj-description': 'description', 'proj-tag': 'tag', 'proj-tech': 'tech',
+            'proj-imageUrl': 'imageUrl', 'proj-link': 'link',
+            'proj-duration': 'duration', 'proj-teamSize': 'teamSize',
+            'proj-tools': 'tools', 'proj-heroCaption': 'heroCaption',
+            'proj-problem': 'problem', 'proj-solution': 'solution',
+            'proj-galleryImage1': 'galleryImage1', 'proj-galleryImage2': 'galleryImage2',
+            'proj-result1Value': 'result1Value', 'proj-result1Label': 'result1Label', 'proj-result1Note': 'result1Note',
+            'proj-result2Value': 'result2Value', 'proj-result2Label': 'result2Label', 'proj-result2Note': 'result2Note',
+            'proj-result3Value': 'result3Value', 'proj-result3Label': 'result3Label', 'proj-result3Note': 'result3Note',
+        };
+        Object.entries(fieldMap).forEach(([elId, key]) => {
+            const el = document.getElementById(elId);
+            if (el && data[key] !== undefined) el.value = data[key];
+        });
         document.getElementById('proj-status').value = data.status || 'published';
         document.getElementById('proj-order').value = data.order || 1;
         document.getElementById('project-form-title').textContent = 'Edit Project';
@@ -367,16 +384,36 @@ function saveProject() {
         return;
     }
 
+    const getVal = (id) => (document.getElementById(id)?.value || '').trim();
+
     const projectData = {
         title,
         category,
-        description: document.getElementById('proj-description').value.trim(),
-        tag: document.getElementById('proj-tag').value.trim(),
-        tech: document.getElementById('proj-tech').value.trim(),
-        imageUrl: document.getElementById('proj-imageUrl').value.trim(),
-        link: document.getElementById('proj-link').value.trim(),
+        description: getVal('proj-description'),
+        tag: getVal('proj-tag'),
+        tech: getVal('proj-tech'),
+        imageUrl: getVal('proj-imageUrl'),
+        link: getVal('proj-link'),
         status: document.getElementById('proj-status').value,
         order: parseInt(document.getElementById('proj-order').value) || 1,
+        // Case study fields
+        duration: getVal('proj-duration'),
+        teamSize: getVal('proj-teamSize'),
+        tools: getVal('proj-tools'),
+        heroCaption: getVal('proj-heroCaption'),
+        problem: getVal('proj-problem'),
+        solution: getVal('proj-solution'),
+        galleryImage1: getVal('proj-galleryImage1'),
+        galleryImage2: getVal('proj-galleryImage2'),
+        result1Value: getVal('proj-result1Value'),
+        result1Label: getVal('proj-result1Label'),
+        result1Note: getVal('proj-result1Note'),
+        result2Value: getVal('proj-result2Value'),
+        result2Label: getVal('proj-result2Label'),
+        result2Note: getVal('proj-result2Note'),
+        result3Value: getVal('proj-result3Value'),
+        result3Label: getVal('proj-result3Label'),
+        result3Note: getVal('proj-result3Note'),
         updatedAt: firebase.firestore.FieldValue.serverTimestamp()
     };
 

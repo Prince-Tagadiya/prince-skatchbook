@@ -314,9 +314,10 @@ function renderProjects(projects) {
         const tagPos = tagPositions[i % tagPositions.length];
         const imageUrl = project.imageUrl || '';
         const wip = project.status === 'wip';
+        const detailUrl = `project.html?id=${project.id}`;
 
         return `
-        <div class="group relative flex flex-col bg-white dark:bg-[#1a1a1a] p-4 text-[#181111] dark:text-white border-2 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#ec1313] dark:hover:shadow-[8px_8px_0px_0px_#ec1313] transition-all duration-200 ${rot}" data-category="${(project.category || '').toLowerCase()}">
+        <a href="${detailUrl}" class="group relative flex flex-col bg-white dark:bg-[#1a1a1a] p-4 text-[#181111] dark:text-white border-2 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#ec1313] dark:hover:shadow-[8px_8px_0px_0px_#ec1313] transition-all duration-200 ${rot} no-underline cursor-pointer" data-category="${(project.category || '').toLowerCase()}">
             ${project.tag ? `<div class="${tagPos} ${tagColor} px-2 py-1 text-xs font-bold border border-black shadow-sm z-10">${project.tag}</div>` : ''}
             ${wip ? `<div class="absolute -bottom-3 right-4 bg-primary text-white px-3 py-1 text-xs font-bold border border-black shadow-sm rotate-[2deg] z-10">Work in Progress</div>` : ''}
             <div class="relative w-full aspect-[4/3] bg-gray-100 dark:bg-gray-800 border border-black dark:border-white mb-4 overflow-hidden">
@@ -327,10 +328,10 @@ function renderProjects(projects) {
                 <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">${project.description || ''}</p>
                 <div class="mt-4 pt-3 border-t-2 border-dashed border-gray-200 dark:border-gray-700 flex items-center justify-between">
                     <span class="text-xs font-mono bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">${project.tech || project.category || ''}</span>
-                    ${project.link ? `<a class="text-primary font-bold text-sm flex items-center hover:gap-2 transition-all no-underline" href="${project.link}" target="_blank">View Study <span class="material-symbols-outlined text-lg ml-1">arrow_right_alt</span></a>` : ''}
+                    <span class="text-primary font-bold text-sm flex items-center hover:gap-2 transition-all">View Study <span class="material-symbols-outlined text-lg ml-1">arrow_right_alt</span></span>
                 </div>
             </div>
-        </div>`;
+        </a>`;
     }).join('');
 
     // Add the "More cooking" placeholder at the end

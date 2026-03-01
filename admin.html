@@ -274,6 +274,89 @@
                         </div>
                     </div>
 
+                    <!-- Case Study Details -->
+                    <div style="margin-top: 24px; border-top: 1px dashed #333; padding-top: 24px;">
+                        <h4 style="font-size: 14px; font-weight: 700; color: #ec1313; margin-bottom: 16px; display: flex; align-items: center; gap: 6px;">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">description</span>
+                            Case Study Details (Optional)
+                        </h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                            <div>
+                                <label class="admin-label" for="proj-duration">Duration</label>
+                                <input class="admin-input" id="proj-duration" type="text" placeholder="3 Weeks" />
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-teamSize">Team Size</label>
+                                <input class="admin-input" id="proj-teamSize" type="text" placeholder="Team of 2" />
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-tools">Tools Used</label>
+                                <input class="admin-input" id="proj-tools" type="text" placeholder="Figma, React, Node.js" />
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-heroCaption">Hero Image Caption</label>
+                                <input class="admin-input" id="proj-heroCaption" type="text" placeholder="The final dashboard view" />
+                            </div>
+                            <div style="grid-column: span 2;">
+                                <label class="admin-label" for="proj-problem">The Problem (HTML)</label>
+                                <textarea class="admin-input admin-textarea" id="proj-problem" placeholder="Users were dropping off at the checkout page. The data showed a 65% abandonment rate..." style="min-height: 100px;"></textarea>
+                            </div>
+                            <div style="grid-column: span 2;">
+                                <label class="admin-label" for="proj-solution">The Solution (HTML)</label>
+                                <textarea class="admin-input admin-textarea" id="proj-solution" placeholder="We implemented a single-page checkout with an accordion disclosure..." style="min-height: 100px;"></textarea>
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-galleryImage1">Gallery Image 1 URL</label>
+                                <input class="admin-input" id="proj-galleryImage1" type="url" placeholder="https://..." />
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-galleryImage2">Gallery Image 2 URL</label>
+                                <input class="admin-input" id="proj-galleryImage2" type="url" placeholder="https://..." />
+                            </div>
+                        </div>
+
+                        <!-- Results -->
+                        <h4 style="font-size: 14px; font-weight: 700; color: #888; margin-top: 20px; margin-bottom: 12px;">Results Metrics (up to 3)</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px;">
+                            <div>
+                                <label class="admin-label" for="proj-result1Value">Result 1 Value</label>
+                                <input class="admin-input" id="proj-result1Value" type="text" placeholder="+15%" />
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-result1Label">Result 1 Label</label>
+                                <input class="admin-input" id="proj-result1Label" type="text" placeholder="Conversion" />
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-result1Note">Result 1 Note</label>
+                                <input class="admin-input" id="proj-result1Note" type="text" placeholder="Big win!" />
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-result2Value">Result 2 Value</label>
+                                <input class="admin-input" id="proj-result2Value" type="text" placeholder="-20s" />
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-result2Label">Result 2 Label</label>
+                                <input class="admin-input" id="proj-result2Label" type="text" placeholder="Time on Task" />
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-result2Note">Result 2 Note</label>
+                                <input class="admin-input" id="proj-result2Note" type="text" placeholder="Faster flow" />
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-result3Value">Result 3 Value</label>
+                                <input class="admin-input" id="proj-result3Value" type="text" placeholder="4.8/5" />
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-result3Label">Result 3 Label</label>
+                                <input class="admin-input" id="proj-result3Label" type="text" placeholder="User Rating" />
+                            </div>
+                            <div>
+                                <label class="admin-label" for="proj-result3Note">Result 3 Note</label>
+                                <input class="admin-input" id="proj-result3Note" type="text" placeholder="Happy users" />
+                            </div>
+                        </div>
+                    </div>
+
                     <!-- Image Preview -->
                     <div id="proj-image-preview" style="margin-top: 12px; display: none;">
                         <p class="admin-label">Preview</p>

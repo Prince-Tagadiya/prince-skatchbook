@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Case Study — Portfolio</title>
+    <meta name="description" content="Project case study — Prince Tagadiya Portfolio" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Permanent+Marker&family=Gochi+Hand&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ec1313",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221010",
+                        "paper": "#fdfbf7",
+                        "ink": "#181111",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "marker": ["Permanent Marker", "cursive"],
+                        "hand": ["Gochi Hand", "cursive"],
+                    },
+                    backgroundImage: {
+                        'dot-pattern': 'radial-gradient(#d1d5db 1px, transparent 1px)',
+                        'dot-pattern-dark': 'radial-gradient(#4b5563 1px, transparent 1px)',
+                    },
+                    borderRadius: {
+                        "shaky": "255px 15px 225px 15px / 15px 225px 15px 255px",
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .torn-paper { background-color: #fff; position: relative; }
+        .dark .torn-paper { background-color: #1a1a1a; }
+        .torn-paper::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(-45deg, transparent 16px, #fff 0), linear-gradient(45deg, transparent 16px, #fff 0);
+            background-repeat: repeat-x;
+            background-size: 20px 32px;
+            transform: rotate(180deg);
+        }
+        .dark .torn-paper::after {
+            background: linear-gradient(-45deg, transparent 16px, #1a1a1a 0), linear-gradient(45deg, transparent 16px, #1a1a1a 0);
+            background-repeat: repeat-x;
+            background-size: 20px 32px;
+            transform: rotate(180deg);
+        }
+        .tape-strip {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 120px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-left: 1px dashed rgba(0,0,0,0.1);
+            border-right: 1px dashed rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 20;
+            backdrop-filter: blur(1px);
+        }
+        .scribble-box {
+            border: 2px solid currentColor;
+            box-shadow: 4px 4px 0px 0px currentColor;
+        }
+        /* Loading skeleton */
+        @keyframes shimmer {
+            0% { background-position: -200px 0; }
+            100% { background-position: calc(200px + 100%) 0; }
+        }
+        .skeleton {
+            background: linear-gradient(90deg, #eee 25%, #f5f5f5 50%, #eee 75%);
+            background-size: 200px 100%;
+            animation: shimmer 1.5s infinite;
+            border-radius: 4px;
+        }
+        .dark .skeleton {
+            background: linear-gradient(90deg, #222 25%, #333 50%, #222 75%);
+            background-size: 200px 100%;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-ink dark:text-gray-100 font-display transition-colors duration-300">
+
+    <div class="flex flex-col md:flex-row min-h-screen w-full overflow-hidden bg-[length:20px_20px] bg-dot-pattern dark:bg-dot-pattern-dark">
+
+        <!-- Sidebar Navigation -->
+        <nav class="w-full md:w-64 flex-shrink-0 flex flex-col justify-between border-b md:border-b-0 md:border-r-2 border-black/10 dark:border-white/10 bg-white/80 dark:bg-black/20 backdrop-blur-sm p-6 z-20 h-auto md:h-screen md:sticky md:top-0">
+            <div class="flex flex-col gap-8">
+                <!-- Branding -->
+                <div class="flex flex-col gap-1">
+                    <a href="index.html" class="no-underline">
+                        <h1 class="text-2xl font-bold text-ink dark:text-white font-marker tracking-wide" id="sidebar-brand">Prince<span class="text-primary">.</span></h1>
+                    </a>
+                    <p class="text-[#896161] dark:text-[#a08080] text-sm font-medium font-hand -rotate-2 origin-left" id="sidebar-tagline">Available for hire!</p>
+                </div>
+                <!-- Nav Links -->
+                <div class="flex flex-col gap-2">
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-ink dark:text-gray-200" href="index.html#home">
+                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">home</span>
+                        <span class="text-base font-medium">Home</span>
+                    </a>
+                    <a class="group nav-link active flex items-center gap-3 px-4 py-3 rounded-shaky bg-primary text-white transition-all" href="index.html#projects">
+                        <span class="material-symbols-outlined text-[20px]">grid_view</span>
+                        <span class="text-base font-bold">Projects</span>
+                    </a>
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-ink dark:text-gray-200" href="index.html#about">
+                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">person</span>
+                        <span class="text-base font-medium">About</span>
+                    </a>
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-ink dark:text-gray-200" href="index.html#contact">
+                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">mail</span>
+                        <span class="text-base font-medium">Contact</span>
+                    </a>
+                </div>
+            </div>
+            <!-- Footer -->
+            <div class="hidden md:block mt-auto pt-6 border-t-2 border-dashed border-gray-300 dark:border-gray-700">
+                <div class="flex items-center gap-2 text-xs font-medium text-gray-500 dark:text-gray-400">
+                    <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                        Open to work
+                </div>
+                <div class="flex gap-4 items-center mt-4">
+                    <button id="theme-toggle" class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform cursor-pointer">
+                        <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="flex-1 overflow-y-auto relative h-auto md:h-screen">
+            <div class="max-w-4xl mx-auto px-6 py-10 md:px-12 md:py-16 flex flex-col gap-16 pb-32" id="project-content">
+
+                <!-- Back Link -->
+                <div>
+                    <a class="inline-flex items-center gap-2 text-gray-500 hover:text-primary font-bold font-hand text-lg transition-colors group no-underline" href="index.html#projects">
+                        <span class="material-symbols-outlined text-xl group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                        Back to Lab
+                    </a>
+                </div>
+
+                <!-- Loading State -->
+                <div id="project-loading">
+                    <div class="skeleton h-10 w-32 mb-4"></div>
+                    <div class="skeleton h-16 w-3/4 mb-4"></div>
+                    <div class="skeleton h-6 w-1/2 mb-8"></div>
+                    <div class="skeleton h-64 w-full mb-8 rounded-lg"></div>
+                    <div class="skeleton h-40 w-full mb-4 rounded-lg"></div>
+                </div>
+
+                <!-- Dynamic Content (hidden until loaded) -->
+                <div id="project-dynamic" style="display: none;">
+
+                    <!-- Header -->
+                    <header class="relative border-b-2 border-black dark:border-white pb-8">
+                        <svg class="absolute bottom-0 left-0 w-full h-4 text-primary translate-y-1/2" fill="none" preserveAspectRatio="none" viewBox="0 0 400 15">
+                            <path d="M5 5C100 15 200 -5 395 10" stroke="currentColor" stroke-dasharray="10 5" stroke-linecap="round" stroke-width="3"></path>
+                        </svg>
+                        <div class="flex flex-col gap-4">
+                            <div class="flex items-center gap-3">
+                                <span class="bg-black dark:bg-white dark:text-black text-white px-2 py-0.5 text-xs font-mono uppercase tracking-widest rotate-[-2deg]" id="proj-case-number">Case Study</span>
+                                <span class="font-hand text-primary text-lg rotate-[2deg]" id="proj-tag-label"></span>
+                            </div>
+                            <h1 class="font-marker text-5xl md:text-7xl leading-tight text-ink dark:text-white mt-2" id="proj-title">
+                            </h1>
+                            <div class="flex flex-wrap gap-4 mt-4 font-hand text-lg text-gray-600 dark:text-gray-300" id="proj-meta">
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Hero Image -->
+                    <div class="relative w-full aspect-video bg-white dark:bg-gray-800 p-3 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] border-2 border-black dark:border-white rotate-1 mt-8" id="proj-hero-wrapper" style="display: none;">
+                        <div class="absolute -top-4 -left-4 w-8 h-8 border-t-4 border-l-4 border-primary"></div>
+                        <div class="absolute -bottom-4 -right-4 w-8 h-8 border-b-4 border-r-4 border-primary"></div>
+                        <div class="w-full h-full bg-gray-200 dark:bg-gray-700 overflow-hidden relative group">
+                            <img id="proj-hero-image" alt="" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
+                        </div>
+                        <p class="absolute -bottom-10 left-0 w-full text-center font-hand text-gray-500 dark:text-gray-400 text-sm italic" id="proj-hero-caption"></p>
+                    </div>
+
+                    <!-- The Problem Section -->
+                    <section class="relative mt-16" id="section-problem" style="display: none;">
+                        <div class="absolute -left-8 top-0 text-6xl text-gray-100 dark:text-gray-800 font-marker -z-10 select-none">01</div>
+                        <div class="bg-white dark:bg-[#1a1a1a] p-6 md:p-10 border border-gray-200 dark:border-gray-700 shadow-sm relative overflow-hidden">
+                            <div class="absolute inset-0 pointer-events-none opacity-10 dark:opacity-5 bg-[linear-gradient(0deg,transparent_23px,#000_24px)] bg-[length:100%_24px]"></div>
+                            <h2 class="font-marker text-3xl mb-6 relative inline-block transform -rotate-1">
+                                The Problem
+                                <svg class="absolute -bottom-2 left-0 w-full h-3 text-red-500 opacity-70" preserveAspectRatio="none" viewBox="0 0 100 10">
+                                    <path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="3"></path>
+                                </svg>
+                            </h2>
+                            <div class="font-hand text-xl leading-loose text-gray-700 dark:text-gray-300 relative">
+                                <span class="absolute -left-2 top-2 bottom-2 w-1 bg-primary/20 rounded-full"></span>
+                                <div class="pl-4" id="proj-problem-text"></div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- The Solution Section -->
+                    <section class="relative mt-8" id="section-solution" style="display: none;">
+                        <div class="absolute -right-8 top-0 text-6xl text-gray-100 dark:text-gray-800 font-marker -z-10 select-none">02</div>
+                        <h2 class="font-marker text-3xl mb-8 flex items-center gap-3">
+                            The Solution
+                            <span class="material-symbols-outlined text-primary text-4xl animate-bounce">lightbulb</span>
+                        </h2>
+
+                        <!-- Gallery -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" id="proj-gallery" style="display: none;">
+                        </div>
+
+                        <div class="mt-8 bg-[#f0f9ff] dark:bg-blue-900/10 border-l-4 border-blue-500 p-6" id="proj-solution-wrapper">
+                            <p class="font-display text-lg text-gray-800 dark:text-gray-200" id="proj-solution-text"></p>
+                        </div>
+                    </section>
+
+                    <!-- Results Section -->
+                    <section class="relative mt-12 mb-12" id="section-results" style="display: none;">
+                        <div class="scribble-box bg-white dark:bg-[#1a1a1a] p-8 md:p-12 relative text-ink dark:text-white">
+                            <div class="tape-strip"></div>
+                            <h2 class="font-marker text-3xl mb-8 text-center underline decoration-wavy decoration-primary underline-offset-8">Final Results</h2>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center" id="proj-results-grid">
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Description / Extras -->
+                    <section class="relative" id="section-description" style="display: none;">
+                        <div class="bg-white dark:bg-[#1a1a1a] p-6 md:p-10 border border-gray-200 dark:border-gray-700 shadow-sm">
+                            <p class="text-lg leading-relaxed text-gray-700 dark:text-gray-300" id="proj-description-text"></p>
+                        </div>
+                    </section>
+
+                    <!-- Project Link -->
+                    <div class="text-center mt-8" id="proj-link-wrapper" style="display: none;">
+                        <a id="proj-external-link" href="#" target="_blank" class="inline-flex items-center gap-3 bg-black dark:bg-white text-white dark:text-black font-bold px-8 py-4 border-2 border-black dark:border-white shadow-[4px_4px_0px_0px_#ec1313] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#ec1313] transition-all no-underline">
+                            <span class="material-symbols-outlined">open_in_new</span>
+                            View Live Project
+                        </a>
+                    </div>
+
+                    <!-- Next Project -->
+                    <div id="next-project-wrapper" style="display: none;">
+                        <a id="next-project-link" class="group block relative mt-10 mx-auto w-full max-w-lg transform hover:-translate-y-1 transition-transform duration-300 no-underline" href="#">
+                            <div class="torn-paper p-8 text-center shadow-lg border-t-2 border-l-2 border-r-2 border-gray-100 dark:border-gray-700">
+                                <p class="font-hand text-gray-500 mb-2">Up Next:</p>
+                                <h3 class="font-marker text-3xl group-hover:text-primary transition-colors" id="next-project-title"></h3>
+                                <div class="flex items-center justify-center gap-2 mt-4 text-sm font-bold uppercase tracking-widest text-gray-400 group-hover:text-black dark:group-hover:text-white transition-colors">
+                                    Read Case Study <span class="material-symbols-outlined">arrow_forward</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Error State -->
+                <div id="project-error" style="display: none;" class="text-center py-20">
+                    <span class="material-symbols-outlined text-6xl text-gray-300 dark:text-gray-600 mb-4">error</span>
+                    <h2 class="font-marker text-3xl text-gray-400 dark:text-gray-500 mb-2">Project Not Found</h2>
+                    <p class="font-hand text-lg text-gray-400">This project doesn't exist or was removed.</p>
+                    <a href="index.html#projects" class="inline-flex items-center gap-2 mt-6 text-primary font-bold hover:underline no-underline">
+                        <span class="material-symbols-outlined">arrow_back</span>
+                        Back to Projects
+                    </a>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+    <script src="js/env.js"></script>
+    <script src="js/firebase-config.js"></script>
+    <script src="js/project.js"></script>
+</body>
+</html>
