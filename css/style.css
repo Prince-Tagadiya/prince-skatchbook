@@ -28,8 +28,12 @@
     background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuAqPEYl4f4km0_XOUmRlAf4J459tr-ErVK0NryJWeMw9bWVi8h_qKdeQhYA5c72PIuiTpWv3cKFjdGVdAKs8u6lo4Pr_Hyjj-xbKycoZH81NlPPIrTtz7u_0prFWlr1tfXGg2fQ1X2amkRQyVcxqa2gArj7MOaWucidwrh5D_JZymXiBgLguLZckr2i7xrujk9y6Tasb2Nvr00FWgkfUbwWVCpGNjpK3CkrDD4RHS1sJIl28JeUEV_thoinQy7ESYE-BHfLDbqmCic);
 }
 .dark .paper-texture {
-    background-color: #221010;
-    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBVers8vAktBNCWQEUiNDLiHW3lGfbD50y7BIEIB4hbrOp8BtZL6zZGGvo21fNUZDx7sbnwMCw4lZscvGgbnR9SVJFG9uMXtPtS7OLgV0nWhXNlXnhIJqK2G23DOllKb9ZU48ogFgYt5orTM-FNQKi45eoHitw0V024KlwGQRKYrhlf54OKk9LlQObF9WMDvJ53O3Dz2OHhz3Et3TGyyMK4fyJSNFrwEZ9CAHpnjgd4LBkou2hYtnSWaUx__hZddbVFa0PI0D6A53c);
+    background-color: #110808;
+    background-image: none;
+}
+/* Hide the Tailwind grid dots in dark mode */
+.dark .bg-grid-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px) !important;
 }
 
 /* === Mask Tape === */

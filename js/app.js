@@ -130,8 +130,8 @@ function updateUI(data) {
     // Bio
     if (data.bio) setHTMLSafe('hero-bio', data.bio);
 
-    // Photo
-    if (data.photoUrl) {
+    // Photo — only override if it's a real custom URL (not the old stock photo)
+    if (data.photoUrl && !data.photoUrl.includes('lh3.googleusercontent.com/aida-public')) {
         const photoEl = document.getElementById('hero-photo');
         if (photoEl) photoEl.src = data.photoUrl;
     }
