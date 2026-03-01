@@ -13,4 +13,5 @@ node_modules/
 .gemini/
 
 # Environment (credentials)
+.env
 js/env.js

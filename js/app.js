@@ -117,25 +117,34 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ------- Load Portfolio Data from Firestore -------
     function loadPortfolioData() {
-        try {
-            db.collection('portfolio').doc('main').onSnapshot((doc) => {
-                if (doc.exists) {
-                    const data = doc.data();
-                    updateUI(data);
-                } else {
-                    console.log('No portfolio data found. Using defaults.');
-                }
+        function connectFirestore() {
+            try {
+                db.collection('portfolio').doc('main').onSnapshot((doc) => {
+                    if (doc.exists) {
+                        const data = doc.data();
+                        updateUI(data);
+                    } else {
+                        console.log('No portfolio data found. Using defaults.');
+                    }
+                    dataLoaded = true;
+                    checkReady();
+                }, (error) => {
+                    console.warn('Firestore connection error, using defaults:', error.message);
+                    dataLoaded = true;
+                    checkReady();
+                });
+            } catch (error) {
+                console.warn('Firebase not configured yet. Using default content.');
                 dataLoaded = true;
                 checkReady();
-            }, (error) => {
-                console.warn('Firestore connection error, using defaults:', error.message);
-                dataLoaded = true;
-                checkReady();
-            });
-        } catch (error) {
-            console.warn('Firebase not configured yet. Using default content.');
-            dataLoaded = true;
-            checkReady();
+            }
+        }
+
+        // Wait for firebase-ready event from env.js
+        if (typeof db !== 'undefined' && db) {
+            connectFirestore();
+        } else {
+            window.addEventListener('firebase-ready', connectFirestore);
         }
     }
 
