@@ -196,7 +196,7 @@
                 </div>
 
                 <!-- ===== ACTIONS ===== -->
-                <div style="display: flex; gap: 12px; justify-content: flex-end; padding-top: 8px; padding-bottom: 40px;">
+                <div style="display: flex; gap: 12px; justify-content: flex-end; padding-top: 8px;">
                     <button type="button" class="admin-btn admin-btn-secondary" onclick="loadCurrentData()">
                         <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">refresh</span>
                         Reload
@@ -207,6 +207,98 @@
                     </button>
                 </div>
             </form>
+
+            <!-- ==================== PROJECTS MANAGER ==================== -->
+            <div style="margin-top: 40px; border-top: 2px dashed #333; padding-top: 40px; padding-bottom: 40px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px;">
+                    <div>
+                        <h2 style="font-size: 28px; font-weight: 700; color: white; margin-bottom: 4px; display: flex; align-items: center; gap: 8px;">
+                            <span class="material-symbols-outlined" style="color: #ec1313;">grid_view</span>
+                            Projects Manager
+                        </h2>
+                        <p style="color: #666; font-size: 14px;">Add, edit, and manage your portfolio projects.</p>
+                    </div>
+                    <button class="admin-btn" onclick="showProjectForm()" style="font-size: 13px; padding: 10px 20px;">
+                        <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">add</span>
+                        Add Project
+                    </button>
+                </div>
+
+                <!-- Project Form (hidden by default) -->
+                <div id="project-form-wrapper" class="admin-card" style="display: none; margin-bottom: 24px; border: 2px solid #ec1313;">
+                    <h3 style="font-size: 18px; font-weight: 700; color: #ec1313; margin-bottom: 20px; display: flex; align-items: center; gap: 8px;">
+                        <span class="material-symbols-outlined">edit_square</span>
+                        <span id="project-form-title">Add New Project</span>
+                    </h3>
+                    <input type="hidden" id="project-edit-id" value="" />
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                        <div>
+                            <label class="admin-label" for="proj-title">Title *</label>
+                            <input class="admin-input" id="proj-title" type="text" placeholder="E-Commerce Redesign" />
+                        </div>
+                        <div>
+                            <label class="admin-label" for="proj-category">Category *</label>
+                            <input class="admin-input" id="proj-category" type="text" placeholder="UI/UX, Dev, Branding, IoT..." />
+                        </div>
+                        <div style="grid-column: span 2;">
+                            <label class="admin-label" for="proj-description">Description</label>
+                            <textarea class="admin-input admin-textarea" id="proj-description" placeholder="Complete overhaul of the checkout flow resulting in 15% conversion lift." style="min-height: 80px;"></textarea>
+                        </div>
+                        <div>
+                            <label class="admin-label" for="proj-tag">Tag Label</label>
+                            <input class="admin-input" id="proj-tag" type="text" placeholder="Built in React, UX Research..." />
+                        </div>
+                        <div>
+                            <label class="admin-label" for="proj-tech">Tech / Duration</label>
+                            <input class="admin-input" id="proj-tech" type="text" placeholder="TypeScript, 3 weeks..." />
+                        </div>
+                        <div>
+                            <label class="admin-label" for="proj-imageUrl">Image URL</label>
+                            <input class="admin-input" id="proj-imageUrl" type="url" placeholder="https://example.com/project.jpg" />
+                        </div>
+                        <div>
+                            <label class="admin-label" for="proj-link">Project / Case Study Link</label>
+                            <input class="admin-input" id="proj-link" type="url" placeholder="https://example.com/case-study" />
+                        </div>
+                        <div>
+                            <label class="admin-label" for="proj-status">Status</label>
+                            <select class="admin-input" id="proj-status" style="cursor: pointer;">
+                                <option value="published">Published</option>
+                                <option value="wip">Work in Progress</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="admin-label" for="proj-order">Order (lower = first)</label>
+                            <input class="admin-input" id="proj-order" type="number" placeholder="1" value="1" />
+                        </div>
+                    </div>
+
+                    <!-- Image Preview -->
+                    <div id="proj-image-preview" style="margin-top: 12px; display: none;">
+                        <p class="admin-label">Preview</p>
+                        <img id="proj-image-preview-img" style="max-width: 200px; border-radius: 8px; border: 1px solid #333;" alt="Preview" />
+                    </div>
+
+                    <div style="display: flex; gap: 12px; margin-top: 20px;">
+                        <button class="admin-btn" onclick="saveProject()" style="font-size: 13px; padding: 10px 20px;">
+                            <span class="material-symbols-outlined" style="vertical-align: middle; font-size: 18px; margin-right: 4px;">save</span>
+                            Save Project
+                        </button>
+                        <button class="admin-btn admin-btn-secondary" onclick="hideProjectForm()" style="font-size: 13px; padding: 10px 20px;">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Projects List -->
+                <div id="projects-list" style="display: flex; flex-direction: column; gap: 12px;">
+                    <div class="admin-card" style="text-align: center; color: #666; padding: 40px;">
+                        <span class="material-symbols-outlined" style="font-size: 40px; opacity: 0.3;">hourglass_top</span>
+                        <p style="margin-top: 8px;">Loading projects...</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

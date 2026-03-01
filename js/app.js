@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Start loading Firebase data
         loadPortfolioData();
+        loadProjects();
 
         // Set animation done after loading animation finishes (3.5s)
         setTimeout(() => {
@@ -157,6 +158,29 @@ document.addEventListener('DOMContentLoaded', () => {
             heroCard.style.transform = `rotate(${2 + x * 0.3}deg) translate(${x * 0.5}px, ${y * 0.5}px)`;
         });
     }
+
+    // ------- Nav active state on scroll -------
+    const mainContent = document.getElementById('main-content');
+    if (mainContent) {
+        mainContent.addEventListener('scroll', () => {
+            const sections = ['home', 'projects'];
+            const navLinks = document.querySelectorAll('.nav-link');
+            let current = 'home';
+            sections.forEach(id => {
+                const section = document.getElementById(id);
+                if (section && section.offsetTop - 200 <= mainContent.scrollTop) {
+                    current = id;
+                }
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active', 'bg-primary', 'text-white');
+                const href = link.getAttribute('href');
+                if (href === `#${current}`) {
+                    link.classList.add('active', 'bg-primary', 'text-white');
+                }
+            });
+        });
+    }
 });
 
 // ==========================================
@@ -222,6 +246,157 @@ function updateUI(data) {
     if (data.firstName && data.lastName) {
         document.title = `${data.firstName} ${data.lastName} — Portfolio`;
     }
+}
+
+// ==========================================
+// Load Projects from Firestore
+// ==========================================
+let allProjects = [];
+
+function loadProjects() {
+    function fetchProjects() {
+        try {
+            db.collection('projects').orderBy('order', 'asc').onSnapshot((snapshot) => {
+                allProjects = [];
+                snapshot.forEach(doc => {
+                    allProjects.push({ id: doc.id, ...doc.data() });
+                });
+                renderProjects(allProjects);
+                buildFilterChips(allProjects);
+            }, (error) => {
+                console.warn('Error loading projects:', error.message);
+                renderEmptyState();
+            });
+        } catch (e) {
+            console.warn('Projects collection not available yet.');
+            renderEmptyState();
+        }
+    }
+
+    if (typeof db !== 'undefined' && db) {
+        fetchProjects();
+    } else {
+        window.addEventListener('firebase-ready', fetchProjects);
+    }
+}
+
+// ==========================================
+// Render Projects Grid
+// ==========================================
+function renderProjects(projects) {
+    const grid = document.getElementById('projects-grid');
+    if (!grid) return;
+
+    if (projects.length === 0) {
+        renderEmptyState();
+        return;
+    }
+
+    const rotations = ['rotate-[1deg]', 'rotate-[-1deg]', 'rotate-[0.5deg]', 'rotate-[-1.5deg]', 'rotate-[2deg]', 'rotate-[-0.5deg]'];
+    const tagColors = [
+        'bg-yellow-200 dark:bg-yellow-600 text-black',
+        'bg-blue-100 dark:bg-blue-800 text-black dark:text-white',
+        'bg-green-100 dark:bg-green-800 text-black dark:text-white',
+        'bg-pink-100 dark:bg-pink-800 text-black dark:text-white',
+        'bg-purple-100 dark:bg-purple-800 text-black dark:text-white',
+        'bg-orange-100 dark:bg-orange-700 text-black dark:text-white',
+    ];
+    const tagPositions = [
+        'absolute -top-3 -right-3 rotate-[5deg]',
+        'absolute -top-3 -left-2 rotate-[-3deg]',
+        'absolute -top-3 right-8 rotate-[2deg]',
+        'absolute -top-3 left-8 rotate-[-2deg]',
+    ];
+
+    grid.innerHTML = projects.map((project, i) => {
+        const rot = rotations[i % rotations.length];
+        const tagColor = tagColors[i % tagColors.length];
+        const tagPos = tagPositions[i % tagPositions.length];
+        const imageUrl = project.imageUrl || '';
+        const wip = project.status === 'wip';
+
+        return `
+        <div class="group relative flex flex-col bg-white dark:bg-[#1a1a1a] p-4 text-[#181111] dark:text-white border-2 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#ec1313] dark:hover:shadow-[8px_8px_0px_0px_#ec1313] transition-all duration-200 ${rot}" data-category="${(project.category || '').toLowerCase()}">
+            ${project.tag ? `<div class="${tagPos} ${tagColor} px-2 py-1 text-xs font-bold border border-black shadow-sm z-10">${project.tag}</div>` : ''}
+            ${wip ? `<div class="absolute -bottom-3 right-4 bg-primary text-white px-3 py-1 text-xs font-bold border border-black shadow-sm rotate-[2deg] z-10">Work in Progress</div>` : ''}
+            <div class="relative w-full aspect-[4/3] bg-gray-100 dark:bg-gray-800 border border-black dark:border-white mb-4 overflow-hidden">
+                ${imageUrl ? `<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-300" src="${imageUrl}" alt="${project.title || ''}" />` : `<div class="w-full h-full flex items-center justify-center text-gray-300"><span class="material-symbols-outlined text-6xl">image</span></div>`}
+            </div>
+            <div class="flex flex-col gap-2">
+                <h3 class="text-xl font-bold">${project.title || 'Untitled'}</h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">${project.description || ''}</p>
+                <div class="mt-4 pt-3 border-t-2 border-dashed border-gray-200 dark:border-gray-700 flex items-center justify-between">
+                    <span class="text-xs font-mono bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded">${project.tech || project.category || ''}</span>
+                    ${project.link ? `<a class="text-primary font-bold text-sm flex items-center hover:gap-2 transition-all no-underline" href="${project.link}" target="_blank">View Study <span class="material-symbols-outlined text-lg ml-1">arrow_right_alt</span></a>` : ''}
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+
+    // Add the "More cooking" placeholder at the end
+    grid.innerHTML += `
+        <div class="flex flex-col items-center justify-center bg-gray-50 dark:bg-white/5 p-4 text-gray-400 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg min-h-[300px]">
+            <span class="material-symbols-outlined text-4xl mb-2 opacity-50">edit</span>
+            <p class="font-hand font-bold text-lg rotate-[-2deg]">More cooking...</p>
+        </div>`;
+}
+
+function renderEmptyState() {
+    const grid = document.getElementById('projects-grid');
+    if (!grid) return;
+    grid.innerHTML = `
+        <div class="flex flex-col items-center justify-center bg-gray-50 dark:bg-white/5 p-4 text-gray-400 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg min-h-[300px] col-span-full">
+            <span class="material-symbols-outlined text-4xl mb-2 opacity-50">edit</span>
+            <p class="font-hand font-bold text-lg rotate-[-2deg]">No projects yet... More cooking!</p>
+            <p class="text-sm mt-1">Add projects from the admin panel</p>
+        </div>`;
+}
+
+// ==========================================
+// Filter Chips
+// ==========================================
+function buildFilterChips(projects) {
+    const filtersEl = document.getElementById('project-filters');
+    if (!filtersEl) return;
+
+    // Collect unique categories
+    const categories = [...new Set(projects.map(p => p.category).filter(Boolean))];
+    const chipRotations = ['-1deg', '1deg', '-2deg', '2deg', '-1.5deg', '1.5deg'];
+
+    filtersEl.innerHTML = `
+        <button class="project-filter active px-4 py-1.5 bg-[#181111] dark:bg-white text-white dark:text-black font-bold text-sm rotate-[-1deg] shadow-lg transform transition hover:scale-105 border-2 border-black dark:border-white cursor-pointer" data-filter="all">
+            All Work
+        </button>
+    `;
+
+    categories.forEach((cat, i) => {
+        const rot = chipRotations[i % chipRotations.length];
+        filtersEl.innerHTML += `
+            <button class="project-filter px-4 py-1.5 bg-[#f0f0f0] dark:bg-gray-800 border border-gray-300 dark:border-gray-600 font-medium text-sm transform hover:bg-primary/10 transition shadow-sm cursor-pointer" style="rotate: ${rot}" data-filter="${cat.toLowerCase()}">
+                ${cat}
+            </button>
+        `;
+    });
+
+    // Add click handlers
+    filtersEl.querySelectorAll('.project-filter').forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active state
+            filtersEl.querySelectorAll('.project-filter').forEach(b => {
+                b.classList.remove('active', 'bg-[#181111]', 'dark:bg-white', 'text-white', 'dark:text-black', 'font-bold', 'shadow-lg');
+                b.classList.add('bg-[#f0f0f0]', 'dark:bg-gray-800', 'font-medium');
+            });
+            btn.classList.add('active', 'bg-[#181111]', 'dark:bg-white', 'text-white', 'dark:text-black', 'font-bold', 'shadow-lg');
+            btn.classList.remove('bg-[#f0f0f0]', 'dark:bg-gray-800', 'font-medium');
+
+            const filter = btn.dataset.filter;
+            if (filter === 'all') {
+                renderProjects(allProjects);
+            } else {
+                renderProjects(allProjects.filter(p => (p.category || '').toLowerCase() === filter));
+            }
+        });
+    });
 }
 
 // ==========================================
