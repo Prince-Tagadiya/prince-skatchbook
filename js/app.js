@@ -255,10 +255,45 @@ function updateUI(data) {
 // ==========================================
 // Load Projects from Firestore
 // ==========================================
-let allProjects = [];
+let allProjects = [
+    {
+        id: "proj1",
+        title: "Krimata E-Commerce",
+        description: "A full-scale e-commerce platform with a hand-drawn aesthetic, dark mode, and seamless cart animations.",
+        category: "frontend",
+        tech: "React & Tailwind",
+        imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop",
+        tag: "Featured",
+        status: "completed",
+        order: 1
+    },
+    {
+        id: "proj2",
+        title: "Student Dashboard UI",
+        description: "An iOS-style academic dashboard focusing on clean typography, glassmorphism, and intuitive navigation.",
+        category: "ui/ux",
+        tech: "Figma",
+        imageUrl: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=2670&auto=format&fit=crop",
+        tag: "Design",
+        status: "completed",
+        order: 2
+    },
+    {
+        id: "proj3",
+        title: "Dynamic Island Web",
+        description: "Recreating Apple's Dynamic Island natively in the browser with fluid CSS transitions and interactive widgets.",
+        category: "experiments",
+        tech: "Vanilla JS",
+        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop",
+        tag: "Fun",
+        status: "wip",
+        order: 3
+    }
+];
 
 function loadProjects() {
-    renderEmptyState();
+    renderProjects(allProjects);
+    buildFilterChips(allProjects);
 }
 
 // ==========================================
