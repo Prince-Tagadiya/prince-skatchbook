@@ -42,34 +42,55 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Load project data
+    // Hardcoded project data since Firebase is removed
+    const allProjects = [
+        {
+            id: "traffic-light-controller",
+            title: "Density-Based Traffic Light Controller",
+            description: "A DIY smart traffic management system published in Electronics For You Magazine (Jan 2026). Uses Arduino Uno & Nano with ultrasonic sensors to dynamically adjust traffic signal timing based on real-time vehicle density at a 4-way intersection.",
+            category: "IoT",
+            tech: "Arduino, C++, I2C",
+            imageUrl: "assets/projects/traffic-light/main-image.jpeg",
+            tag: "Published in EFY",
+            status: "published",
+            order: 1,
+            solution: "We built an <strong>intelligent density-based traffic system</strong> using an Arduino Uno (master) and Arduino Nano (slave) with <strong>4 HC-SR04 ultrasonic sensors</strong>, one per lane. Sensors continuously measure vehicle distance — if a vehicle is detected within 15cm, the lane gets a <strong>10-second green signal</strong>; otherwise, only a brief <strong>2-second green phase</strong>. The I2C protocol enables seamless communication between the sensor unit and control unit, dynamically optimising traffic flow at a four-way intersection.",
+            problem: "Traditional traffic light systems operate on fixed timing cycles, regardless of actual traffic conditions. This leads to <strong>unnecessary waiting at empty intersections</strong> and <strong>congestion buildup</strong> in busy lanes. With increasing urbanisation, fixed-cycle traffic signals cause idle delays, fuel wastage, and increased commute times — especially during fluctuating or uneven traffic flow.",
+            galleryImage1: "assets/projects/traffic-light/magazine-cover.png",
+            galleryCaption1: "EFY Magazine Jan 2026 Cover",
+            galleryImage2: "assets/projects/traffic-light/block-diagram.jpeg",
+            galleryCaption2: "System Block Diagram",
+            galleryImage3: "assets/projects/traffic-light/circuit.jpeg",
+            galleryCaption3: "Circuit Diagram",
+            result1Title: "EFY Magazine",
+            result1Label: "Published",
+            result1Value: "EFY",
+            result1Note: "Jan 2026 Issue",
+            result2Label: "Smart Control",
+            result2Value: "4-Lane",
+            result2Note: "Real-time detection",
+            result3Label: "Protocol",
+            result3Value: "I2C",
+            result3Note: "Master-Slave",
+            duration: "4 Weeks",
+            teamSize: "Solo + Faculty Mentor",
+            tools: "Arduino IDE, HC-SR04, I2C Protocol",
+            link: "https://online.fliphtml5.com/oxomv/EFY-Express_Jan-26_PDFisation/#p=80",
+            heroCaption: "Working prototype with serial monitor output"
+        }
+    ];
+
     function loadProject() {
-        try {
-            db.collection('projects').doc(projectId).get()
-                .then((doc) => {
-                    if (doc.exists) {
-                        const project = { id: doc.id, ...doc.data() };
-                        renderProject(project);
-                        loadNextProject(project.order || 999);
-                    } else {
-                        showError();
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error loading project:', error);
-                    showError();
-                });
-        } catch (e) {
-            console.error('Firebase not ready:', e);
+        const project = allProjects.find(p => p.id === projectId);
+        if (project) {
+            renderProject(project);
+            loadNextProject(project.order || 999);
+        } else {
             showError();
         }
     }
 
-    if (typeof db !== 'undefined' && db) {
-        loadProject();
-    } else {
-        window.addEventListener('firebase-ready', loadProject);
-    }
+    loadProject();
 });
 
 // ==========================================
@@ -221,33 +242,15 @@ function renderProject(project) {
 // Load Next Project
 // ==========================================
 function loadNextProject(currentOrder) {
-    try {
-        db.collection('projects')
-            .orderBy('order', 'asc')
-            .where('order', '>', currentOrder)
-            .limit(1)
-            .get()
-            .then((snapshot) => {
-                if (snapshot.empty) {
-                    // Wrap around to first project
-                    db.collection('projects').orderBy('order', 'asc').limit(1).get()
-                        .then((firstSnap) => {
-                            if (!firstSnap.empty) {
-                                const nextDoc = firstSnap.docs[0];
-                                const nextProject = nextDoc.data();
-                                if (nextDoc.id !== new URLSearchParams(window.location.search).get('id')) {
-                                    showNextProject(nextDoc.id, nextProject.title);
-                                }
-                            }
-                        });
-                } else {
-                    const nextDoc = snapshot.docs[0];
-                    showNextProject(nextDoc.id, nextDoc.data().title);
-                }
-            });
-    } catch (e) {
-        // No next project
-    }
+    const allProjects = [
+        {
+            id: "traffic-light-controller",
+            title: "Density-Based Traffic Light Controller"
+        }
+    ];
+    // With only one project, we don't really have a "next" project, but if we did we would loop here.
+    // We'll hide it for now since there's only 1.
+    document.getElementById('next-project-wrapper').style.display = 'none';
 }
 
 function showNextProject(id, title) {
