@@ -138,37 +138,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ------- Load Portfolio Data from Firestore -------
+    // ------- Skip Firebase -------
     function loadPortfolioData() {
-        function connectFirestore() {
-            try {
-                db.collection('portfolio').doc('main').onSnapshot((doc) => {
-                    if (doc.exists) {
-                        const data = doc.data();
-                        updateUI(data);
-                    } else {
-                        console.log('No portfolio data found. Using defaults.');
-                    }
-                    dataLoaded = true;
-                    checkReady();
-                }, (error) => {
-                    console.warn('Firestore connection error, using defaults:', error.message);
-                    dataLoaded = true;
-                    checkReady();
-                });
-            } catch (error) {
-                console.warn('Firebase not configured yet. Using default content.');
-                dataLoaded = true;
-                checkReady();
-            }
-        }
-
-        // Wait for firebase-ready event from env.js
-        if (typeof db !== 'undefined' && db) {
-            connectFirestore();
-        } else {
-            window.addEventListener('firebase-ready', connectFirestore);
-        }
+        dataLoaded = true;
+        checkReady();
     }
 
     // ------- Parallax-like subtle mouse move effect on hero image -------
@@ -182,15 +155,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ------- Nav active state on scroll using IntersectionObserver -------
-    const sectionIds = ['home', 'projects', 'about', 'contact'];
+    const sectionIds = ['home', 'awards', 'projects', 'about', 'contact'];
     const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
     const navLinks = document.querySelectorAll('.nav-link');
 
     if (sections.length > 0 && navLinks.length > 0) {
         const observerOptions = {
             root: document.getElementById('main-content'),
-            rootMargin: '0px',
-            threshold: 0.3
+            rootMargin: '-40% 0px -40% 0px',
+            threshold: 0
         };
 
         const observer = new IntersectionObserver((entries) => {
@@ -199,24 +172,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     const currentId = entry.target.getAttribute('id');
                     
                     navLinks.forEach(link => {
-                        // Base styles for inactive links
-                        link.classList.remove('active', 'bg-primary', 'text-white', 'shadow-[2px_4px_0px_rgba(0,0,0,0.1)]', 'hover:-translate-y-1');
-                        link.classList.add('hover:bg-primary/10', 'dark:hover:bg-primary/20', 'hover:pl-6', 'text-[#181111]', 'dark:text-gray-200');
-                        
-                        // Icon styles override for inactive links
-                        const icon = link.querySelector('.material-symbols-outlined');
-                        if (icon) {
-                            icon.classList.add('text-[#896161]', 'group-hover:text-primary');
-                        }
-
-                        // Apply active styles to the current link
                         const href = link.getAttribute('href');
                         if (href && (href === `#${currentId}` || href === `index.html#${currentId}`)) {
-                            link.classList.add('active', 'bg-primary', 'text-white', 'shadow-[2px_4px_0px_rgba(0,0,0,0.1)]', 'hover:-translate-y-1');
-                            link.classList.remove('hover:bg-primary/10', 'dark:hover:bg-primary/20', 'hover:pl-6', 'text-[#181111]', 'dark:text-gray-200');
-                            if (icon) {
-                                icon.classList.remove('text-[#896161]', 'group-hover:text-primary');
-                            }
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
                         }
                     });
                 }
@@ -298,30 +258,7 @@ function updateUI(data) {
 let allProjects = [];
 
 function loadProjects() {
-    function fetchProjects() {
-        try {
-            db.collection('projects').orderBy('order', 'asc').onSnapshot((snapshot) => {
-                allProjects = [];
-                snapshot.forEach(doc => {
-                    allProjects.push({ id: doc.id, ...doc.data() });
-                });
-                renderProjects(allProjects);
-                buildFilterChips(allProjects);
-            }, (error) => {
-                console.warn('Error loading projects:', error.message);
-                renderEmptyState();
-            });
-        } catch (e) {
-            console.warn('Projects collection not available yet.');
-            renderEmptyState();
-        }
-    }
-
-    if (typeof db !== 'undefined' && db) {
-        fetchProjects();
-    } else {
-        window.addEventListener('firebase-ready', fetchProjects);
-    }
+    renderEmptyState();
 }
 
 // ==========================================
