@@ -444,7 +444,7 @@
                         <div class="relative z-10 transform rotate-2 hover:rotate-0 transition-transform duration-500 ease-out group">
                             <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 mask-tape z-20"></div>
                             <div class="bg-white p-3 pb-12 shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.1)] dark:shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.5)] border border-gray-200 dark:border-gray-700 rounded-sm max-w-[400px]">
-                                <div class="relative overflow-hidden bg-gray-100 aspect-[4/5] w-full filter grayscale group-hover:grayscale-0 transition-all duration-500">
+                                <div class="relative overflow-hidden bg-gray-100 aspect-[4/5] w-full filter grayscale-0 group-hover:grayscale transition-all duration-500">
                                     <img id="hero-photo" alt="Portrait of Prince Tagadiya" class="object-cover w-full h-full mix-blend-multiply dark:mix-blend-normal" src="img/prince.jpg" />
                                     <div class="absolute inset-0 bg-gradient-to-tr from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                                 </div>
@@ -540,62 +540,18 @@
                         Certifications & Badges
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-8 z-10 relative">
-                        <!-- Cert 1 -->
-                        <a class="relative bg-[#fffdf5] dark:bg-[#2a2a2a] p-4 shadow-md border border-gray-200 dark:border-gray-700 rotate-1 hover:rotate-0 transition-transform duration-300 flex flex-col justify-between min-h-[180px] cursor-pointer group hover:z-20" href="#cert-modal">
-                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-500 shadow-sm border border-red-700 z-10"></div>
-                            <div>
-                                <div class="flex justify-between items-start mb-2">
-                                    <span class="material-symbols-outlined text-3xl text-blue-500">developer_mode</span>
-                                    <span class="text-xs font-bold font-mono text-gray-400">2023</span>
+                        <div class="contents" id="certificates-grid">
+                            <div class="relative bg-[#fffdf5] dark:bg-[#2a2a2a] p-4 shadow-md border border-gray-200 dark:border-gray-700 rotate-1 flex flex-col justify-between min-h-[220px]">
+                                <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-500 shadow-sm border border-red-700 z-10"></div>
+                                <div>
+                                    <div class="flex justify-between items-start mb-2">
+                                        <span class="material-symbols-outlined text-3xl text-blue-500">workspace_premium</span>
+                                        <span class="text-xs font-bold font-mono text-gray-400">Loading</span>
+                                    </div>
+                                    <h4 class="font-bold text-lg leading-tight mb-1 font-display">Loading certificates...</h4>
+                                    <p class="text-xs text-gray-500">Fetching your real credentials</p>
                                 </div>
-                                <h4 class="font-bold text-lg leading-tight mb-1 font-display group-hover:text-primary transition-colors">AWS Certified Developer</h4>
-                                <p class="text-xs text-gray-500">Associate Level</p>
                             </div>
-                            <div class="mt-4 pt-2 border-t border-gray-200 dark:border-gray-600">
-                                <p class="font-hand text-xs text-primary transform -rotate-2">"Cloud Master!"</p>
-                            </div>
-                        </a>
-
-                        <!-- Cert 2 -->
-                        <div class="relative bg-[#fffdf5] dark:bg-[#2a2a2a] p-4 shadow-md border border-gray-200 dark:border-gray-700 -rotate-2 hover:rotate-0 transition-transform duration-300 flex flex-col justify-between min-h-[180px]">
-                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-blue-500 shadow-sm border border-blue-700 z-10"></div>
-                            <div>
-                                <div class="flex justify-between items-start mb-2">
-                                    <span class="material-symbols-outlined text-3xl text-orange-500">design_services</span>
-                                    <span class="text-xs font-bold font-mono text-gray-400">2022</span>
-                                </div>
-                                <h4 class="font-bold text-lg leading-tight mb-1 font-display">Google UX Design</h4>
-                                <p class="text-xs text-gray-500">Professional Certificate</p>
-                            </div>
-                            <div class="mt-4 pt-2 border-t border-gray-200 dark:border-gray-600">
-                                <p class="font-hand text-xs text-green-600 transform rotate-1">"User First"</p>
-                            </div>
-                        </div>
-
-                        <!-- Cert 3 -->
-                        <div class="relative bg-[#fffdf5] dark:bg-[#2a2a2a] p-4 shadow-md border border-gray-200 dark:border-gray-700 rotate-3 hover:rotate-0 transition-transform duration-300 flex flex-col justify-between min-h-[180px]">
-                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-green-500 shadow-sm border border-green-700 z-10"></div>
-                            <div>
-                                <div class="flex justify-between items-start mb-2">
-                                    <span class="material-symbols-outlined text-3xl text-indigo-500">javascript</span>
-                                    <span class="text-xs font-bold font-mono text-gray-400">2023</span>
-                                </div>
-                                <h4 class="font-bold text-lg leading-tight mb-1 font-display">Meta Frontend Dev</h4>
-                                <p class="text-xs text-gray-500">Advanced React</p>
-                            </div>
-                            <div class="mt-4 pt-2 border-t border-gray-200 dark:border-gray-600">
-                                <p class="font-hand text-xs text-purple-600 transform -rotate-1">"React <3"</p>
-                            </div>
-                        </div>
-
-                        <!-- Cert 4 (View All Button) -->
-                        <div class="relative flex items-center justify-center p-4 min-h-[180px]">
-                            <button class="group relative bg-white text-black px-6 py-4 shadow-lg rotate-6 hover:rotate-0 hover:scale-105 transition-all duration-300 cursor-pointer w-full h-full flex flex-col items-center justify-center border-2 border-dashed border-gray-400">
-                                <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-8 bg-white/50 backdrop-blur-sm border-l border-r border-white/20 rotate-[-4deg] shadow-sm z-10"></div>
-                                <span class="material-symbols-outlined text-4xl text-gray-400 mb-2 group-hover:text-primary transition-colors">folder_open</span>
-                                <span class="font-hand text-xl font-bold">View All Credentials</span>
-                                <span class="text-xs text-gray-400 mt-2 font-mono group-hover:text-black">.PDF Download</span>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -773,7 +729,7 @@
                                 <path d="M20 50 Q 50 20 80 50 T 20 80" fill="none" stroke="currentColor" stroke-dasharray="5 5" stroke-width="2"></path>
                             </svg>
                             <div class="bg-white dark:bg-[#1a1a1a] p-3 pb-12 shadow-xl border border-gray-200 dark:border-gray-700 rounded-sm max-w-[320px] w-full relative z-10">
-                                <div class="aspect-[4/5] w-full overflow-hidden bg-gray-100 dark:bg-gray-800 grayscale group-hover:grayscale-0 transition-all duration-500 relative">
+                                <div class="aspect-[4/5] w-full overflow-hidden bg-gray-100 dark:bg-gray-800 grayscale-0 group-hover:grayscale transition-all duration-500 relative">
                                     <div class="absolute inset-0 bg-primary/10 mix-blend-multiply z-10 pointer-events-none"></div>
                                     <img src="img/prince-cooking.jpg" alt="Prince Tagadiya" class="w-full h-full object-cover mix-blend-multiply dark:mix-blend-normal" />
                                 </div>
@@ -918,45 +874,19 @@
         </main>
     </div>
 
-    <!-- Awards Modal -->
-    <div class="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-overlay" id="cert-modal">
-        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="document.getElementById('cert-modal').classList.remove('open')"></div>
-        <div class="relative w-full max-w-2xl transform rotate-1 transition-all">
-            <div class="bg-[#fcfbf9] text-black p-8 md:p-12 shadow-paper-sheet relative mx-auto max-w-[600px] min-h-[400px]">
+    <!-- Certificate Modal -->
+    <div class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 modal-overlay overflow-y-auto" id="cert-modal">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" data-close-cert-modal></div>
+        <div class="relative w-full max-w-2xl transform rotate-1 transition-all my-auto">
+            <div class="bg-[#fcfbf9] text-black p-8 md:p-12 shadow-paper-sheet relative mx-auto max-w-[600px] max-h-[calc(100vh-2rem)] md:max-h-[calc(100vh-3rem)] overflow-y-auto min-h-[400px]">
                 <div class="pin"></div>
-                <a class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center cursor-pointer group" href="#" onclick="document.getElementById('cert-modal').classList.remove('open')">
+                <a class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center cursor-pointer group" href="#" data-close-cert-modal>
                     <svg class="w-8 h-8 text-gray-400 group-hover:text-red-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
                     </svg>
                 </a>
-                <div class="flex flex-col gap-6 items-center text-center">
-                    <h2 class="font-hand text-3xl md:text-4xl font-bold mb-2">AWS Certified Developer</h2>
-                    <div class="w-full aspect-[4/3] border-4 border-double border-gray-300 p-4 bg-white relative overflow-hidden cert-placeholder shadow-inner">
-                        <div class="absolute top-4 left-4 w-16 h-16 border-2 border-dashed border-gray-300 rounded-full flex items-center justify-center opacity-50">
-                            <span class="material-symbols-outlined text-4xl text-gray-300">verified</span>
-                        </div>
-                        <div class="absolute bottom-4 right-4 w-24 h-8 bg-gray-100 -rotate-3"></div>
-                        <div class="flex flex-col items-center justify-center h-full gap-2">
-                            <div class="w-1/2 h-4 bg-gray-100 rounded animate-pulse"></div>
-                            <div class="w-3/4 h-8 bg-gray-200 rounded my-2"></div>
-                            <div class="w-1/3 h-2 bg-gray-100 rounded"></div>
-                            <div class="mt-4 font-hand text-gray-400 text-2xl rotate-[-10deg] opacity-40 select-none">PREVIEW</div>
-                        </div>
-                    </div>
-                    <div class="relative mt-2 rotate-[-1deg]">
-                        <div class="absolute inset-0 bg-yellow-100 transform skew-x-[-10deg] border border-black/10"></div>
-                        <div class="relative px-6 py-2 font-mono text-sm tracking-wider text-gray-700 flex flex-col">
-                            <span class="text-[10px] uppercase text-gray-400 mb-0.5">Credential ID</span>
-                            <span class="font-bold">AWS-2023-DEV-99X</span>
-                        </div>
-                    </div>
-                    <a class="group relative inline-block mt-4" href="#">
-                        <span class="absolute inset-0 bg-highlight-green transform skew-y-[-2deg] rounded-sm opacity-70 group-hover:opacity-100 transition-opacity"></span>
-                        <span class="relative px-8 py-3 font-hand font-bold text-xl flex items-center gap-2">
-                            View Original Link
-                            <span class="material-symbols-outlined text-base">open_in_new</span>
-                        </span>
-                    </a>
+                <div id="cert-modal-body" class="flex flex-col gap-6 items-center text-center">
+                    <h2 class="font-hand text-3xl md:text-4xl font-bold mb-2">Loading certificate...</h2>
                 </div>
             </div>
         </div>
@@ -983,20 +913,10 @@
     </div>
 
     <script src="js/projects-data.js"></script>
+    <script src="js/certificates-data.js"></script>
+    <script src="js/certificates.js"></script>
     <script src="js/app.js"></script>
     <script>
-        // --- Certificate Modal ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('cert-modal');
-            const triggers = document.querySelectorAll('a[href="#cert-modal"]');
-            triggers.forEach(trigger => {
-                trigger.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    modal.classList.add('open');
-                });
-            });
-        });
-
         // --- Popup Helpers ---
         function showPopup(type, title, text, note) {
             const popup = document.getElementById('msg-popup');

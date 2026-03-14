@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Certificate — Prince Tagadiya</title>
+    <meta name="description" content="Certificate detail page for Prince Tagadiya." />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Permanent+Marker&family=Gochi+Hand&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#ec1313",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221010"
+                    },
+                    fontFamily: {
+                        display: ["Space Grotesk", "sans-serif"],
+                        marker: ["Permanent Marker", "cursive"],
+                        hand: ["Gochi Hand", "cursive"]
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="min-h-screen bg-background-light dark:bg-background-dark text-[#181111] dark:text-white paper-texture">
+    <main class="px-4 md:px-10 py-10 md:py-16">
+        <div id="certificate-detail">
+            <div class="max-w-2xl mx-auto bg-white dark:bg-[#1a1a1a] p-10 border-2 border-black dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+                Loading certificate...
+            </div>
+        </div>
+    </main>
+
+    <script src="js/certificates-data.js"></script>
+    <script src="js/certificates.js"></script>
+</body>
+</html>

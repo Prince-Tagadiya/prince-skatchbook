@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Certificates — Prince Tagadiya</title>
+    <meta name="description" content="Certificate archive for Prince Tagadiya." />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Permanent+Marker&family=Gochi+Hand&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#ec1313",
+                        "background-light": "#f8f6f6",
+                        "background-dark": "#221010"
+                    },
+                    fontFamily: {
+                        display: ["Space Grotesk", "sans-serif"],
+                        marker: ["Permanent Marker", "cursive"],
+                        hand: ["Gochi Hand", "cursive"]
+                    },
+                    borderRadius: {
+                        shaky: "255px 15px 225px 15px / 15px 225px 15px 255px"
+                    }
+                }
+            }
+        };
+    </script>
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="min-h-screen bg-background-light dark:bg-background-dark text-[#181111] dark:text-white paper-texture">
+    <main class="max-w-7xl mx-auto px-6 md:px-12 py-10 md:py-16">
+        <div class="flex flex-col gap-6 mb-10">
+            <a href="index.html#awards" class="inline-flex items-center gap-2 text-primary font-bold no-underline">
+                <span class="material-symbols-outlined">arrow_back</span>
+                Back to portfolio
+            </a>
+            <div>
+                <p class="font-mono text-xs uppercase tracking-[0.3em] text-gray-400">Credential Archive</p>
+                <h1 class="text-4xl md:text-6xl font-black tracking-tight mt-2">Certificates & Badges</h1>
+                <p class="font-hand text-xl text-[#896161] dark:text-[#bcaaaa] mt-4 max-w-3xl">
+                    Real credentials, credential IDs, and preview links in one place. Click any card to open the popup preview.
+                </p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="all-certificates-grid">
+            <div class="bg-white dark:bg-[#1a1a1a] p-6 border border-gray-200 dark:border-gray-700">Loading certificates...</div>
+        </div>
+    </main>
+
+    <div class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 modal-overlay overflow-y-auto" id="cert-modal">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" data-close-cert-modal></div>
+        <div class="relative w-full max-w-2xl transform rotate-1 transition-all my-auto">
+            <div class="bg-[#fcfbf9] text-black p-8 md:p-12 shadow-paper-sheet relative mx-auto max-w-[600px] max-h-[calc(100vh-2rem)] md:max-h-[calc(100vh-3rem)] overflow-y-auto min-h-[400px]">
+                <div class="pin"></div>
+                <a class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center cursor-pointer group" href="#" data-close-cert-modal>
+                    <svg class="w-8 h-8 text-gray-400 group-hover:text-red-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+                    </svg>
+                </a>
+                <div id="cert-modal-body" class="flex flex-col gap-6 items-center text-center">
+                    <h2 class="font-hand text-3xl md:text-4xl font-bold mb-2">Loading certificate...</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/certificates-data.js"></script>
+    <script src="js/certificates.js"></script>
+</body>
+</html>
