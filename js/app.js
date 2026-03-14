@@ -313,7 +313,7 @@ function renderProjects(projects) {
         'absolute -top-3 left-8 rotate-[-2deg]',
     ];
 
-    grid.innerHTML = projects.map((project, i) => {
+    function projectCard(project, i) {
         const rot = rotations[i % rotations.length];
         const tagColor = tagColors[i % tagColors.length];
         const tagPos = tagPositions[i % tagPositions.length];
@@ -338,17 +338,45 @@ function renderProjects(projects) {
                 </div>
             </div>
         </a>`;
-    }).join('');
+    }
 
-    // Add the "More cooking" placeholder at the end
-    grid.innerHTML += `
-        <div class="flex flex-col items-center justify-center bg-gray-50 dark:bg-[#1a1a1a] p-4 text-gray-400 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg min-h-[300px]">
-            <div class="flex gap-2 mb-2">
-                <span class="material-symbols-outlined text-4xl opacity-50 animate-bounce text-orange-500">local_fire_department</span>
-                <span class="material-symbols-outlined text-4xl opacity-50 animate-pulse text-gray-500">restaurant</span>
+    function sectionMarkup(title, subtitle, items, offset) {
+        if (!items.length) return '';
+
+        return `
+            <div class="col-span-full flex flex-col gap-6 mt-${offset === 0 ? '0' : '10'}">
+                <div class="project-section-divider flex items-center gap-4">
+                    <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300 to-gray-300 dark:via-gray-700 dark:to-gray-700"></div>
+                    <div class="project-section-label relative px-5 py-3 bg-white dark:bg-[#1a1a1a] border-2 border-black dark:border-white rounded-full shadow-sm text-center">
+                        <span class="project-section-pin absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary border border-black dark:border-white"></span>
+                        <p class="project-section-title text-xs font-mono uppercase tracking-[0.3em] text-gray-500 dark:text-gray-400">${title}</p>
+                        <p class="project-section-subtitle text-sm font-hand text-[#896161] dark:text-[#bcaaaa] mt-1">${subtitle}</p>
+                    </div>
+                    <div class="h-px flex-1 bg-gradient-to-r from-gray-300 via-gray-300 to-transparent dark:from-gray-700 dark:via-gray-700"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    ${items.map((project, index) => projectCard(project, offset + index)).join('')}
+                </div>
             </div>
-            <p class="font-hand font-bold text-lg rotate-[-2deg]">More cooking...</p>
-        </div>`;
+        `;
+    }
+
+    const hardwareProjects = projects.filter(p => normalizeProjectCategory(p) === 'hardware');
+    const softwareProjects = projects.filter(p => normalizeProjectCategory(p) === 'software');
+
+    grid.innerHTML = `
+        ${sectionMarkup('Hardware', 'Built systems, electronics, prototypes, and embedded ideas', hardwareProjects, 0)}
+        ${sectionMarkup('Software', 'Apps, platforms, dashboards, and AI product workflows', softwareProjects, hardwareProjects.length)}
+        <div class="col-span-full">
+            <div class="flex flex-col items-center justify-center bg-gray-50 dark:bg-[#1a1a1a] p-6 text-gray-400 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-xl min-h-[180px] mt-6">
+                <div class="flex gap-2 mb-2">
+                    <span class="material-symbols-outlined text-4xl opacity-50 animate-bounce text-orange-500">local_fire_department</span>
+                    <span class="material-symbols-outlined text-4xl opacity-50 animate-pulse text-gray-500">restaurant</span>
+                </div>
+                <p class="font-hand font-bold text-lg rotate-[-2deg]">More cooking...</p>
+            </div>
+        </div>
+    `;
 }
 
 function renderEmptyState() {

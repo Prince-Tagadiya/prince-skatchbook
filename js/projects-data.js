@@ -583,6 +583,77 @@
         },
 
         {
+            id: "vaultone",
+            title: "VaultOne — Secure Document Vault & AI Form Auto-Fill",
+            description: "A Microsoft-style secure document workspace where users sign in with Microsoft Entra ID, store verified documents, extract structured details, and auto-fill forms from their vault with a clean enterprise-style UI.",
+            category: "Software",
+            tech: "React, Microsoft Entra ID, AI Extraction, Secure Forms",
+            imageUrl: "assets/projects/vaultone/photos/cover.png",
+            tag: "Microsoft Imagine Cup 2026",
+            status: "prototype",
+            order: 9,
+
+            problem:
+                "People repeatedly upload the <strong>same identity documents</strong>, retype the <strong>same details</strong>, and fill the <strong>same forms</strong> again and again. That wastes time and creates mistakes. VaultOne was designed as a secure workspace where trusted documents can be stored once and reused intelligently to speed up form filling.",
+
+            solution:
+                "VaultOne is a <strong>secure document vault + AI form auto-fill platform</strong> designed with a <strong>Microsoft-style product feel</strong>. Because this was built in a Microsoft-themed hackathon context, the UI intentionally follows a clean, structured, enterprise dashboard language, and the authentication flow is based on <strong>Microsoft Entra ID login</strong>.<br/><br/>" +
+                "<strong>Core workflow</strong>:<br/>" +
+                "<strong>• Microsoft Entra sign-in</strong> for direct enterprise-style authentication.<br/>" +
+                "<strong>• Personal document vault</strong> to upload and manage trusted files.<br/>" +
+                "<strong>• Structured extraction</strong> from uploaded identity documents with review before save.<br/>" +
+                "<strong>• Form upload + structure analysis</strong> to detect fields in blank forms.<br/>" +
+                "<strong>• Intelligent auto-fill</strong> using verified data already stored in the vault.<br/>" +
+                "<strong>• Final review and export</strong> before saving the completed result.<br/><br/>" +
+                "<strong>Product focus</strong>: secure storage, document intelligence, repeatable workflows, and a UI that feels closer to a Microsoft productivity/security product than a generic startup app.",
+
+            galleryImage1: "assets/projects/vaultone/photos/login.png",
+            galleryCaption1: "Login view aligned with the Microsoft-inspired product direction and enterprise-style onboarding (login.png)",
+            galleryImage2: "assets/projects/vaultone/photos/dashboard.png",
+            galleryCaption2: "Main dashboard showing vault activity, quick actions, and enterprise-style information hierarchy (dashboard.png)",
+            galleryImage3: "assets/projects/vaultone/photos/create-vault.png",
+            galleryCaption3: "Structured data extraction review before saving document details into the vault (create-vault.png)",
+            galleryImage4: "assets/projects/vaultone/photos/share-vault.png",
+            galleryCaption4: "Form auto-fill workflow with side-by-side mapped fields and suggested values from vault documents (share-vault.png)",
+            galleryImage5: "assets/projects/vaultone/photos/VaultOne.pdf.png",
+            galleryCaption5: "Pitch deck preview generated from the VaultOne presentation PDF (VaultOne.pdf.png)",
+
+            result1Label: "Auth",
+            result1Value: "Entra ID",
+            result1Note: "Microsoft sign-in flow",
+            result2Label: "Core",
+            result2Value: "Auto-Fill",
+            result2Note: "Vault docs -> structured fields -> forms",
+            result3Label: "UI",
+            result3Value: "MS Style",
+            result3Note: "Enterprise-inspired dashboard",
+
+            duration: "Hackathon prototype (2026)",
+            teamSize: "Product prototype",
+            tools: "React, Microsoft Entra ID API login, document extraction, enterprise dashboard UI",
+
+            youtubeUrl: "https://youtu.be/9upMd-rGSbY",
+            youtubeCaption: "Demo video (YouTube)",
+            videoUrl: "https://youtu.be/kYarkYD-I6o",
+            videoLabel: "Pitch Video",
+
+            links: [
+                {
+                    url: "assets/projects/vaultone/docs/VaultOne.pdf",
+                    label: "Pitch Deck (PDF)",
+                    icon: "picture_as_pdf"
+                },
+                {
+                    url: "https://youtu.be/kYarkYD-I6o",
+                    label: "Pitch Video",
+                    icon: "slideshow"
+                }
+            ],
+
+            heroCaption: "Store verified documents once, then auto-fill forms with a Microsoft-style secure workspace"
+        },
+
+        {
             id: "giftify",
             title: "Giftify — Send Physical Gifts to Creators Without Sharing Addresses",
             description: "A privacy-first gifting platform where fans can send real physical gifts to creators without either side exposing addresses. Creator approval, pickup logistics, inspection, delivery tracking, and admin overrides are all part of the controlled workflow.",
@@ -591,7 +662,7 @@
             imageUrl: "assets/projects/giftify/photos/dashboard-overview.png",
             tag: "Product Prototype",
             status: "prototype",
-            order: 9,
+            order: 10,
 
             problem:
                 "Fans may want to send <strong>physical gifts</strong> to creators, but doing that safely is hard. Donation platforms and wishlists do not manage real-world pickup, inspection, and delivery workflows, and direct gifting can expose private addresses or create trust and safety issues. Giftify was designed to solve that with a <strong>controlled physical logistics flow</strong> that protects both sides.",
@@ -667,7 +738,7 @@
             imageUrl: "assets/projects/smart-dice/photos/final-render.png",
             tag: "IEEE Project Paper",
             status: "prototype",
-            order: 10,
+            order: 11,
 
             problem:
                 "Most assistive technology for visually impaired users focuses on <strong>navigation</strong>, <strong>reading</strong>, or <strong>scene understanding</strong>, while interactive entertainment tools remain underexplored. Traditional dice are simple for sighted users, but they are not naturally accessible, do not provide multi-sensory feedback, and offer no digital features like remote control, time display, or adaptable visibility. SMART Dice was designed to bridge that gap with a compact embedded object that is both <strong>playful</strong> and <strong>assistive</strong>.",
@@ -739,7 +810,7 @@
             imageUrl: "assets/projects/traffic-light/main-image.jpeg",
             tag: "Published in EFY",
             status: "published",
-            order: 11,
+            order: 12,
             solution:
                 "We built an <strong>intelligent density-based traffic system</strong> using an Arduino Uno (master) and Arduino Nano (slave) with <strong>4 HC-SR04 ultrasonic sensors</strong>, one per lane. Sensors continuously measure vehicle distance — if a vehicle is detected within 15cm, the lane gets a <strong>10-second green signal</strong>; otherwise, only a brief <strong>2-second green phase</strong>. The I2C protocol enables seamless communication between the sensor unit and control unit, dynamically optimising traffic flow at a four-way intersection.",
             problem:
@@ -776,7 +847,7 @@
             imageUrl: "assets/projects/smart-classroom/photos/classroom-concept.png",
             tag: "System Design Concept",
             status: "concept",
-            order: 12,
+            order: 13,
 
             problem:
                 "Classroom discipline, environmental comfort, and energy efficiency are usually managed <strong>manually</strong> and <strong>reactively</strong>. Administrators do not get a campus-wide view of which rooms are noisy, underutilized, uncomfortable, or wasting power. This concept was created to explore how a sensor network plus simple AI could make classrooms more measurable, manageable, and efficient.",
@@ -831,7 +902,7 @@
             imageUrl: "assets/projects/agri-titan-x8/photos/spaim-ndvi-spray-concept.png",
             tag: "System Design Concept",
             status: "concept",
-            order: 13,
+            order: 14,
 
             problem:
                 "Large farms need different types of aerial support: <strong>crop stress detection</strong>, <strong>precision spraying</strong>, <strong>seed/fertilizer spreading</strong>, and <strong>wildlife protection</strong>. Most solutions are single-purpose or expensive to adapt. This concept was created as a <strong>modular agriculture platform</strong> that could perform multiple field operations using one heavy-lift drone architecture.",
@@ -902,7 +973,7 @@
             imageUrl: "assets/projects/smart-universal-remote/photos/remote-concept.png",
             tag: "System Design Concept",
             status: "concept",
-            order: 14,
+            order: 15,
 
             problem:
                 "Homes often end up with <strong>too many remotes</strong> across TVs, ACs, fans, projectors, set-top boxes, and streaming devices. The result is clutter, misplacement, inconsistent user experience, and duplicated batteries/charging. This concept was created to explore a single remote system that can manage multiple rooms and both <strong>smart</strong> and <strong>traditional IR appliances</strong>.",
@@ -960,7 +1031,7 @@
             imageUrl: "assets/projects/ir-pointing-module/photos/remote-plus-pointer-concept.png",
             tag: "System Design Concept",
             status: "concept",
-            order: 15,
+            order: 16,
 
             problem:
                 "Traditional IR control still depends on <strong>line-of-sight pointing</strong>. Even with a universal remote, users may still need to face the right appliance, sit in a particular direction, or deal with blocked IR paths. This concept explores a room-mounted helper module that solves the line-of-sight problem automatically.",

@@ -149,6 +149,23 @@
     border-color: rgba(255, 255, 255, 0.1);
 }
 
+.project-section-divider {
+    position: relative;
+}
+
+.project-section-label {
+    transform: rotate(-1.5deg);
+}
+
+.project-section-title {
+    font-weight: 800;
+}
+
+.project-section-subtitle {
+    max-width: 20rem;
+    line-height: 1.35;
+}
+
 .simple-mode body,
 .simple-mode .paper-texture,
 .simple-mode .bg-grid-pattern,
@@ -295,6 +312,20 @@
 .simple-mode .project-filter {
     border-radius: 999px !important;
     box-shadow: none !important;
+}
+
+.simple-mode .project-section-label {
+    transform: none !important;
+    border-radius: 999px !important;
+}
+
+.simple-mode .project-section-pin {
+    display: none !important;
+}
+
+.simple-mode .project-section-subtitle {
+    font-family: "Space Grotesk", sans-serif !important;
+    color: rgb(107 114 128) !important;
 }
 
 .simple-mode .nav-link {
