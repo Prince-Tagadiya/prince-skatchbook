@@ -146,6 +146,12 @@ function renderProject(project) {
         document.getElementById('proj-hero-caption').textContent = project.heroCaption || `The ${project.title} project`;
     }
 
+    // Simple summary
+    if (project.description) {
+        document.getElementById('section-summary').style.display = 'block';
+        document.getElementById('proj-summary-text').textContent = project.description;
+    }
+
     // Problem section
     if (project.problem) {
         document.getElementById('section-problem').style.display = 'block';

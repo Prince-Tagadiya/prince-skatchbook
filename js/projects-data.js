@@ -168,6 +168,68 @@
         },
 
         {
+            id: "dynamic-footlamp",
+            title: "Dynamic Footlamp — Motion & Light Based Auto Control",
+            description: "A no-microcontroller automatic footlamp that uses a motion sensor and an LDR to keep the light off in daytime, dim at night, and fully bright when someone walks nearby.",
+            category: "Hardware",
+            tech: "Analog, RCWL Sensor, LDR, Transistor",
+            imageUrl: "assets/projects/dynamic-footlamp/photos/auto-mode-demo.png",
+            tag: "No Microcontroller",
+            status: "prototype",
+            order: 3,
+
+            problem:
+                "Night-time footlights are often either <strong>always ON</strong> and waste power, or completely manual and easy to forget. The goal of this project was to make a small path/foot lamp that only gives light when it is actually useful: <strong>OFF in daytime</strong>, <strong>dim in darkness</strong>, and <strong>bright when movement is detected</strong>.",
+
+            solution:
+                "This project is a <strong>simple analog automatic footlamp</strong> built without any microcontroller. It combines a <strong>RCWL-0516 microwave motion sensor</strong>, an <strong>LDR</strong>, and a <strong>BC547 transistor</strong> to control a 12V COB LED based on real conditions.<br/><br/>" +
+                "<strong>Three operating modes</strong>:<br/>" +
+                "<strong>• ON mode</strong>: lamp stays fully ON all the time.<br/>" +
+                "<strong>• OFF mode</strong>: lamp stays completely OFF.<br/>" +
+                "<strong>• AUTO mode</strong>: smart behavior based on light + motion.<br/><br/>" +
+                "<strong>AUTO mode logic</strong>:<br/>" +
+                "<strong>• Daytime / bright environment</strong> -> lamp remains OFF.<br/>" +
+                "<strong>• Dark + no motion</strong> -> lamp glows dim to keep the path visible.<br/>" +
+                "<strong>• Dark + motion detected</strong> -> lamp switches to full brightness for safe walking.<br/><br/>" +
+                "<strong>Core hardware from the notes</strong>: RCWL-0516 sensor, LDR, 12V COB LED, BC547 transistor, 10k base resistor, 1N4007 diode, and a 3-way ON/AUTO/OFF mode switch.<br/><br/>" +
+                "<strong>Why it works well</strong>: the LDR decides whether the environment is dark, the RCWL sensor detects movement, and the transistor combines those signals to control the LED brightness smoothly without code, delay, or digital logic.",
+
+            galleryImage1: "assets/projects/dynamic-footlamp/photos/auto-mode-demo.png",
+            galleryCaption1: "Prototype demo showing AUTO mode response during darkness simulation (auto-mode-demo.png)",
+            galleryImage2: "assets/projects/dynamic-footlamp/photos/final-foot-light-diagram.pdf.png",
+            galleryCaption2: "Breadboard/circuit diagram preview generated from the final footlamp design PDF (final-foot-light-diagram.pdf.png)",
+
+            result1Label: "Control",
+            result1Value: "3 Modes",
+            result1Note: "ON / AUTO / OFF",
+            result2Label: "Logic",
+            result2Value: "Analog",
+            result2Note: "No MCU or coding",
+            result3Label: "Behavior",
+            result3Value: "Dim+Bright",
+            result3Note: "Darkness and motion aware",
+
+            duration: "Prototype build",
+            teamSize: "Student project",
+            tools: "RCWL-0516, LDR, BC547, COB LED, 12V supply, analog control",
+
+            links: [
+                {
+                    url: "assets/projects/dynamic-footlamp/docs/final-foot-light-diagram.pdf",
+                    label: "Circuit Diagram (PDF)",
+                    icon: "schema"
+                },
+                {
+                    url: "assets/projects/dynamic-footlamp/docs/dynamic-footlamp.docx",
+                    label: "Project Notes (DOCX)",
+                    icon: "description"
+                }
+            ],
+
+            heroCaption: "A small smart footlight: dim in darkness, bright on motion, off in daylight"
+        },
+
+        {
             id: "intellihire",
             title: "IntelliHire — AI-Enabled Intelligent Assessment & Hiring Platform",
             description: "An AI-driven assessment platform that turns a Job Description into a role-specific evaluation flow (MCQ + subjective + coding) and produces transparent scoring, rankings, and anti-cheat signals to reduce fake/irrelevant applications.",
@@ -176,7 +238,7 @@
             imageUrl: "assets/projects/intellihire/photos/candidate-review.jpg",
             tag: "Codeversity Hackathon 2026",
             status: "hackathon",
-            order: 3,
+            order: 4,
 
             problem:
                 "Recruiters waste time screening <strong>fake</strong>, <strong>irrelevant</strong>, or <strong>underqualified</strong> applications because resumes can be inflated and keyword-matched. The goal is to ensure candidates are evaluated strictly against real job requirements with measurable evidence and explainable outcomes.",
@@ -254,7 +316,7 @@
             imageUrl: "assets/projects/mediclarify/photos/cover.jpg",
             tag: "Kaggle x Google DeepMind",
             status: "hackathon",
-            order: 4,
+            order: 5,
 
             problem:
                 "Medical documents like <strong>lab reports</strong>, <strong>prescriptions</strong>, and <strong>radiology scans</strong> are often hard to understand for non-medical readers. People need a way to interpret values, ranges, and observations safely without receiving diagnoses or treatment advice.",
@@ -314,7 +376,7 @@
             imageUrl: "assets/projects/dayflow-hrms/photos/landing.png",
             tag: "Odoo x GCET Hackathon",
             status: "hackathon",
-            order: 5,
+            order: 6,
 
             problem:
                 "HR teams need a fast, structured way to onboard employees, manage attendance/leave, and keep employee identity data consistent. In many setups, onboarding is manual, credentials are shared insecurely, and employee IDs can be edited, which breaks auditability.",
@@ -377,7 +439,7 @@
             imageUrl: "assets/projects/campusflow/photos/landing.jpg",
             tag: "AI CampusFlow (MVP)",
             status: "wip",
-            order: 6,
+            order: 7,
 
             problem:
                 "Students juggle <strong>assignments</strong>, <strong>exams</strong>, <strong>study materials</strong>, and deadlines across scattered tools. Tracking priorities, finding files, and remembering what’s next becomes noisy, and PDF-based instructions often require manual copying into a task list.",
@@ -466,7 +528,7 @@
             imageUrl: "assets/projects/uidai-dashboard/photos/dashboard-overview.png",
             tag: "Data Hackathon 2026",
             status: "analytics",
-            order: 7,
+            order: 8,
 
             problem:
                 "Raw operational dashboards show numbers, but administrators still struggle to answer the harder questions: <strong>where service load is concentrating</strong>, <strong>which age groups are driving updates</strong>, <strong>whether update demand is overtaking enrolment capacity</strong>, and <strong>which regions show unusual spikes or readiness gaps</strong>. For a nationwide identity ecosystem like UIDAI, decision-makers need interpreted analytics and action-oriented insights, not just charts.",
@@ -529,7 +591,7 @@
             imageUrl: "assets/projects/giftify/photos/dashboard-overview.png",
             tag: "Product Prototype",
             status: "prototype",
-            order: 8,
+            order: 9,
 
             problem:
                 "Fans may want to send <strong>physical gifts</strong> to creators, but doing that safely is hard. Donation platforms and wishlists do not manage real-world pickup, inspection, and delivery workflows, and direct gifting can expose private addresses or create trust and safety issues. Giftify was designed to solve that with a <strong>controlled physical logistics flow</strong> that protects both sides.",
@@ -605,7 +667,7 @@
             imageUrl: "assets/projects/smart-dice/photos/final-render.png",
             tag: "IEEE Project Paper",
             status: "prototype",
-            order: 9,
+            order: 10,
 
             problem:
                 "Most assistive technology for visually impaired users focuses on <strong>navigation</strong>, <strong>reading</strong>, or <strong>scene understanding</strong>, while interactive entertainment tools remain underexplored. Traditional dice are simple for sighted users, but they are not naturally accessible, do not provide multi-sensory feedback, and offer no digital features like remote control, time display, or adaptable visibility. SMART Dice was designed to bridge that gap with a compact embedded object that is both <strong>playful</strong> and <strong>assistive</strong>.",
@@ -677,7 +739,7 @@
             imageUrl: "assets/projects/traffic-light/main-image.jpeg",
             tag: "Published in EFY",
             status: "published",
-            order: 10,
+            order: 11,
             solution:
                 "We built an <strong>intelligent density-based traffic system</strong> using an Arduino Uno (master) and Arduino Nano (slave) with <strong>4 HC-SR04 ultrasonic sensors</strong>, one per lane. Sensors continuously measure vehicle distance — if a vehicle is detected within 15cm, the lane gets a <strong>10-second green signal</strong>; otherwise, only a brief <strong>2-second green phase</strong>. The I2C protocol enables seamless communication between the sensor unit and control unit, dynamically optimising traffic flow at a four-way intersection.",
             problem:
@@ -714,7 +776,7 @@
             imageUrl: "assets/projects/smart-classroom/photos/classroom-concept.png",
             tag: "System Design Concept",
             status: "concept",
-            order: 11,
+            order: 12,
 
             problem:
                 "Classroom discipline, environmental comfort, and energy efficiency are usually managed <strong>manually</strong> and <strong>reactively</strong>. Administrators do not get a campus-wide view of which rooms are noisy, underutilized, uncomfortable, or wasting power. This concept was created to explore how a sensor network plus simple AI could make classrooms more measurable, manageable, and efficient.",
@@ -769,7 +831,7 @@
             imageUrl: "assets/projects/agri-titan-x8/photos/spaim-ndvi-spray-concept.png",
             tag: "System Design Concept",
             status: "concept",
-            order: 12,
+            order: 13,
 
             problem:
                 "Large farms need different types of aerial support: <strong>crop stress detection</strong>, <strong>precision spraying</strong>, <strong>seed/fertilizer spreading</strong>, and <strong>wildlife protection</strong>. Most solutions are single-purpose or expensive to adapt. This concept was created as a <strong>modular agriculture platform</strong> that could perform multiple field operations using one heavy-lift drone architecture.",
@@ -840,7 +902,7 @@
             imageUrl: "assets/projects/smart-universal-remote/photos/remote-concept.png",
             tag: "System Design Concept",
             status: "concept",
-            order: 13,
+            order: 14,
 
             problem:
                 "Homes often end up with <strong>too many remotes</strong> across TVs, ACs, fans, projectors, set-top boxes, and streaming devices. The result is clutter, misplacement, inconsistent user experience, and duplicated batteries/charging. This concept was created to explore a single remote system that can manage multiple rooms and both <strong>smart</strong> and <strong>traditional IR appliances</strong>.",
@@ -898,7 +960,7 @@
             imageUrl: "assets/projects/ir-pointing-module/photos/remote-plus-pointer-concept.png",
             tag: "System Design Concept",
             status: "concept",
-            order: 14,
+            order: 15,
 
             problem:
                 "Traditional IR control still depends on <strong>line-of-sight pointing</strong>. Even with a universal remote, users may still need to face the right appliance, sit in a particular direction, or deal with blocked IR paths. This concept explores a room-mounted helper module that solves the line-of-sight problem automatically.",

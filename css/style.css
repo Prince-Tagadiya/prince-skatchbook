@@ -112,6 +112,14 @@
      background-size: 10px 10px;
 }
 
+.project-card-image {
+    filter: grayscale(0);
+}
+
+.project-card:hover .project-card-image {
+    filter: grayscale(1);
+}
+
 /* === Torn Edge === */
 .torn-edge {
     clip-path: polygon(

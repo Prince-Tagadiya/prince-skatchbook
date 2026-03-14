@@ -323,11 +323,11 @@ function renderProjects(projects) {
         const normalizedCategory = normalizeProjectCategory(project);
 
         return `
-        <a href="${detailUrl}" onclick="localStorage.setItem('currentProjectId', '${project.id}')" class="group relative flex flex-col bg-white dark:bg-[#1a1a1a] p-4 text-[#181111] dark:text-white border-2 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#ec1313] dark:hover:shadow-[8px_8px_0px_0px_#ec1313] transition-all duration-200 ${rot} no-underline cursor-pointer" data-category="${normalizedCategory}">
+        <a href="${detailUrl}" onclick="localStorage.setItem('currentProjectId', '${project.id}')" class="project-card group relative flex flex-col bg-white dark:bg-[#1a1a1a] p-4 text-[#181111] dark:text-white border-2 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#ec1313] dark:hover:shadow-[8px_8px_0px_0px_#ec1313] transition-all duration-200 ${rot} no-underline cursor-pointer" data-category="${normalizedCategory}">
             ${project.tag ? `<div class="${tagPos} ${tagColor} px-2 py-1 text-xs font-bold border border-black shadow-sm z-10">${project.tag}</div>` : ''}
             ${wip ? `<div class="absolute -bottom-3 right-4 bg-primary text-white px-3 py-1 text-xs font-bold border border-black shadow-sm rotate-[2deg] z-10">Work in Progress</div>` : ''}
             <div class="relative w-full aspect-[4/3] bg-gray-100 dark:bg-gray-800 border border-black dark:border-white mb-4 overflow-hidden">
-                ${imageUrl ? `<img class="w-full h-full object-cover grayscale-0 group-hover:grayscale transition-all duration-300" src="${imageUrl}" alt="${project.title || ''}" />` : `<div class="w-full h-full flex items-center justify-center text-gray-300"><span class="material-symbols-outlined text-6xl">image</span></div>`}
+                ${imageUrl ? `<img class="project-card-image w-full h-full object-cover transition-all duration-300" src="${imageUrl}" alt="${project.title || ''}" />` : `<div class="w-full h-full flex items-center justify-center text-gray-300"><span class="material-symbols-outlined text-6xl">image</span></div>`}
             </div>
             <div class="flex flex-col gap-2">
                 <h3 class="text-xl font-bold">${project.title || 'Untitled'}</h3>
