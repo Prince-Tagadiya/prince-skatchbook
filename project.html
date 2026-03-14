@@ -116,6 +116,9 @@
                 <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="index.html#home">
                     <span class="material-symbols-outlined">home</span> Home
                 </a>
+                <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="index.html#awards">
+                    <span class="material-symbols-outlined">emoji_events</span> Awards
+                </a>
                 <a class="flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="index.html#projects">
                     <span class="material-symbols-outlined">grid_view</span> Projects
                 </a>
@@ -143,6 +146,10 @@
                         <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">home</span>
                         <span class="text-base font-medium">Home</span>
                     </a>
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200" href="index.html#awards">
+                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">emoji_events</span>
+                        <span class="text-base font-medium">Awards</span>
+                    </a>
                     <a class="group nav-link active flex items-center gap-3 px-4 py-3 rounded-shaky bg-primary text-white transition-all shadow-[2px_4px_0px_rgba(0,0,0,0.1)] hover:-translate-y-1" href="index.html#projects">
                         <span class="material-symbols-outlined text-[20px]">grid_view</span>
                         <span class="text-base font-bold">Projects</span>
@@ -158,6 +165,12 @@
                 </nav>
 
                 <div class="flex gap-4 items-center">
+                    <a class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform" href="#" id="nav-email-link">
+                        <span class="material-symbols-outlined">alternate_email</span>
+                    </a>
+                    <a class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform" href="https://github.com/Prince-Tagadiya" id="nav-github-link" target="_blank">
+                        <span class="material-symbols-outlined">code_blocks</span>
+                    </a>
                     <button id="theme-toggle" class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform cursor-pointer ml-auto">
                         <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
                     </button>
@@ -268,13 +281,35 @@
                         </div>
                     </section>
 
-                    <!-- Project Link -->
-                    <div class="text-center mt-8" id="proj-link-wrapper" style="display: none;">
-                        <a id="proj-external-link" href="#" target="_blank" class="inline-flex items-center gap-3 bg-black dark:bg-white text-white dark:text-black font-bold px-8 py-4 border-2 border-black dark:border-white shadow-[4px_4px_0px_0px_#ec1313] hover:-translate-y-1 hover:shadow-[6px_6px_0px_0px_#ec1313] transition-all no-underline">
-                            <span class="material-symbols-outlined">open_in_new</span>
-                            View Live Project
-                        </a>
+                    <!-- Project Links -->
+                    <div class="text-center mt-8" id="proj-links-wrapper" style="display: none;">
+                        <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-4" id="proj-links"></div>
                     </div>
+
+                    <!-- Demo Video -->
+                    <section class="relative mt-10" id="section-video" style="display: none;">
+                        <div class="bg-white dark:bg-[#1a1a1a] p-6 md:p-10 border-2 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] rounded-lg">
+                            <h2 class="font-marker text-2xl mb-4 flex items-center justify-center gap-2">
+                                Live Demo
+                                <span class="material-symbols-outlined text-primary">play_circle</span>
+                            </h2>
+                            <div class="relative w-full aspect-video bg-gray-100 dark:bg-black/40 border border-gray-200 dark:border-gray-700 overflow-hidden rounded-lg">
+                                <iframe id="proj-video-iframe" class="absolute inset-0 w-full h-full" src="" title="Project Demo Video" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            </div>
+                            <p class="font-hand text-center text-gray-500 dark:text-gray-400 text-sm italic mt-4" id="proj-video-caption"></p>
+                        </div>
+                    </section>
+
+                    <!-- Media / Press -->
+                    <section class="relative mt-10" id="section-press" style="display: none;">
+                        <div class="bg-white dark:bg-[#1a1a1a] p-6 md:p-10 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg">
+                            <h2 class="font-marker text-2xl mb-4 flex items-center justify-center gap-2">
+                                Media Coverage
+                                <span class="material-symbols-outlined text-primary">newspaper</span>
+                            </h2>
+                            <div class="flex flex-col gap-3 items-center" id="proj-press-links"></div>
+                        </div>
+                    </section>
 
                     <!-- Next Project -->
                     <div id="next-project-wrapper" style="display: none;">
@@ -312,6 +347,7 @@
         <img id="lightbox-img" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl transform scale-95 transition-transform duration-300 cursor-default" />
     </div>
 
+    <script src="js/projects-data.js"></script>
     <script src="js/project.js"></script>
 </body>
 </html>

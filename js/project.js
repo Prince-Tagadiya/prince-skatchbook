@@ -8,24 +8,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const themeIcon = document.getElementById('theme-icon');
     if (themeToggle) {
         // Check saved preference
-        const savedTheme = localStorage.getItem('theme');
+        const htmlEl = document.documentElement;
+        const savedTheme = localStorage.getItem('portfolio-theme');
         if (savedTheme === 'dark') {
-            document.documentElement.classList.replace('light', 'dark');
+            htmlEl.classList.add('dark');
+            htmlEl.classList.remove('light');
             if (themeIcon) themeIcon.textContent = 'light_mode';
         }
         themeToggle.addEventListener('click', () => {
-            const isDark = document.documentElement.classList.contains('dark');
+            const isDark = htmlEl.classList.contains('dark');
             if (isDark) {
-                document.documentElement.classList.replace('dark', 'light');
+                htmlEl.classList.remove('dark');
+                htmlEl.classList.add('light');
                 if (themeIcon) themeIcon.textContent = 'dark_mode';
-                localStorage.setItem('theme', 'light');
+                localStorage.setItem('portfolio-theme', 'light');
             } else {
-                document.documentElement.classList.replace('light', 'dark');
+                htmlEl.classList.add('dark');
+                htmlEl.classList.remove('light');
                 if (themeIcon) themeIcon.textContent = 'light_mode';
-                localStorage.setItem('theme', 'dark');
+                localStorage.setItem('portfolio-theme', 'dark');
             }
         });
     }
+
+    // Mobile menu (project page doesn't load app.js)
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+    mobileMenuToggle?.addEventListener('click', () => {
+        mobileMenu?.classList.add('show');
+        if (mobileMenu) mobileMenu.style.display = 'flex';
+    });
+
+    mobileMenuClose?.addEventListener('click', () => {
+        mobileMenu?.classList.remove('show');
+        if (mobileMenu) mobileMenu.style.display = 'none';
+    });
+
+    mobileMenu?.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('show');
+            mobileMenu.style.display = 'none';
+        });
+    });
 
     // Get project ID from URL or fallback to localStorage (solves clean-URL redirect dropping query strings)
     const params = new URLSearchParams(window.location.search);
@@ -42,49 +68,15 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Hardcoded project data since Firebase is removed
-    const allProjects = [
-        {
-            id: "traffic-light-controller",
-            title: "Density-Based Traffic Light Controller",
-            description: "A DIY smart traffic management system published in Electronics For You Magazine (Jan 2026). Uses Arduino Uno & Nano with ultrasonic sensors to dynamically adjust traffic signal timing based on real-time vehicle density at a 4-way intersection.",
-            category: "IoT",
-            tech: "Arduino, C++, I2C",
-            imageUrl: "assets/projects/traffic-light/main-image.jpeg",
-            tag: "Published in EFY",
-            status: "published",
-            order: 1,
-            solution: "We built an <strong>intelligent density-based traffic system</strong> using an Arduino Uno (master) and Arduino Nano (slave) with <strong>4 HC-SR04 ultrasonic sensors</strong>, one per lane. Sensors continuously measure vehicle distance — if a vehicle is detected within 15cm, the lane gets a <strong>10-second green signal</strong>; otherwise, only a brief <strong>2-second green phase</strong>. The I2C protocol enables seamless communication between the sensor unit and control unit, dynamically optimising traffic flow at a four-way intersection.",
-            problem: "Traditional traffic light systems operate on fixed timing cycles, regardless of actual traffic conditions. This leads to <strong>unnecessary waiting at empty intersections</strong> and <strong>congestion buildup</strong> in busy lanes. With increasing urbanisation, fixed-cycle traffic signals cause idle delays, fuel wastage, and increased commute times — especially during fluctuating or uneven traffic flow.",
-            galleryImage1: "assets/projects/traffic-light/magazine-cover.png",
-            galleryCaption1: "EFY Magazine Jan 2026 Cover",
-            galleryImage2: "assets/projects/traffic-light/block-diagram.jpeg",
-            galleryCaption2: "System Block Diagram",
-            galleryImage3: "assets/projects/traffic-light/circuit.jpeg",
-            galleryCaption3: "Circuit Diagram",
-            result1Title: "EFY Magazine",
-            result1Label: "Published",
-            result1Value: "EFY",
-            result1Note: "Jan 2026 Issue",
-            result2Label: "Smart Control",
-            result2Value: "4-Lane",
-            result2Note: "Real-time detection",
-            result3Label: "Protocol",
-            result3Value: "I2C",
-            result3Note: "Master-Slave",
-            duration: "4 Weeks",
-            teamSize: "Solo + Faculty Mentor",
-            tools: "Arduino IDE, HC-SR04, I2C Protocol",
-            link: "https://online.fliphtml5.com/oxomv/EFY-Express_Jan-26_PDFisation/#p=80",
-            heroCaption: "Working prototype with serial monitor output"
-        }
-    ];
+    const allProjects = (Array.isArray(window.PROJECTS) ? window.PROJECTS : [])
+        .slice()
+        .sort((a, b) => (a?.order ?? 999) - (b?.order ?? 999));
 
     function loadProject() {
         const project = allProjects.find(p => p.id === projectId);
         if (project) {
             renderProject(project);
-            loadNextProject(project.order || 999);
+            loadNextProject(project.id);
         } else {
             showError();
         }
@@ -166,8 +158,14 @@ function renderProject(project) {
 
         // Gallery images
         const galleryImgs = [];
-        if (project.galleryImage1) galleryImgs.push({ url: project.galleryImage1, caption: project.galleryCaption1 || 'Project screenshot' });
-        if (project.galleryImage2) galleryImgs.push({ url: project.galleryImage2, caption: project.galleryCaption2 || 'Project screenshot' });
+        for (let n = 1; n <= 20; n += 1) {
+            const url = project[`galleryImage${n}`];
+            if (!url) continue;
+            galleryImgs.push({
+                url,
+                caption: project[`galleryCaption${n}`] || 'Project screenshot'
+            });
+        }
 
         if (galleryImgs.length > 0) {
             const galleryEl = document.getElementById('proj-gallery');
@@ -222,35 +220,106 @@ function renderProject(project) {
         document.getElementById('proj-description-text').textContent = project.description;
     }
 
-    // External link
-    if (project.link) {
-        document.getElementById('proj-link-wrapper').style.display = 'block';
-        const linkEl = document.getElementById('proj-external-link');
-        linkEl.href = project.link;
+    // Links (buttons)
+    const links = [];
+    if (Array.isArray(project.links)) {
+        project.links.forEach(l => {
+            if (l?.url && l?.label) links.push({ url: l.url, label: l.label, icon: l.icon || 'open_in_new' });
+        });
+    } else if (project.link) {
         if (project.link.includes('fliphtml5.com') || project.link.toLowerCase().includes('efy')) {
-            linkEl.innerHTML = `<span class="material-symbols-outlined">menu_book</span> Read EFY Magazine`;
+            links.push({ url: project.link, label: 'Read EFY Magazine', icon: 'menu_book' });
         } else {
-            linkEl.innerHTML = `<span class="material-symbols-outlined">open_in_new</span> View Live Project`;
+            links.push({ url: project.link, label: 'View Live Project', icon: 'open_in_new' });
         }
+    }
+    if (project.videoUrl) {
+        links.unshift({ url: project.videoUrl, label: project.videoLabel || 'Watch Demo', icon: 'play_circle' });
+    }
+
+    if (links.length > 0) {
+        const wrapper = document.getElementById('proj-links-wrapper');
+        const linksEl = document.getElementById('proj-links');
+        wrapper.style.display = 'block';
+        linksEl.innerHTML = links.map((l, i) => {
+            const isPrimary = i === 0;
+            const cls = isPrimary
+                ? 'bg-black dark:bg-white text-white dark:text-black shadow-[4px_4px_0px_0px_#ec1313] hover:shadow-[6px_6px_0px_0px_#ec1313]'
+                : 'bg-white dark:bg-[#1a1a1a] text-black dark:text-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] hover:shadow-[6px_6px_0px_0px_#ec1313]';
+
+            return `
+                <a href="${l.url}" target="_blank" class="inline-flex items-center gap-3 font-bold px-8 py-4 border-2 border-black dark:border-white hover:-translate-y-1 transition-all no-underline ${cls}">
+                    <span class="material-symbols-outlined">${l.icon}</span>
+                    ${l.label}
+                </a>
+            `;
+        }).join('');
+    }
+
+    // Press links
+    if (Array.isArray(project.pressLinks) && project.pressLinks.length > 0) {
+        const section = document.getElementById('section-press');
+        const pressEl = document.getElementById('proj-press-links');
+        section.style.display = 'block';
+        pressEl.innerHTML = project.pressLinks
+            .filter(p => p?.url && p?.label)
+            .map(p => `
+                <a href="${p.url}" target="_blank" class="inline-flex items-center gap-2 font-bold text-[#181111] dark:text-white hover:text-primary no-underline">
+                    <span class="material-symbols-outlined text-primary">link</span>
+                    <span class="border-b-2 border-dashed border-primary/30 hover:border-primary">${p.label}</span>
+                </a>
+            `)
+            .join('');
+    }
+
+    // YouTube embed (optional)
+    const yt = getYouTubeId(project.youtubeUrl || project.videoUrl || '');
+    if (yt) {
+        const section = document.getElementById('section-video');
+        const iframe = document.getElementById('proj-video-iframe');
+        const caption = document.getElementById('proj-video-caption');
+
+        section.style.display = 'block';
+        iframe.src = `https://www.youtube-nocookie.com/embed/${yt}?rel=0&modestbranding=1`;
+        caption.textContent = project.youtubeCaption || project.videoLabel || 'Demo video';
     }
     
     // Initialize lightbox after content is rendered
     initLightbox();
 }
 
+function getYouTubeId(input) {
+    if (!input || typeof input !== 'string') return '';
+    const s = input.trim();
+    const m =
+        s.match(/youtu\.be\/([A-Za-z0-9_-]{6,})/) ||
+        s.match(/youtube\.com\/watch\?v=([A-Za-z0-9_-]{6,})/) ||
+        s.match(/youtube\.com\/embed\/([A-Za-z0-9_-]{6,})/);
+    return m ? m[1] : '';
+}
+
 // ==========================================
 // Load Next Project
 // ==========================================
-function loadNextProject(currentOrder) {
-    const allProjects = [
-        {
-            id: "traffic-light-controller",
-            title: "Density-Based Traffic Light Controller"
-        }
-    ];
-    // With only one project, we don't really have a "next" project, but if we did we would loop here.
-    // We'll hide it for now since there's only 1.
-    document.getElementById('next-project-wrapper').style.display = 'none';
+function loadNextProject(currentId) {
+    const projects = (Array.isArray(window.PROJECTS) ? window.PROJECTS : [])
+        .slice()
+        .sort((a, b) => (a?.order ?? 999) - (b?.order ?? 999));
+
+    if (projects.length < 2) {
+        document.getElementById('next-project-wrapper').style.display = 'none';
+        return;
+    }
+
+    const idx = projects.findIndex(p => p.id === currentId);
+    const safeIdx = idx === -1 ? 0 : idx;
+    const next = projects[(safeIdx + 1) % projects.length];
+    if (!next || next.id === currentId) {
+        document.getElementById('next-project-wrapper').style.display = 'none';
+        return;
+    }
+
+    showNextProject(next.id, next.title || 'Next Project');
 }
 
 function showNextProject(id, title) {

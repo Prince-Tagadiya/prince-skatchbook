@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const hasHash = window.location.hash && window.location.hash !== '#home';
     const hasSeenSplash = sessionStorage.getItem('hasSeenSplash');
 
-    if (hasHash || hasSeenSplash) {
+    const skipSplash = hasHash || hasSeenSplash;
+
+    if (skipSplash) {
         // Skip splash entirely
         if (splashScreen) splashScreen.style.display = 'none';
         if (loadingScreen) loadingScreen.style.display = 'none';
@@ -28,21 +30,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // Start loading data immediately
         loadPortfolioData();
         loadProjects();
-        return; // Skip attaching enter listeners
     }
 
     // ------- PHASE 1: Splash Screen -------
     // Listen for Enter key press
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' && splashScreen.style.display !== 'none') {
-            triggerEnter();
-        }
-    });
+    if (!skipSplash) {
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' && splashScreen.style.display !== 'none') {
+                triggerEnter();
+            }
+        });
 
-    // Listen for Enter button click
-    enterBtn?.addEventListener('click', () => {
-        triggerEnter();
-    });
+        enterBtn?.addEventListener('click', () => {
+            triggerEnter();
+        });
+    }
 
     function triggerEnter() {
         // Add exit animation to splash
@@ -167,18 +169,20 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const observer = new IntersectionObserver((entries) => {
+            let best = null;
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const currentId = entry.target.getAttribute('id');
-                    
-                    navLinks.forEach(link => {
-                        const href = link.getAttribute('href');
-                        if (href && (href === `#${currentId}` || href === `index.html#${currentId}`)) {
-                            link.classList.add('active');
-                        } else {
-                            link.classList.remove('active');
-                        }
-                    });
+                if (!entry.isIntersecting) return;
+                if (!best || entry.intersectionRatio > best.intersectionRatio) best = entry;
+            });
+            if (!best) return;
+            const currentId = best.target.getAttribute('id');
+
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && (href === `#${currentId}` || href === `index.html#${currentId}`)) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
                 }
             });
         }, observerOptions);
@@ -253,48 +257,32 @@ function updateUI(data) {
 }
 
 // ==========================================
-// Load Projects from Firestore
+// Load Projects (local data)
 // ==========================================
-let allProjects = [
-    {
-        id: "traffic-light-controller",
-        title: "Density-Based Traffic Light Controller",
-        description: "A DIY smart traffic management system published in Electronics For You Magazine (Jan 2026). Uses Arduino Uno & Nano with ultrasonic sensors to dynamically adjust traffic signal timing based on real-time vehicle density at a 4-way intersection.",
-        category: "IoT",
-        tech: "Arduino, C++, I2C",
-        imageUrl: "assets/projects/traffic-light/main-image.jpeg",
-        tag: "Published in EFY",
-        status: "published",
-        order: 1,
-        solution: "We built an <strong>intelligent density-based traffic system</strong> using an Arduino Uno (master) and Arduino Nano (slave) with <strong>4 HC-SR04 ultrasonic sensors</strong>, one per lane. Sensors continuously measure vehicle distance — if a vehicle is detected within 15cm, the lane gets a <strong>10-second green signal</strong>; otherwise, only a brief <strong>2-second green phase</strong>. The I2C protocol enables seamless communication between the sensor unit and control unit, dynamically optimising traffic flow at a four-way intersection.",
-        problem: "Traditional traffic light systems operate on fixed timing cycles, regardless of actual traffic conditions. This leads to <strong>unnecessary waiting at empty intersections</strong> and <strong>congestion buildup</strong> in busy lanes. With increasing urbanisation, fixed-cycle traffic signals cause idle delays, fuel wastage, and increased commute times — especially during fluctuating or uneven traffic flow.",
-        galleryImage1: "assets/projects/traffic-light/magazine-cover.png",
-        galleryCaption1: "EFY Magazine Jan 2026 Cover",
-        galleryImage2: "assets/projects/traffic-light/block-diagram.jpeg",
-        galleryCaption2: "System Block Diagram",
-        galleryImage3: "assets/projects/traffic-light/circuit.jpeg",
-        galleryCaption3: "Circuit Diagram",
-        result1Title: "EFY Magazine",
-        result1Label: "Published",
-        result1Value: "EFY",
-        result1Note: "Jan 2026 Issue",
-        result2Label: "Smart Control",
-        result2Value: "4-Lane",
-        result2Note: "Real-time detection",
-        result3Label: "Protocol",
-        result3Value: "I2C",
-        result3Note: "Master-Slave",
-        duration: "4 Weeks",
-        teamSize: "Solo + Faculty Mentor",
-        tools: "Arduino IDE, HC-SR04, I2C Protocol",
-        link: "https://online.fliphtml5.com/oxomv/EFY-Express_Jan-26_PDFisation/#p=80",
-        heroCaption: "Working prototype with serial monitor output"
-    }
-];
+let allProjects = [];
+
+function getProjectsSorted() {
+    const list = Array.isArray(window.PROJECTS) ? window.PROJECTS : [];
+    return list
+        .slice()
+        .sort((a, b) => (a?.order ?? 999) - (b?.order ?? 999));
+}
 
 function loadProjects() {
+    allProjects = getProjectsSorted();
     renderProjects(allProjects);
     buildFilterChips(allProjects);
+}
+
+function normalizeProjectCategory(project) {
+    const raw = String(project?.category || '').toLowerCase();
+    if (!raw) return 'software';
+
+    // Hardware bucket includes embedded/electronics/IoT style work.
+    if (raw.includes('hardware') || raw.includes('iot') || raw.includes('embedded') || raw.includes('electronics')) {
+        return 'hardware';
+    }
+    return 'software';
 }
 
 // ==========================================
@@ -332,9 +320,10 @@ function renderProjects(projects) {
         const imageUrl = project.imageUrl || '';
         const wip = project.status === 'wip';
         const detailUrl = `project.html?id=${project.id}`;
+        const normalizedCategory = normalizeProjectCategory(project);
 
         return `
-        <a href="${detailUrl}" onclick="localStorage.setItem('currentProjectId', '${project.id}')" class="group relative flex flex-col bg-white dark:bg-[#1a1a1a] p-4 text-[#181111] dark:text-white border-2 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#ec1313] dark:hover:shadow-[8px_8px_0px_0px_#ec1313] transition-all duration-200 ${rot} no-underline cursor-pointer" data-category="${(project.category || '').toLowerCase()}">
+        <a href="${detailUrl}" onclick="localStorage.setItem('currentProjectId', '${project.id}')" class="group relative flex flex-col bg-white dark:bg-[#1a1a1a] p-4 text-[#181111] dark:text-white border-2 border-black dark:border-white shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] dark:shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] hover:-translate-y-1 hover:shadow-[8px_8px_0px_0px_#ec1313] dark:hover:shadow-[8px_8px_0px_0px_#ec1313] transition-all duration-200 ${rot} no-underline cursor-pointer" data-category="${normalizedCategory}">
             ${project.tag ? `<div class="${tagPos} ${tagColor} px-2 py-1 text-xs font-bold border border-black shadow-sm z-10">${project.tag}</div>` : ''}
             ${wip ? `<div class="absolute -bottom-3 right-4 bg-primary text-white px-3 py-1 text-xs font-bold border border-black shadow-sm rotate-[2deg] z-10">Work in Progress</div>` : ''}
             <div class="relative w-full aspect-[4/3] bg-gray-100 dark:bg-gray-800 border border-black dark:border-white mb-4 overflow-hidden">
@@ -380,8 +369,9 @@ function buildFilterChips(projects) {
     const filtersEl = document.getElementById('project-filters');
     if (!filtersEl) return;
 
-    // Collect unique categories
-    const categories = [...new Set(projects.map(p => p.category).filter(Boolean))];
+    // Only two categories for the Projects section.
+    const categoriesSet = new Set(projects.map(p => normalizeProjectCategory(p)));
+    const categories = ['hardware', 'software'].filter(c => categoriesSet.has(c));
     const chipRotations = ['-1deg', '1deg', '-2deg', '2deg', '-1.5deg', '1.5deg'];
 
     filtersEl.innerHTML = `
@@ -393,8 +383,8 @@ function buildFilterChips(projects) {
     categories.forEach((cat, i) => {
         const rot = chipRotations[i % chipRotations.length];
         filtersEl.innerHTML += `
-            <button class="project-filter px-4 py-1.5 bg-[#f0f0f0] dark:bg-gray-800 border border-gray-300 dark:border-gray-600 font-medium text-sm transform hover:bg-primary/10 transition shadow-sm cursor-pointer" style="rotate: ${rot}" data-filter="${cat.toLowerCase()}">
-                ${cat}
+            <button class="project-filter px-4 py-1.5 bg-[#f0f0f0] dark:bg-gray-800 border border-gray-300 dark:border-gray-600 font-medium text-sm transform hover:bg-primary/10 transition shadow-sm cursor-pointer" style="rotate: ${rot}" data-filter="${cat}">
+                ${cat === 'hardware' ? 'Hardware' : 'Software'}
             </button>
         `;
     });
@@ -414,7 +404,7 @@ function buildFilterChips(projects) {
             if (filter === 'all') {
                 renderProjects(allProjects);
             } else {
-                renderProjects(allProjects.filter(p => (p.category || '').toLowerCase() === filter));
+                renderProjects(allProjects.filter(p => normalizeProjectCategory(p) === filter));
             }
         });
     });
