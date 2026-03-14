@@ -33,9 +33,22 @@
             }
         };
     </script>
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('portfolio-view-mode') === 'simple') {
+                    document.documentElement.classList.add('simple-mode');
+                }
+            } catch (error) {}
+        })();
+    </script>
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="min-h-screen bg-background-light dark:bg-background-dark text-[#181111] dark:text-white paper-texture">
+    <button class="view-mode-toggle" data-view-mode-toggle type="button">
+        <span class="material-symbols-outlined text-[20px]" data-view-mode-icon>brush</span>
+        <span class="font-semibold text-sm" data-view-mode-label>Fun</span>
+    </button>
     <main class="max-w-7xl mx-auto px-6 md:px-12 py-10 md:py-16">
         <div class="flex flex-col gap-6 mb-10">
             <a href="index.html#awards" class="inline-flex items-center gap-2 text-primary font-bold no-underline">
@@ -74,6 +87,7 @@
     </div>
 
     <script src="js/certificates-data.js"></script>
+    <script src="js/view-mode.js"></script>
     <script src="js/certificates.js"></script>
 </body>
 </html>

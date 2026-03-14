@@ -94,9 +94,23 @@
             },
         }
     </script>
+    <script>
+        (function () {
+            try {
+                if (localStorage.getItem('portfolio-view-mode') === 'simple') {
+                    document.documentElement.classList.add('simple-mode');
+                    sessionStorage.setItem('hasSeenSplash', 'true');
+                }
+            } catch (error) {}
+        })();
+    </script>
     <link rel="stylesheet" href="css/style.css" />
 </head>
 <body class="h-screen w-screen overflow-hidden bg-background-light font-display text-[#181111]">
+    <button class="view-mode-toggle" data-view-mode-toggle type="button">
+        <span class="material-symbols-outlined text-[20px]" data-view-mode-icon>brush</span>
+        <span class="font-semibold text-sm" data-view-mode-label>Fun</span>
+    </button>
 
     <!-- Prevent Splash Flicker Sync Script -->
     <script>
@@ -913,6 +927,7 @@
     </div>
 
     <script src="js/projects-data.js"></script>
+    <script src="js/view-mode.js"></script>
     <script src="js/certificates-data.js"></script>
     <script src="js/certificates.js"></script>
     <script src="js/app.js"></script>

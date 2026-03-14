@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hasHash = window.location.hash && window.location.hash !== '#home';
     const hasSeenSplash = sessionStorage.getItem('hasSeenSplash');
 
-    const skipSplash = hasHash || hasSeenSplash;
+    const skipSplash = hasHash || hasSeenSplash || document.documentElement.classList.contains('simple-mode');
 
     if (skipSplash) {
         // Skip splash entirely

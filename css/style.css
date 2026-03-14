@@ -120,6 +120,199 @@
     filter: grayscale(1);
 }
 
+.view-mode-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 120;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid rgba(24, 17, 17, 0.12);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #181111;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12);
+    backdrop-filter: blur(14px);
+    transition: transform 220ms ease, box-shadow 220ms ease, background-color 220ms ease, color 220ms ease;
+}
+
+.view-mode-toggle:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 36px rgba(15, 23, 42, 0.18);
+}
+
+.dark .view-mode-toggle {
+    background: rgba(26, 14, 14, 0.9);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.simple-mode body,
+.simple-mode .paper-texture,
+.simple-mode .bg-grid-pattern,
+.simple-mode .bg-dot-pattern,
+.simple-mode .bg-dot-pattern-dark {
+    background-image: none !important;
+}
+
+.simple-mode .font-marker,
+.simple-mode .font-hand {
+    font-family: "Space Grotesk", sans-serif !important;
+    font-style: normal !important;
+}
+
+.simple-mode .tape,
+.simple-mode .mask-tape,
+.simple-mode .tape-strip,
+.simple-mode .pin,
+.simple-mode .sketch-doodle-arrow,
+.simple-mode .doodle-float,
+.simple-mode .scribble-path,
+.simple-mode #hero-sticker,
+.simple-mode .marker-highlight-green,
+.simple-mode .marker-highlight-yellow {
+    display: none !important;
+}
+
+.simple-mode .animate-line-boil,
+.simple-mode .animate-wiggle-arrow,
+.simple-mode .animate-bounce,
+.simple-mode .animate-pulse,
+.simple-mode .sticker-wobble,
+.simple-mode .splash-fly-in-1,
+.simple-mode .splash-fly-in-2,
+.simple-mode .splash-fly-in-3,
+.simple-mode .splash-fly-in-4,
+.simple-mode .splash-fly-in-main,
+.simple-mode .portfolio-reveal,
+.simple-mode .loading-active,
+.simple-mode .animate-pop-in {
+    animation: none !important;
+}
+
+.simple-mode .animate-pop-in,
+.simple-mode .animate-fade-in,
+.simple-mode .splash-fly-in-1,
+.simple-mode .splash-fly-in-2,
+.simple-mode .splash-fly-in-3,
+.simple-mode .splash-fly-in-4,
+.simple-mode .splash-fly-in-main,
+.simple-mode .portfolio-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+.simple-mode .rounded-shaky,
+.simple-mode .hand-drawn-border {
+    border-radius: 1rem !important;
+}
+
+.simple-mode [class*="rotate-"],
+.simple-mode [class*="-rotate-"] {
+    transform: none !important;
+}
+
+.simple-mode #splash-screen,
+.simple-mode #loading-screen {
+    display: none !important;
+}
+
+.simple-mode #portfolio-wrapper {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.simple-mode .project-card,
+.simple-mode .certificate-trigger,
+.simple-mode #proj-hero-wrapper,
+.simple-mode #section-summary > div,
+.simple-mode #section-problem > div,
+.simple-mode #proj-solution-wrapper,
+.simple-mode #section-video > div,
+.simple-mode #section-press > div,
+.simple-mode .scribble-box,
+.simple-mode #certificate-detail > div,
+.simple-mode #cert-modal .shadow-paper-sheet,
+.simple-mode .nav-link.active {
+    border-radius: 1rem !important;
+    border-color: rgba(215, 220, 229, 1) !important;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.1) !important;
+}
+
+.simple-mode .project-card:hover,
+.simple-mode .certificate-trigger:hover {
+    transform: translateY(-4px) !important;
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.14) !important;
+}
+
+.simple-mode .project-filter,
+.simple-mode .nav-link,
+.simple-mode .view-mode-toggle,
+.simple-mode #theme-toggle,
+.simple-mode #mobile-menu-toggle,
+.simple-mode a,
+.simple-mode button,
+.simple-mode .project-card,
+.simple-mode .certificate-trigger,
+.simple-mode .lightbox-trigger,
+.simple-mode .group,
+.simple-mode .transition-all,
+.simple-mode .transition-transform,
+.simple-mode .transition-colors,
+.simple-mode .transition-opacity {
+    transition-duration: 220ms !important;
+    transition-timing-function: ease !important;
+}
+
+.mode-switching body,
+.mode-switching .project-card,
+.mode-switching .certificate-trigger,
+.mode-switching #proj-hero-wrapper,
+.mode-switching #section-summary > div,
+.mode-switching #section-problem > div,
+.mode-switching #proj-solution-wrapper,
+.mode-switching #section-video > div,
+.mode-switching #section-press > div,
+.mode-switching .scribble-box,
+.mode-switching .nav-link,
+.mode-switching .project-filter,
+.mode-switching .view-mode-toggle,
+.mode-switching .mask-tape,
+.mode-switching .tape,
+.mode-switching .tape-strip,
+.mode-switching #hero-sticker,
+.mode-switching .project-card-image,
+.mode-switching #hero-photo,
+.mode-switching .blob-animate,
+.mode-switching .blob-animate-reverse,
+.mode-switching .animate-pop-in,
+.mode-switching .animate-fade-in {
+    transition: all 360ms ease !important;
+}
+
+.simple-mode .project-filter {
+    border-radius: 999px !important;
+    box-shadow: none !important;
+}
+
+.simple-mode .nav-link {
+    border-radius: 0.875rem !important;
+}
+
+.simple-mode #main-content {
+    scroll-behavior: smooth;
+}
+
+.simple-mode .project-card-image {
+    filter: grayscale(0) !important;
+}
+
+.simple-mode .project-card:hover .project-card-image {
+    filter: grayscale(1) !important;
+}
+
 /* === Torn Edge === */
 .torn-edge {
     clip-path: polygon(
