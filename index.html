@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html class="light" lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
     <title>Prince Tagadiya — Designer & Developer</title>
-    <meta name="description" content="Portfolio of Prince Tagadiya — Designer, Developer, and Creative Thinker. Building digital products that feel handmade." />
+    <meta name="description"
+        content="Portfolio of Prince Tagadiya — Designer, Developer, and Creative Thinker. Building digital products that feel handmade." />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Permanent+Marker&family=Gochi+Hand&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Permanent+Marker&family=Gochi+Hand&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
 
     <!-- Tailwind -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -95,17 +100,18 @@
         }
     </script>
     <script>
-        (function () {
-            try {
-                if (localStorage.getItem('portfolio-view-mode') === 'simple') {
-                    document.documentElement.classList.add('simple-mode');
-                    sessionStorage.setItem('hasSeenSplash', 'true');
-                }
-            } catch (error) {}
-        })();
+            (function () {
+                try {
+                    if (localStorage.getItem('portfolio-view-mode') === 'simple') {
+                        document.documentElement.classList.add('simple-mode');
+                        sessionStorage.setItem('hasSeenSplash', 'true');
+                    }
+                } catch (error) { }
+            })();
     </script>
     <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body class="h-screen w-screen overflow-hidden bg-background-light font-display text-[#181111]">
     <button class="view-mode-toggle" data-view-mode-toggle type="button">
         <span class="material-symbols-outlined text-[20px]" data-view-mode-icon>brush</span>
@@ -127,23 +133,29 @@
     <!-- ==========================================
          PHASE 1: SPLASH SCREEN (Paper Collage)
          ========================================== -->
-    <div id="splash-screen" class="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden" style="background-color: #f8f6f6;">
+    <div id="splash-screen" class="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
+        style="background-color: #f8f6f6;">
         <!-- Background grid dots -->
         <div class="absolute inset-0 z-0 pointer-events-none opacity-20 bg-grid-pattern bg-[length:40px_40px]"></div>
-        
+
         <!-- Decorative SVG doodles -->
-        <svg class="absolute top-10 left-10 w-48 h-48 text-gray-300 pointer-events-none opacity-40 animate-pulse" viewBox="0 0 200 200">
-            <path d="M20,100 Q60,20 100,100 T180,100" fill="none" stroke="currentColor" stroke-dasharray="10 10" stroke-width="4"></path>
+        <svg class="absolute top-10 left-10 w-48 h-48 text-gray-300 pointer-events-none opacity-40 animate-pulse"
+            viewBox="0 0 200 200">
+            <path d="M20,100 Q60,20 100,100 T180,100" fill="none" stroke="currentColor" stroke-dasharray="10 10"
+                stroke-width="4"></path>
         </svg>
-        <svg class="absolute bottom-20 right-20 w-32 h-32 text-gray-300 pointer-events-none opacity-40 animate-pulse" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-dasharray="5 5" stroke-width="2"></circle>
+        <svg class="absolute bottom-20 right-20 w-32 h-32 text-gray-300 pointer-events-none opacity-40 animate-pulse"
+            viewBox="0 0 100 100">
+            <circle cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-dasharray="5 5" stroke-width="2">
+            </circle>
             <path d="M30,30 L70,70 M30,70 L70,30" stroke="currentColor" stroke-width="2"></path>
         </svg>
 
         <div class="relative w-full max-w-6xl h-full max-h-[800px] flex items-center justify-center">
             <!-- Work Card (top-left) -->
             <div class="absolute top-20 left-4 md:top-32 md:left-20 z-10 splash-fly-in-1 origin-top-left">
-                <div class="bg-blue-100 p-4 w-48 h-48 shadow-paper-sm -rotate-[6deg] rounded-bl-[30px] transform transition-transform hover:scale-110 hover:z-50 cursor-pointer">
+                <div
+                    class="bg-blue-100 p-4 w-48 h-48 shadow-paper-sm -rotate-[6deg] rounded-bl-[30px] transform transition-transform hover:scale-110 hover:z-50 cursor-pointer">
                     <div class="tape absolute -top-2 right-10 w-12 h-6 rotate-45"></div>
                     <h3 class="font-marker text-2xl text-blue-900 mb-2">Work</h3>
                     <p class="font-hand text-sm text-blue-800 leading-tight">
@@ -159,14 +171,17 @@
 
             <!-- Photo Card (top-right) -->
             <div class="absolute top-10 right-4 md:top-20 md:right-32 z-10 splash-fly-in-2 origin-top-right">
-                <div class="bg-white p-3 pb-12 w-48 shadow-paper-lg rotate-[12deg] transform transition-transform hover:scale-105 hover:rotate-0 hover:z-50 cursor-pointer">
+                <div
+                    class="bg-white p-3 pb-12 w-48 shadow-paper-lg rotate-[12deg] transform transition-transform hover:scale-105 hover:rotate-0 hover:z-50 cursor-pointer">
                     <div class="tape absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-6 -rotate-3"></div>
                     <div class="bg-gray-200 w-full aspect-square mb-2 overflow-hidden filter grayscale contrast-125">
-                        <img alt="Prince Tagadiya" class="object-cover w-full h-full mix-blend-multiply opacity-80" src="img/prince.jpg" />
+                        <img alt="Prince Tagadiya" class="object-cover w-full h-full mix-blend-multiply opacity-80"
+                            src="img/prince.jpg" />
                     </div>
                     <div class="text-center font-hand font-bold text-lg text-gray-800 relative">
                         <span class="relative z-10">About Me</span>
-                        <svg class="absolute left-1/2 -translate-x-1/2 top-full -mt-1 w-16 h-2 text-primary opacity-60" viewBox="0 0 100 10">
+                        <svg class="absolute left-1/2 -translate-x-1/2 top-full -mt-1 w-16 h-2 text-primary opacity-60"
+                            viewBox="0 0 100 10">
                             <path d="M0,5 Q50,10 100,5" fill="none" stroke="currentColor" stroke-width="4"></path>
                         </svg>
                     </div>
@@ -175,7 +190,8 @@
 
             <!-- Experiments Card (bottom-left) -->
             <div class="absolute bottom-10 left-4 md:bottom-20 md:left-20 z-10 splash-fly-in-3 origin-bottom-left">
-                <div class="bg-yellow-100 p-6 w-56 h-56 shadow-paper-lg rotate-[-3deg] transform transition-transform hover:scale-105 hover:z-50 cursor-pointer">
+                <div
+                    class="bg-yellow-100 p-6 w-56 h-56 shadow-paper-lg rotate-[-3deg] transform transition-transform hover:scale-105 hover:z-50 cursor-pointer">
                     <div class="tape absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 rotate-2"></div>
                     <h3 class="font-marker text-xl mb-2 text-primary">Experiments</h3>
                     <div class="border-t border-dashed border-gray-400 my-2"></div>
@@ -184,14 +200,19 @@
                         <li>CSS Art</li>
                         <li>WebGL Shaders</li>
                     </ul>
-                    <div class="absolute bottom-4 right-4 text-4xl text-yellow-500 opacity-20 material-symbols-outlined">science</div>
+                    <div
+                        class="absolute bottom-4 right-4 text-4xl text-yellow-500 opacity-20 material-symbols-outlined">
+                        science</div>
                 </div>
             </div>
 
             <!-- Contact Card (bottom-right) -->
             <div class="absolute bottom-20 right-4 md:bottom-32 md:right-24 z-10 splash-fly-in-4 origin-bottom-right">
-                <div class="bg-[#222] text-white p-6 w-64 h-40 shadow-paper-lg rotate-[5deg] torn-edge transform transition-transform hover:scale-105 hover:z-50 cursor-pointer group">
-                    <h3 class="font-display font-bold text-xl uppercase tracking-widest mb-1 group-hover:text-primary transition-colors">Contact</h3>
+                <div
+                    class="bg-[#222] text-white p-6 w-64 h-40 shadow-paper-lg rotate-[5deg] torn-edge transform transition-transform hover:scale-105 hover:z-50 cursor-pointer group">
+                    <h3
+                        class="font-display font-bold text-xl uppercase tracking-widest mb-1 group-hover:text-primary transition-colors">
+                        Contact</h3>
                     <p class="font-mono text-xs text-gray-400">let's build something crazy together.</p>
                     <div class="mt-4 flex items-center gap-2 text-sm font-hand text-gray-300">
                         <span>email me</span>
@@ -202,36 +223,48 @@
 
             <!-- Main Center Card -->
             <div class="relative z-30 splash-fly-in-main">
-                <div class="bg-paper p-8 md:p-12 max-w-2xl w-full shadow-2xl rounded-paper border border-gray-100 relative transform rotate-1 transition-transform hover:rotate-0">
+                <div
+                    class="bg-paper p-8 md:p-12 max-w-2xl w-full shadow-2xl rounded-paper border border-gray-100 relative transform rotate-1 transition-transform hover:rotate-0">
                     <!-- Paper clips -->
-                    <div class="absolute -top-4 left-1/4 w-8 h-12 bg-gray-300 rounded-full border-2 border-gray-400 shadow-sm z-20 flex items-center justify-center">
+                    <div
+                        class="absolute -top-4 left-1/4 w-8 h-12 bg-gray-300 rounded-full border-2 border-gray-400 shadow-sm z-20 flex items-center justify-center">
                         <div class="w-1 h-8 bg-gray-400 rounded-full"></div>
                     </div>
-                    <div class="absolute -top-4 right-1/4 w-8 h-12 bg-gray-300 rounded-full border-2 border-gray-400 shadow-sm z-20 flex items-center justify-center">
+                    <div
+                        class="absolute -top-4 right-1/4 w-8 h-12 bg-gray-300 rounded-full border-2 border-gray-400 shadow-sm z-20 flex items-center justify-center">
                         <div class="w-1 h-8 bg-gray-400 rounded-full"></div>
                     </div>
 
                     <div class="text-center relative">
-                        <div class="inline-block px-3 py-1 bg-black text-white font-mono text-xs -rotate-2 mb-4">PORTFOLIO v3.0</div>
-                        <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-[#181111] mb-2 relative inline-block">
+                        <div class="inline-block px-3 py-1 bg-black text-white font-mono text-xs -rotate-2 mb-4">
+                            PORTFOLIO v3.0</div>
+                        <h1
+                            class="text-6xl md:text-8xl font-black tracking-tighter text-[#181111] mb-2 relative inline-block">
                             PRINCE
                             <span class="block text-primary transform -rotate-2 -mt-2">TAGADIYA</span>
-                            <svg class="absolute -bottom-4 left-0 w-full h-8 text-black opacity-20 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 200 20">
-                                <path d="M0,10 Q50,20 100,5 T200,10" fill="none" stroke="currentColor" stroke-width="3"></path>
+                            <svg class="absolute -bottom-4 left-0 w-full h-8 text-black opacity-20 pointer-events-none"
+                                preserveAspectRatio="none" viewBox="0 0 200 20">
+                                <path d="M0,10 Q50,20 100,5 T200,10" fill="none" stroke="currentColor" stroke-width="3">
+                                </path>
                             </svg>
                         </h1>
                         <p class="font-hand text-xl md:text-2xl text-gray-600 mt-6 max-w-md mx-auto leading-relaxed">
                             Creative Developer & Digital Craftsman.
                             <br />
-                            <span class="text-sm bg-yellow-200 px-2 py-0.5 transform rotate-1 inline-block mt-2 text-black font-bold">Based in the Cloud ☁️</span>
+                            <span
+                                class="text-sm bg-yellow-200 px-2 py-0.5 transform rotate-1 inline-block mt-2 text-black font-bold">Based
+                                in the Cloud ☁️</span>
                         </p>
 
                         <!-- ENTER Button -->
                         <div class="mt-10 relative inline-block group cursor-pointer" id="enter-btn">
-                            <svg class="absolute inset-0 w-full h-full text-black group-hover:text-primary transition-colors duration-300" preserveAspectRatio="none" viewBox="0 0 200 60">
-                                <path d="M5,30 Q50,5 195,30 Q150,55 5,30 Z" fill="none" stroke="currentColor" stroke-dasharray="500" stroke-dashoffset="0" stroke-width="2"></path>
+                            <svg class="absolute inset-0 w-full h-full text-black group-hover:text-primary transition-colors duration-300"
+                                preserveAspectRatio="none" viewBox="0 0 200 60">
+                                <path d="M5,30 Q50,5 195,30 Q150,55 5,30 Z" fill="none" stroke="currentColor"
+                                    stroke-dasharray="500" stroke-dashoffset="0" stroke-width="2"></path>
                             </svg>
-                            <span class="relative z-10 block px-12 py-3 font-marker text-xl md:text-2xl hover:scale-105 transition-transform select-none">
+                            <span
+                                class="relative z-10 block px-12 py-3 font-marker text-xl md:text-2xl hover:scale-105 transition-transform select-none">
                                 Enter ↵
                             </span>
                         </div>
@@ -239,15 +272,19 @@
                     </div>
 
                     <!-- Coffee stain decoration -->
-                    <div class="absolute -bottom-10 -right-10 w-32 h-32 opacity-10 pointer-events-none rounded-full border-[12px] border-[#6f4e37] blur-sm transform scale-[1.2]"></div>
+                    <div
+                        class="absolute -bottom-10 -right-10 w-32 h-32 opacity-10 pointer-events-none rounded-full border-[12px] border-[#6f4e37] blur-sm transform scale-[1.2]">
+                    </div>
                 </div>
 
                 <!-- Floating stickers -->
-                <div class="absolute -top-10 -left-10 bg-pink-200 w-16 h-16 shadow-md rotate-[-15deg] z-20 flex items-center justify-center font-bold text-2xl text-pink-500 splash-float" style="animation-delay: 0.5s;">
+                <div class="absolute -top-10 -left-10 bg-pink-200 w-16 h-16 shadow-md rotate-[-15deg] z-20 flex items-center justify-center font-bold text-2xl text-pink-500 splash-float"
+                    style="animation-delay: 0.5s;">
                     ?
                     <div class="tape absolute -top-2 left-4 w-8 h-4 rotate-90"></div>
                 </div>
-                <div class="absolute bottom-10 -right-5 bg-green-200 w-24 h-12 shadow-md rotate-[10deg] z-20 flex items-center justify-center font-hand text-sm text-green-800 splash-float" style="animation-delay: 1s;">
+                <div class="absolute bottom-10 -right-5 bg-green-200 w-24 h-12 shadow-md rotate-[10deg] z-20 flex items-center justify-center font-hand text-sm text-green-800 splash-float"
+                    style="animation-delay: 1s;">
                     available!
                     <div class="tape absolute -top-3 right-8 w-8 h-4 rotate-0"></div>
                 </div>
@@ -258,45 +295,69 @@
     <!-- ==========================================
          PHASE 2: LOADING SCREEN (Sketching Intro)
          ========================================== -->
-    <div id="loading-screen" class="fixed inset-0 z-[9998] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500" style="background-color: #fdfbf7;">
+    <div id="loading-screen"
+        class="fixed inset-0 z-[9998] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-500"
+        style="background-color: #fdfbf7;">
         <div class="relative w-full max-w-3xl h-64 flex items-center justify-center">
             <!-- SVG "Prince" being drawn -->
-            <svg class="w-full h-full max-w-[600px]" fill="none" viewBox="0 0 500 150" xmlns="http://www.w3.org/2000/svg">
-                <path class="sketch-draw-path" d="M50,120 L50,30 C50,30 50,20 60,20 C80,20 100,20 100,50 C100,80 80,80 50,80" stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"></path>
-                <path class="sketch-draw-path" d="M120,120 L120,60 C120,60 120,50 130,50 C140,50 150,60 160,60" stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" style="animation-delay: 0.5s;"></path>
-                <path class="sketch-draw-path" d="M180,120 L180,60 M180,30 L180,35" stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" style="animation-delay: 0.8s;"></path>
-                <path class="sketch-draw-path" d="M210,120 L210,60 C210,60 210,50 220,50 C240,50 250,60 250,120" stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" style="animation-delay: 1.1s;"></path>
-                <path class="sketch-draw-path" d="M300,60 C280,60 270,70 270,90 C270,110 280,120 300,120" stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" style="animation-delay: 1.5s;"></path>
-                <path class="sketch-draw-path" d="M320,90 L360,90 C360,90 360,60 340,60 C320,60 320,90 320,100 C320,120 340,120 360,120" stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8" style="animation-delay: 1.9s;"></path>
+            <svg class="w-full h-full max-w-[600px]" fill="none" viewBox="0 0 500 150"
+                xmlns="http://www.w3.org/2000/svg">
+                <path class="sketch-draw-path"
+                    d="M50,120 L50,30 C50,30 50,20 60,20 C80,20 100,20 100,50 C100,80 80,80 50,80" stroke="#181111"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="8"></path>
+                <path class="sketch-draw-path" d="M120,120 L120,60 C120,60 120,50 130,50 C140,50 150,60 160,60"
+                    stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"
+                    style="animation-delay: 0.5s;"></path>
+                <path class="sketch-draw-path" d="M180,120 L180,60 M180,30 L180,35" stroke="#181111"
+                    stroke-linecap="round" stroke-linejoin="round" stroke-width="8" style="animation-delay: 0.8s;">
+                </path>
+                <path class="sketch-draw-path" d="M210,120 L210,60 C210,60 210,50 220,50 C240,50 250,60 250,120"
+                    stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"
+                    style="animation-delay: 1.1s;"></path>
+                <path class="sketch-draw-path" d="M300,60 C280,60 270,70 270,90 C270,110 280,120 300,120"
+                    stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"
+                    style="animation-delay: 1.5s;"></path>
+                <path class="sketch-draw-path"
+                    d="M320,90 L360,90 C360,90 360,60 340,60 C320,60 320,90 320,100 C320,120 340,120 360,120"
+                    stroke="#181111" stroke-linecap="round" stroke-linejoin="round" stroke-width="8"
+                    style="animation-delay: 1.9s;"></path>
                 <!-- Red underline -->
-                <path class="sketch-draw-path" d="M40,140 Q 200,150, 380,135" stroke="#ec1313" stroke-linecap="round" stroke-width="6" style="animation-delay: 2.4s;"></path>
+                <path class="sketch-draw-path" d="M40,140 Q 200,150, 380,135" stroke="#ec1313" stroke-linecap="round"
+                    stroke-width="6" style="animation-delay: 2.4s;"></path>
             </svg>
 
             <!-- Pencil cursor -->
             <div class="pencil-cursor">
-                <svg class="transform -rotate-90" fill="none" height="60" viewBox="0 0 60 60" width="60" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M5 55 L15 55 L55 15 L45 5 L5 45 Z" fill="#F4D03F" stroke="#333" stroke-linejoin="round" stroke-width="2"></path>
-                    <path d="M5 45 L5 55 L15 55 Z" fill="#F5B041" stroke="#333" stroke-linejoin="round" stroke-width="2"></path>
+                <svg class="transform -rotate-90" fill="none" height="60" viewBox="0 0 60 60" width="60"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 55 L15 55 L55 15 L45 5 L5 45 Z" fill="#F4D03F" stroke="#333" stroke-linejoin="round"
+                        stroke-width="2"></path>
+                    <path d="M5 45 L5 55 L15 55 Z" fill="#F5B041" stroke="#333" stroke-linejoin="round"
+                        stroke-width="2"></path>
                     <path d="M5 55 L0 60 L15 55" fill="#333"></path>
                     <path d="M45 5 L55 15" stroke="#333" stroke-width="2"></path>
-                    <rect fill="#E74C3C" height="16" rx="2" stroke="#333" stroke-width="2" transform="rotate(45 50 10)" width="16" x="42" y="2"></rect>
+                    <rect fill="#E74C3C" height="16" rx="2" stroke="#333" stroke-width="2" transform="rotate(45 50 10)"
+                        width="16" x="42" y="2"></rect>
                 </svg>
             </div>
 
             <!-- Doodle decorations -->
             <div class="absolute top-10 right-20 sketch-doodle-star">
                 <svg fill="none" height="40" viewBox="0 0 40 40" width="40">
-                    <path d="M20 0 L25 15 L40 20 L25 25 L20 40 L15 25 L0 20 L15 15 Z" fill="#ec1313" stroke="#333" stroke-width="2"></path>
+                    <path d="M20 0 L25 15 L40 20 L25 25 L20 40 L15 25 L0 20 L15 15 Z" fill="#ec1313" stroke="#333"
+                        stroke-width="2"></path>
                 </svg>
             </div>
             <div class="absolute bottom-4 left-10 sketch-doodle-arrow rotate-12">
                 <svg fill="none" height="30" viewBox="0 0 50 30" width="50">
-                    <path d="M0 15 Q 25 5, 45 15 M 45 15 L 35 10 M 45 15 L 35 20" stroke="#333" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                    <path d="M0 15 Q 25 5, 45 15 M 45 15 L 35 10 M 45 15 L 35 20" stroke="#333" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2"></path>
                 </svg>
             </div>
             <div class="absolute -top-5 left-1/4 sketch-doodle-sparkle">
                 <svg fill="none" height="30" viewBox="0 0 30 30" width="30">
-                    <path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="#FFD700" stroke="#333" stroke-width="1.5"></path>
+                    <path d="M15 0 L18 12 L30 15 L18 18 L15 30 L12 18 L0 15 L12 12 Z" fill="#FFD700" stroke="#333"
+                        stroke-width="1.5"></path>
                 </svg>
             </div>
         </div>
@@ -304,7 +365,8 @@
         <!-- Progress bar -->
         <div class="mt-12 flex flex-col items-center gap-4 w-64">
             <p class="font-hand text-xl text-[#555] animate-pulse">Loading creativity...</p>
-            <div class="w-full h-6 border-2 border-[#333] rounded-shaky p-1 relative overflow-hidden bg-white shadow-sm transform -rotate-1">
+            <div
+                class="w-full h-6 border-2 border-[#333] rounded-shaky p-1 relative overflow-hidden bg-white shadow-sm transform -rotate-1">
                 <div class="scribble-bar-fill w-0" id="scribble-progress"></div>
             </div>
         </div>
@@ -313,75 +375,100 @@
     <!-- ==========================================
          PHASE 3: MAIN PORTFOLIO
          ========================================== -->
-    <div id="portfolio-wrapper" class="flex flex-col md:flex-row h-screen w-screen bg-background-light dark:bg-background-dark font-display text-[#181111] dark:text-white transition-colors duration-200 overflow-hidden opacity-0 pointer-events-none">
+    <div id="portfolio-wrapper"
+        class="flex flex-col md:flex-row h-screen w-screen bg-background-light dark:bg-background-dark font-display text-[#181111] dark:text-white transition-colors duration-200 overflow-hidden opacity-0 pointer-events-none">
 
         <!-- Mobile Header -->
-        <div id="mobile-header" class="md:hidden flex items-center justify-between p-4 border-b border-[#e5e5e5] dark:border-[#333] bg-white/50 dark:bg-black/50 backdrop-blur-sm sticky top-0 z-50">
+        <div id="mobile-header"
+            class="md:hidden flex items-center justify-between p-4 border-b border-[#e5e5e5] dark:border-[#333] bg-white/50 dark:bg-black/50 backdrop-blur-sm sticky top-0 z-50">
             <h1 class="text-xl font-bold font-marker" id="mobile-brand">Prince<span class="text-primary">.</span></h1>
             <button id="mobile-menu-toggle" class="text-primary material-symbols-outlined cursor-pointer">menu</button>
         </div>
 
         <!-- Mobile Menu Overlay -->
-        <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white/95 dark:bg-[#1a0e0e]/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-6 transition-all duration-300 md:hidden">
-            <button id="mobile-menu-close" class="absolute top-4 right-4 text-primary material-symbols-outlined text-3xl cursor-pointer">close</button>
+        <div id="mobile-menu"
+            class="fixed inset-0 z-[60] bg-white/95 dark:bg-[#1a0e0e]/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-6 transition-all duration-300 md:hidden">
+            <button id="mobile-menu-close"
+                class="absolute top-4 right-4 text-primary material-symbols-outlined text-3xl cursor-pointer">close</button>
             <nav class="flex flex-col gap-4 items-center">
-                <a class="nav-link flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#home">
+                <a class="nav-link flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors"
+                    href="#home">
                     <span class="material-symbols-outlined">home</span> Home
                 </a>
-                <a class="nav-link flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#awards">
+                <a class="nav-link flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors"
+                    href="#awards">
                     <span class="material-symbols-outlined">emoji_events</span> Awards
                 </a>
-                <a class="nav-link flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#projects">
+                <a class="nav-link flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors"
+                    href="#projects">
                     <span class="material-symbols-outlined">grid_view</span> Projects
                 </a>
-                <a class="nav-link flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#about">
+                <a class="nav-link flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors"
+                    href="#about">
                     <span class="material-symbols-outlined">person</span> About
                 </a>
-                <a class="nav-link flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors" href="#contact">
+                <a class="nav-link flex items-center gap-3 px-8 py-4 text-xl font-bold text-[#181111] dark:text-white hover:text-primary transition-colors"
+                    href="#contact">
                     <span class="material-symbols-outlined">mail</span> Contact
                 </a>
             </nav>
         </div>
 
         <!-- Sidebar Navigation -->
-        <aside class="hidden md:flex flex-col w-64 h-screen sticky top-0 border-r border-[#e5e5e5] dark:border-[#333] bg-white/80 dark:bg-[#1a0e0e]/80 backdrop-blur-md z-40">
+        <aside
+            class="hidden md:flex flex-col w-64 h-screen sticky top-0 border-r border-[#e5e5e5] dark:border-[#333] bg-white/80 dark:bg-[#1a0e0e]/80 backdrop-blur-md z-40">
             <div class="flex flex-col h-full p-8 justify-between">
                 <div class="flex flex-col gap-2 animate-slide-in-left" style="--delay: 0.3s">
-                    <h1 class="text-2xl font-bold text-[#181111] dark:text-white font-marker tracking-wide" id="sidebar-brand">Prince<span class="text-primary">.</span></h1>
-                    <p class="text-[#896161] dark:text-[#a08080] text-sm font-medium font-hand -rotate-2 origin-left" id="sidebar-tagline">Available for hire!</p>
+                    <h1 class="text-2xl font-bold text-[#181111] dark:text-white font-marker tracking-wide"
+                        id="sidebar-brand">Prince<span class="text-primary">.</span></h1>
+                    <p class="text-[#896161] dark:text-[#a08080] text-sm font-medium font-hand -rotate-2 origin-left"
+                        id="sidebar-tagline">Available for hire!</p>
                 </div>
 
                 <nav class="flex flex-col gap-4">
-                    <a class="group nav-link active flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#home" style="--delay: 0.4s">
-                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">home</span>
+                    <a class="group nav-link active flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left"
+                        href="#home" style="--delay: 0.4s">
+                        <span
+                            class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">home</span>
                         <span class="text-base font-medium">Home</span>
                     </a>
-                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#awards" style="--delay: 0.5s">
-                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">emoji_events</span>
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left"
+                        href="#awards" style="--delay: 0.5s">
+                        <span
+                            class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">emoji_events</span>
                         <span class="text-base font-medium">Awards</span>
                     </a>
-                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#projects" style="--delay: 0.6s">
-                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">grid_view</span>
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left"
+                        href="#projects" style="--delay: 0.6s">
+                        <span
+                            class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">grid_view</span>
                         <span class="text-base font-medium">Projects</span>
                     </a>
-                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#about" style="--delay: 0.7s">
-                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">person</span>
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left"
+                        href="#about" style="--delay: 0.7s">
+                        <span
+                            class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">person</span>
                         <span class="text-base font-medium">About</span>
                     </a>
-                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left" href="#contact" style="--delay: 0.8s">
-                        <span class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">mail</span>
+                    <a class="group nav-link flex items-center gap-3 px-4 py-3 rounded-shaky hover:bg-primary/10 dark:hover:bg-primary/20 transition-all hover:pl-6 text-[#181111] dark:text-gray-200 animate-slide-in-left"
+                        href="#contact" style="--delay: 0.8s">
+                        <span
+                            class="material-symbols-outlined text-[20px] text-[#896161] group-hover:text-primary transition-colors">mail</span>
                         <span class="text-base font-medium">Contact</span>
                     </a>
                 </nav>
 
                 <div class="flex gap-4 items-center animate-slide-in-left" style="--delay: 0.9s">
-                    <a class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform" href="#" id="nav-email-link">
+                    <a class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform" href="#"
+                        id="nav-email-link">
                         <span class="material-symbols-outlined">alternate_email</span>
                     </a>
-                    <a class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform" href="https://github.com/Prince-Tagadiya" id="nav-github-link" target="_blank">
+                    <a class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform"
+                        href="https://github.com/Prince-Tagadiya" id="nav-github-link" target="_blank">
                         <span class="material-symbols-outlined">code_blocks</span>
                     </a>
-                    <button id="theme-toggle" class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform cursor-pointer ml-auto">
+                    <button id="theme-toggle"
+                        class="text-[#896161] hover:text-primary transition-colors hover:scale-110 transform cursor-pointer ml-auto">
                         <span class="material-symbols-outlined" id="theme-icon">dark_mode</span>
                     </button>
                 </div>
@@ -389,18 +476,26 @@
         </aside>
 
         <!-- Main Content Area -->
-        <main class="flex-1 relative paper-texture bg-grid-pattern bg-[length:24px_24px] overflow-y-auto h-screen scroll-smooth snap-y snap-mandatory" id="main-content">
+        <main
+            class="flex-1 relative paper-texture bg-grid-pattern bg-[length:24px_24px] overflow-y-auto h-screen scroll-smooth snap-y snap-mandatory"
+            id="main-content">
             <!-- Decorative Doodles -->
             <div class="absolute top-20 right-20 opacity-20 dark:opacity-10 pointer-events-none rotate-12 doodle-float">
-                <svg class="text-primary" fill="none" height="120" stroke="currentColor" stroke-width="2" viewBox="0 0 100 100" width="120">
-                    <path class="scribble-path" d="M50 0 L61 35 L98 35 L68 57 L79 91 L50 70 L21 91 L32 57 L2 35 L39 35 Z" stroke-linejoin="round"></path>
+                <svg class="text-primary" fill="none" height="120" stroke="currentColor" stroke-width="2"
+                    viewBox="0 0 100 100" width="120">
+                    <path class="scribble-path"
+                        d="M50 0 L61 35 L98 35 L68 57 L79 91 L50 70 L21 91 L32 57 L2 35 L39 35 Z"
+                        stroke-linejoin="round"></path>
                 </svg>
             </div>
             <div class="absolute bottom-40 left-10 opacity-30 dark:opacity-10 pointer-events-none -rotate-12">
-                <svg class="text-[#181111] dark:text-white" fill="none" height="80" stroke="currentColor" stroke-width="2" viewBox="0 0 200 100" width="150">
+                <svg class="text-[#181111] dark:text-white" fill="none" height="80" stroke="currentColor"
+                    stroke-width="2" viewBox="0 0 200 100" width="150">
                     <path class="scribble-path" d="M10 50 Q 50 10, 100 50 T 190 50"></path>
-                    <path class="scribble-path" d="M10 60 Q 50 20, 100 60 T 190 60" style="animation-delay: 0.2s"></path>
-                    <path class="scribble-path" d="M10 70 Q 50 30, 100 70 T 190 70" style="animation-delay: 0.4s"></path>
+                    <path class="scribble-path" d="M10 60 Q 50 20, 100 60 T 190 60" style="animation-delay: 0.2s">
+                    </path>
+                    <path class="scribble-path" d="M10 70 Q 50 30, 100 70 T 190 70" style="animation-delay: 0.4s">
+                    </path>
                 </svg>
             </div>
             <div class="absolute top-1/2 right-10 opacity-10 dark:opacity-5 pointer-events-none doodle-float-reverse">
@@ -409,24 +504,32 @@
                 </svg>
             </div>
 
-            <div class="layout-container flex flex-col min-h-screen px-6 md:px-20 lg:px-32 max-w-7xl mx-auto snap-start" id="home">
+            <div class="layout-container flex flex-col min-h-screen px-6 md:px-20 lg:px-32 max-w-7xl mx-auto snap-start"
+                id="home">
                 <div class="flex-1 flex flex-col lg:flex-row gap-8 lg:gap-16 items-center justify-center">
                     <!-- Text Content -->
                     <div class="flex-1 flex flex-col items-start gap-5 relative z-10 w-full">
-                        <div class="inline-flex items-center justify-center px-4 py-2 border-2 border-primary/30 rounded-shaky bg-white dark:bg-white/5 -rotate-2 shadow-sm animate-pop-in" style="--delay: 0.8s">
-                            <span class="font-hand text-lg md:text-xl font-bold text-primary" id="hero-greeting">👋 Hello, world!</span>
+                        <div class="inline-flex items-center justify-center px-4 py-2 border-2 border-primary/30 rounded-shaky bg-white dark:bg-white/5 -rotate-2 shadow-sm animate-pop-in"
+                            style="--delay: 0.8s">
+                            <span class="font-hand text-lg md:text-xl font-bold text-primary" id="hero-greeting">👋
+                                Hello, world!</span>
                         </div>
                         <div class="flex flex-col relative">
-                            <h1 class="text-6xl md:text-8xl font-black text-[#181111] dark:text-white tracking-tighter leading-[0.9] mb-4">
-                                <span class="inline-block animate-slide-up" style="--delay: 0.9s" id="hero-first-name">PRINCE</span> <br />
+                            <h1
+                                class="text-6xl md:text-8xl font-black text-[#181111] dark:text-white tracking-tighter leading-[0.9] mb-4">
+                                <span class="inline-block animate-slide-up" style="--delay: 0.9s"
+                                    id="hero-first-name">PRINCE</span> <br />
                                 <span class="relative inline-block animate-slide-up" style="--delay: 1.1s">
                                     <span id="hero-last-name">TAGADIYA</span>
-                                    <svg class="absolute w-[110%] h-[30px] -bottom-2 -left-2 text-primary z-[-1] pointer-events-none" preserveAspectRatio="none" viewBox="0 0 200 20">
-                                        <path class="scribble-path" d="M0,10 Q100,20 200,5" fill="none" opacity="0.4" stroke="currentColor" stroke-width="8"></path>
+                                    <svg class="absolute w-[110%] h-[30px] -bottom-2 -left-2 text-primary z-[-1] pointer-events-none"
+                                        preserveAspectRatio="none" viewBox="0 0 200 20">
+                                        <path class="scribble-path" d="M0,10 Q100,20 200,5" fill="none" opacity="0.4"
+                                            stroke="currentColor" stroke-width="8"></path>
                                     </svg>
                                 </span>
                             </h1>
-                            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xl md:text-2xl text-[#896161] dark:text-[#bcaaaa] font-hand mt-4 pl-2 border-l-4 border-primary/50 animate-slide-in-left" style="--delay: 1.3s" id="hero-roles">
+                            <div class="flex flex-wrap gap-x-3 gap-y-1 text-xl md:text-2xl text-[#896161] dark:text-[#bcaaaa] font-hand mt-4 pl-2 border-l-4 border-primary/50 animate-slide-in-left"
+                                style="--delay: 1.3s" id="hero-roles">
                                 <span>Designer</span>
                                 <span class="text-primary font-bold">/</span>
                                 <span>Developer</span>
@@ -434,39 +537,67 @@
                                 <span>Creative Thinker</span>
                             </div>
                         </div>
-                        <p class="text-lg md:text-xl text-[#4a4a4a] dark:text-[#cccccc] max-w-xl leading-relaxed font-light animate-fade-in" style="--delay: 1.5s" id="hero-bio">
-                            Building digital products that feel handmade. I specialize in bridging the gap between <strong class="font-medium text-[#181111] dark:text-white border-b-2 border-primary/30">clean code</strong> and <strong class="font-medium text-[#181111] dark:text-white border-b-2 border-primary/30">creative chaos</strong>.
+                        <p class="text-lg md:text-xl text-[#4a4a4a] dark:text-[#cccccc] max-w-xl leading-relaxed font-light animate-fade-in"
+                            style="--delay: 1.5s" id="hero-bio">
+                            Building digital products that feel handmade. I specialize in bridging the gap between
+                            <strong
+                                class="font-medium text-[#181111] dark:text-white border-b-2 border-primary/30">clean
+                                code</strong> and <strong
+                                class="font-medium text-[#181111] dark:text-white border-b-2 border-primary/30">creative
+                                chaos</strong>.
                         </p>
-                        <div class="flex flex-col sm:flex-row gap-4 mt-3 items-start sm:items-center relative w-full animate-fade-in" style="--delay: 1.7s">
-                            <a href="https://docs.google.com/document/d/1bpM8WiftUC_OLe08TSskbQHx7cHf4Kitysde0_B7XiQ/edit?usp=sharing" target="_blank" class="relative group cursor-pointer no-underline">
-                                <div class="absolute inset-0 bg-black rounded-shaky translate-y-1 translate-x-1 transition-transform group-hover:translate-y-2 group-hover:translate-x-2"></div>
-                                <div class="relative bg-primary text-white text-lg font-bold px-8 py-4 rounded-shaky border-2 border-black flex items-center gap-2 hover:-translate-y-1 hover:-translate-x-1 transition-transform active:translate-y-0 active:translate-x-0">
+                        <div class="flex flex-col sm:flex-row gap-4 mt-3 items-start sm:items-center relative w-full animate-fade-in"
+                            style="--delay: 1.7s">
+                            <a href="https://docs.google.com/document/d/1bpM8WiftUC_OLe08TSskbQHx7cHf4Kitysde0_B7XiQ/edit?usp=sharing"
+                                target="_blank" class="relative group cursor-pointer no-underline">
+                                <div
+                                    class="absolute inset-0 bg-black rounded-shaky translate-y-1 translate-x-1 transition-transform group-hover:translate-y-2 group-hover:translate-x-2">
+                                </div>
+                                <div
+                                    class="relative bg-primary text-white text-lg font-bold px-8 py-4 rounded-shaky border-2 border-black flex items-center gap-2 hover:-translate-y-1 hover:-translate-x-1 transition-transform active:translate-y-0 active:translate-x-0">
                                     <span class="material-symbols-outlined">visibility</span>
                                     <span>View CV</span>
                                 </div>
                             </a>
-                            <a class="group flex items-center gap-2 px-6 py-4 text-[#181111] dark:text-white font-medium hover:text-primary transition-colors no-underline" href="#contact" id="hero-contact-link">
-                                <span class="font-hand text-lg underline decoration-wavy decoration-primary/40 underline-offset-4 group-hover:decoration-primary">Contact me</span>
+                            <a class="group flex items-center gap-2 px-6 py-4 text-[#181111] dark:text-white font-medium hover:text-primary transition-colors no-underline"
+                                href="#contact" id="hero-contact-link">
+                                <span
+                                    class="font-hand text-lg underline decoration-wavy decoration-primary/40 underline-offset-4 group-hover:decoration-primary">Contact
+                                    me</span>
                             </a>
                         </div>
                     </div>
 
                     <!-- Visual/Image Area -->
-                    <div class="w-full lg:w-5/12 relative lg:mt-0 flex justify-center animate-pop-in" style="--delay: 1.2s">
-                        <div class="absolute top-10 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl z-0 blob-animate"></div>
-                        <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl z-0 blob-animate-reverse"></div>
-                        <div class="relative z-10 transform rotate-2 hover:rotate-0 transition-transform duration-500 ease-out group">
+                    <div class="w-full lg:w-5/12 relative lg:mt-0 flex justify-center animate-pop-in"
+                        style="--delay: 1.2s">
+                        <div
+                            class="absolute top-10 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl z-0 blob-animate">
+                        </div>
+                        <div
+                            class="absolute -bottom-10 -left-10 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl z-0 blob-animate-reverse">
+                        </div>
+                        <div
+                            class="relative z-10 transform rotate-2 hover:rotate-0 transition-transform duration-500 ease-out group">
                             <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 mask-tape z-20"></div>
-                            <div class="bg-white p-3 pb-12 shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.1)] dark:shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.5)] border border-gray-200 dark:border-gray-700 rounded-sm max-w-[400px]">
-                                <div class="relative overflow-hidden bg-gray-100 aspect-[4/5] w-full transition-all duration-500">
-                                    <img id="hero-photo" alt="Portrait of Prince Tagadiya" class="object-cover w-full h-full mix-blend-multiply dark:mix-blend-normal transition-opacity duration-500" src="img/profile-default.png" />
-                                    <img alt="Portrait of Prince Tagadiya on hover" class="absolute inset-0 object-cover w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" src="img/profile-hover.png" />
+                            <div
+                                class="bg-white p-3 pb-12 shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.1)] dark:shadow-[0px_10px_40px_-10px_rgba(0,0,0,0.5)] border border-gray-200 dark:border-gray-700 rounded-sm max-w-[400px]">
+                                <div
+                                    class="relative overflow-hidden bg-gray-100 aspect-[4/5] w-full transition-all duration-500">
+                                    <img id="hero-photo" alt="Portrait of Prince Tagadiya"
+                                        class="object-cover w-full h-full mix-blend-multiply dark:mix-blend-normal transition-opacity duration-500"
+                                        src="img/profile-default.png" />
+                                    <img alt="Portrait of Prince Tagadiya on hover"
+                                        class="absolute inset-0 object-cover w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                                        src="img/profile-hover.png" />
                                 </div>
                                 <div class="absolute bottom-4 left-0 w-full text-center">
-                                    <p class="font-marker text-xl text-[#181111] rotate-1" id="hero-photo-caption">Me @ Work</p>
+                                    <p class="font-marker text-xl text-[#181111] rotate-1" id="hero-photo-caption">Hover
+                                        Me</p>
                                 </div>
                             </div>
-                            <div class="absolute -bottom-6 -right-6 bg-yellow-300 text-black font-marker p-4 rounded-full shadow-lg border-2 border-black rotate-12 z-30 transform hover:scale-110 transition-transform sticker-wobble" id="hero-sticker">
+                            <div class="absolute -bottom-6 -right-6 bg-yellow-300 text-black font-marker p-4 rounded-full shadow-lg border-2 border-black rotate-12 z-30 transform hover:scale-110 transition-transform sticker-wobble"
+                                id="hero-sticker">
                                 Open for<br />Collabs!
                             </div>
                         </div>
@@ -477,12 +608,15 @@
             <!-- ==========================================
                  AWARDS & CERTIFICATIONS SECTION
                  ========================================== -->
-            <div class="px-6 md:px-20 lg:px-32 max-w-7xl mx-auto py-16 md:py-24 snap-start relative min-h-screen flex flex-col justify-center" id="awards">
+            <div class="px-6 md:px-20 lg:px-32 max-w-7xl mx-auto py-16 md:py-24 snap-start relative min-h-screen flex flex-col justify-center"
+                id="awards">
                 <header class="flex flex-col gap-6 relative mb-12">
-                     <div class="flex flex-col gap-2">
-                        <h2 class="text-4xl md:text-6xl font-black tracking-tight text-[#181111] dark:text-white relative inline-block font-hand">
+                    <div class="flex flex-col gap-2">
+                        <h2
+                            class="text-4xl md:text-6xl font-black tracking-tight text-[#181111] dark:text-white relative inline-block font-hand">
                             Wall of Fame
-                            <span class="absolute -bottom-2 left-0 w-full h-4 bg-highlight-yellow -z-10 rotate-1"></span>
+                            <span
+                                class="absolute -bottom-2 left-0 w-full h-4 bg-highlight-yellow -z-10 rotate-1"></span>
                         </h2>
                         <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl font-hand rotate-1 mt-4">
                             A collection of late nights, hackathon pizzas, and digital trophies. 🏆
@@ -491,78 +625,105 @@
                 </header>
 
                 <div class="relative mb-20">
-                    <div class="absolute bottom-0 w-full h-4 bg-[#e5e5e5] dark:bg-[#333] border-b-4 border-[#b0b0b0] dark:border-[#111] rounded-sm transform translate-y-2 z-0"></div>
+                    <div
+                        class="absolute bottom-0 w-full h-4 bg-[#e5e5e5] dark:bg-[#333] border-b-4 border-[#b0b0b0] dark:border-[#111] rounded-sm transform translate-y-2 z-0">
+                    </div>
                     <h3 class="text-2xl font-bold mb-8 flex items-center gap-2 font-display">
                         <span class="material-symbols-outlined text-primary">military_tech</span>
                         Hackathons & Highlights
                     </h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-8 z-10 relative">
                         <!-- Winner Card -->
-                        <div class="group relative bg-white dark:bg-[#1e1e1e] p-6 text-black dark:text-white hand-drawn-border border-black dark:border-white shadow-scribble hover:shadow-scribble-hover transition-all duration-200 rotate-[-1deg] flex flex-col items-center text-center">
+                        <div
+                            class="group relative bg-white dark:bg-[#1e1e1e] p-6 text-black dark:text-white hand-drawn-border border-black dark:border-white shadow-scribble hover:shadow-scribble-hover transition-all duration-200 rotate-[-1deg] flex flex-col items-center text-center">
                             <div class="tape bg-yellow-100/50"></div>
                             <div class="mb-4 text-primary">
                                 <span class="material-symbols-outlined text-6xl">trophy</span>
                             </div>
-                            <h3 class="text-2xl font-bold font-hand marker-highlight-green inline-block mb-2">TECHNOVATION 2026</h3>
-                            <p class="text-sm font-display text-gray-600 dark:text-gray-300 mb-4">State Level Winner (#1)</p>
-                            <div class="absolute -right-6 top-10 rotate-[15deg] bg-yellow-200 text-black p-2 text-xs font-hand shadow-sm border border-black rounded-sm max-w-[120px] z-20">
+                            <h3 class="text-2xl font-bold font-hand marker-highlight-green inline-block mb-2">
+                                TECHNOVATION 2026</h3>
+                            <p class="text-sm font-display text-gray-600 dark:text-gray-300 mb-4">State Level Winner
+                                (#1)</p>
+                            <div
+                                class="absolute -right-6 top-10 rotate-[15deg] bg-yellow-200 text-black p-2 text-xs font-hand shadow-sm border border-black rounded-sm max-w-[120px] z-20">
                                 Safety systems, real impact.
                             </div>
                             <div class="mt-auto w-full border-t-2 border-dashed border-gray-300 pt-3">
-                                <span class="text-xs font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded border border-gray-300 dark:border-gray-600">Theme: Disaster Management &amp; Safety</span>
+                                <span
+                                    class="text-xs font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded border border-gray-300 dark:border-gray-600">Theme:
+                                    Disaster Management &amp; Safety</span>
                             </div>
                         </div>
 
                         <!-- Top 10 Card -->
-                        <div class="group relative bg-white dark:bg-[#1e1e1e] p-6 text-black dark:text-white hand-drawn-border border-black dark:border-white shadow-scribble hover:shadow-scribble-hover transition-all duration-200 rotate-[2deg] flex flex-col items-center text-center mt-4 md:mt-0">
+                        <div
+                            class="group relative bg-white dark:bg-[#1e1e1e] p-6 text-black dark:text-white hand-drawn-border border-black dark:border-white shadow-scribble hover:shadow-scribble-hover transition-all duration-200 rotate-[2deg] flex flex-col items-center text-center mt-4 md:mt-0">
                             <div class="tape bg-blue-100/50"></div>
                             <div class="mb-4 text-yellow-500">
                                 <span class="material-symbols-outlined text-6xl">workspace_premium</span>
                             </div>
-                            <h3 class="text-2xl font-bold font-hand marker-highlight-yellow inline-block mb-2">SSIP 6.0 Finalist</h3>
-                            <p class="text-sm font-display text-gray-600 dark:text-gray-300 mb-4">Vikas Saptah Hackathon 2025 (SSIP Gujarat)</p>
-                            <div class="absolute -left-6 bottom-10 rotate-[-10deg] bg-green-200 text-black p-2 text-xs font-hand shadow-sm border border-black rounded-sm max-w-[120px] z-20">
+                            <h3 class="text-2xl font-bold font-hand marker-highlight-yellow inline-block mb-2">SSIP 6.0
+                                Finalist</h3>
+                            <p class="text-sm font-display text-gray-600 dark:text-gray-300 mb-4">Vikas Saptah Hackathon
+                                2025 (SSIP Gujarat)</p>
+                            <div
+                                class="absolute -left-6 bottom-10 rotate-[-10deg] bg-green-200 text-black p-2 text-xs font-hand shadow-sm border border-black rounded-sm max-w-[120px] z-20">
                                 Only GCET team in finals.
                             </div>
                             <div class="mt-auto w-full border-t-2 border-dashed border-gray-300 pt-3">
-                                <span class="text-xs font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded border border-gray-300 dark:border-gray-600">Finals: 14 Oct 2025</span>
+                                <span
+                                    class="text-xs font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded border border-gray-300 dark:border-gray-600">Finals:
+                                    14 Oct 2025</span>
                             </div>
                         </div>
 
                         <!-- Innovation Card -->
-                        <div class="group relative bg-white dark:bg-[#1e1e1e] p-6 text-black dark:text-white hand-drawn-border border-black dark:border-white shadow-scribble hover:shadow-scribble-hover transition-all duration-200 rotate-[-2deg] flex flex-col items-center text-center">
+                        <div
+                            class="group relative bg-white dark:bg-[#1e1e1e] p-6 text-black dark:text-white hand-drawn-border border-black dark:border-white shadow-scribble hover:shadow-scribble-hover transition-all duration-200 rotate-[-2deg] flex flex-col items-center text-center">
                             <div class="tape bg-red-100/50"></div>
                             <div class="mb-4 text-purple-500">
                                 <span class="material-symbols-outlined text-6xl">menu_book</span>
                             </div>
-                            <h3 class="text-2xl font-bold font-hand inline-block mb-2 border-b-4 border-primary/20">Electronics For You</h3>
-                            <p class="text-sm font-display text-gray-600 dark:text-gray-300 mb-4">Project Publication (Jan 2026)</p>
-                            <div class="absolute -right-2 -bottom-4 rotate-[5deg] bg-white dark:bg-gray-700 text-black dark:text-white p-2 text-xs font-hand shadow-md border-2 border-dashed border-primary rounded-full z-20">
+                            <h3 class="text-2xl font-bold font-hand inline-block mb-2 border-b-4 border-primary/20">
+                                Electronics For You</h3>
+                            <p class="text-sm font-display text-gray-600 dark:text-gray-300 mb-4">Project Publication
+                                (Jan 2026)</p>
+                            <div
+                                class="absolute -right-2 -bottom-4 rotate-[5deg] bg-white dark:bg-gray-700 text-black dark:text-white p-2 text-xs font-hand shadow-md border-2 border-dashed border-primary rounded-full z-20">
                                 Printed &amp; documented.
                             </div>
                             <div class="mt-auto w-full border-t-2 border-dashed border-gray-300 pt-3">
-                                <span class="text-xs font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded border border-gray-300 dark:border-gray-600">Feature: Density-Based Traffic Control</span>
+                                <span
+                                    class="text-xs font-mono bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded border border-gray-300 dark:border-gray-600">Feature:
+                                    Density-Based Traffic Control</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="relative mb-20">
-                     <div class="absolute bottom-0 w-full h-4 bg-[#e5e5e5] dark:bg-[#333] border-b-4 border-[#b0b0b0] dark:border-[#111] rounded-sm transform translate-y-2 z-0"></div>
+                    <div
+                        class="absolute bottom-0 w-full h-4 bg-[#e5e5e5] dark:bg-[#333] border-b-4 border-[#b0b0b0] dark:border-[#111] rounded-sm transform translate-y-2 z-0">
+                    </div>
                     <h3 class="text-2xl font-bold mb-8 flex items-center gap-2 font-display">
                         <span class="material-symbols-outlined text-primary">school</span>
                         Certifications & Badges
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-8 z-10 relative">
                         <div class="contents" id="certificates-grid">
-                            <div class="relative bg-[#fffdf5] dark:bg-[#2a2a2a] p-4 shadow-md border border-gray-200 dark:border-gray-700 rotate-1 flex flex-col justify-between min-h-[220px]">
-                                <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-500 shadow-sm border border-red-700 z-10"></div>
+                            <div
+                                class="relative bg-[#fffdf5] dark:bg-[#2a2a2a] p-4 shadow-md border border-gray-200 dark:border-gray-700 rotate-1 flex flex-col justify-between min-h-[220px]">
+                                <div
+                                    class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-red-500 shadow-sm border border-red-700 z-10">
+                                </div>
                                 <div>
                                     <div class="flex justify-between items-start mb-2">
-                                        <span class="material-symbols-outlined text-3xl text-blue-500">workspace_premium</span>
+                                        <span
+                                            class="material-symbols-outlined text-3xl text-blue-500">workspace_premium</span>
                                         <span class="text-xs font-bold font-mono text-gray-400">Loading</span>
                                     </div>
-                                    <h4 class="font-bold text-lg leading-tight mb-1 font-display">Loading certificates...</h4>
+                                    <h4 class="font-bold text-lg leading-tight mb-1 font-display">Loading
+                                        certificates...</h4>
                                     <p class="text-xs text-gray-500">Fetching your real credentials</p>
                                 </div>
                             </div>
@@ -570,8 +731,10 @@
                     </div>
                 </div>
 
-                <div class="mt-10 p-8 border-2 border-black dark:border-white rounded-tl-[30px] rounded-br-[30px] border-dashed text-center relative max-w-2xl mx-auto bg-white/50 dark:bg-black/20">
-                    <span class="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#fdfbf7] dark:bg-[#1a1a1a] px-4 py-1 border-2 border-black dark:border-white font-bold font-mono text-xs uppercase tracking-widest">Motto</span>
+                <div
+                    class="mt-10 p-8 border-2 border-black dark:border-white rounded-tl-[30px] rounded-br-[30px] border-dashed text-center relative max-w-2xl mx-auto bg-white/50 dark:bg-black/20">
+                    <span
+                        class="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#fdfbf7] dark:bg-[#1a1a1a] px-4 py-1 border-2 border-black dark:border-white font-bold font-mono text-xs uppercase tracking-widest">Motto</span>
                     <p class="text-xl md:text-2xl font-hand text-gray-700 dark:text-gray-300 italic">
                         "I don't just write code, I craft experiences. One div at a time."
                     </p>
@@ -590,28 +753,36 @@
             <!-- ==========================================
                  PROJECTS SECTION (The Lab)
                  ========================================== -->
-            <div class="px-6 md:px-20 lg:px-32 max-w-7xl mx-auto py-16 md:py-24 snap-start relative min-h-screen flex flex-col justify-center" id="projects">
+            <div class="px-6 md:px-20 lg:px-32 max-w-7xl mx-auto py-16 md:py-24 snap-start relative min-h-screen flex flex-col justify-center"
+                id="projects">
                 <header class="flex flex-col gap-6 relative mb-10">
                     <!-- Decorative doodle -->
                     <div class="absolute -top-6 -left-6 opacity-20 pointer-events-none rotate-[-10deg]">
-                        <svg fill="none" height="40" stroke="currentColor" stroke-width="2" viewBox="0 0 100 40" width="100">
+                        <svg fill="none" height="40" stroke="currentColor" stroke-width="2" viewBox="0 0 100 40"
+                            width="100">
                             <path d="M5 20 Q 25 5, 50 20 T 95 20"></path>
                         </svg>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <h2 class="text-4xl md:text-6xl font-black tracking-tight text-[#181111] dark:text-white relative inline-block">
+                        <h2
+                            class="text-4xl md:text-6xl font-black tracking-tight text-[#181111] dark:text-white relative inline-block">
                             Problem-Solving Lab
-                            <svg class="absolute -bottom-2 left-0 w-full h-3 text-primary" fill="none" viewBox="0 0 200 9" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 7C49 1.5 104 -3.5 198 5.5" stroke="currentColor" stroke-linecap="round" stroke-width="3"></path>
+                            <svg class="absolute -bottom-2 left-0 w-full h-3 text-primary" fill="none"
+                                viewBox="0 0 200 9" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2 7C49 1.5 104 -3.5 198 5.5" stroke="currentColor" stroke-linecap="round"
+                                    stroke-width="3"></path>
                             </svg>
                         </h2>
                         <p class="text-lg text-[#896161] dark:text-[#bcaaaa] max-w-2xl mt-4 font-hand">
-                            A collection of real-world problem-solving projects, system ideas, and working prototypes built to solve actual use cases, not clone trends.
+                            A collection of real-world problem-solving projects, system ideas, and working prototypes
+                            built to solve actual use cases, not clone trends.
                         </p>
                     </div>
                     <!-- Filter Chips -->
                     <div class="flex flex-wrap gap-4 mt-2" id="project-filters">
-                        <button class="project-filter active px-4 py-1.5 bg-[#181111] dark:bg-white text-white dark:text-black font-bold text-sm rotate-[-1deg] shadow-lg transform transition hover:scale-105 border-2 border-black dark:border-white cursor-pointer" data-filter="all">
+                        <button
+                            class="project-filter active px-4 py-1.5 bg-[#181111] dark:bg-white text-white dark:text-black font-bold text-sm rotate-[-1deg] shadow-lg transform transition hover:scale-105 border-2 border-black dark:border-white cursor-pointer"
+                            data-filter="all">
                             All Work
                         </button>
                     </div>
@@ -620,8 +791,10 @@
                 <!-- Project Grid -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-10" id="projects-grid">
                     <!-- Projects loaded dynamically from Firestore -->
-                    <div class="flex flex-col items-center justify-center bg-gray-50 dark:bg-white/5 p-4 text-gray-400 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg min-h-[300px]">
-                        <span class="material-symbols-outlined text-4xl mb-2 opacity-50 animate-pulse">hourglass_top</span>
+                    <div
+                        class="flex flex-col items-center justify-center bg-gray-50 dark:bg-white/5 p-4 text-gray-400 border-2 border-dashed border-gray-300 dark:border-gray-700 rounded-lg min-h-[300px]">
+                        <span
+                            class="material-symbols-outlined text-4xl mb-2 opacity-50 animate-pulse">hourglass_top</span>
                         <p class="font-hand font-bold text-lg">Loading projects...</p>
                     </div>
                 </div>
@@ -630,31 +803,45 @@
             <!-- ==========================================
                  ABOUT SECTION
                  ========================================== -->
-            <div class="px-6 md:px-12 lg:px-20 max-w-7xl mx-auto py-16 md:py-24 snap-start relative min-h-screen flex flex-col justify-center" id="about">
+            <div class="px-6 md:px-12 lg:px-20 max-w-7xl mx-auto py-16 md:py-24 snap-start relative min-h-screen flex flex-col justify-center"
+                id="about">
                 <!-- Decorative doodles -->
                 <div class="absolute top-10 right-20 opacity-10 pointer-events-none">
-                    <svg fill="none" height="100" viewBox="0 0 100 100" width="100"><path d="M10 50 Q 25 25 50 50 T 90 50" fill="none" stroke="#ec1313" stroke-width="2"></path></svg>
+                    <svg fill="none" height="100" viewBox="0 0 100 100" width="100">
+                        <path d="M10 50 Q 25 25 50 50 T 90 50" fill="none" stroke="#ec1313" stroke-width="2"></path>
+                    </svg>
                 </div>
                 <div class="absolute bottom-20 left-10 opacity-5 pointer-events-none rotate-45">
-                    <svg height="60" viewBox="0 0 60 60" width="60"><circle cx="30" cy="30" fill="none" r="25" stroke="currentColor" stroke-dasharray="4 4" stroke-width="2"></circle></svg>
+                    <svg height="60" viewBox="0 0 60 60" width="60">
+                        <circle cx="30" cy="30" fill="none" r="25" stroke="currentColor" stroke-dasharray="4 4"
+                            stroke-width="2"></circle>
+                    </svg>
                 </div>
 
                 <!-- Header -->
                 <div class="relative mb-12">
                     <div class="inline-block relative">
-                        <h2 class="text-5xl md:text-7xl font-black text-[#181111] dark:text-white tracking-tight leading-[0.9]">
+                        <h2
+                            class="text-5xl md:text-7xl font-black text-[#181111] dark:text-white tracking-tight leading-[0.9]">
                             About Me
                         </h2>
-                        <svg class="absolute -top-6 -right-8 w-10 h-10 text-primary animate-pulse" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24">
+                        <svg class="absolute -top-6 -right-8 w-10 h-10 text-primary animate-pulse" fill="none"
+                            stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            viewBox="0 0 24 24">
                             <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path>
                         </svg>
                     </div>
                     <div class="flex items-start gap-4 mt-4">
-                        <svg class="hidden md:block w-12 h-12 text-gray-400 rotate-12 mt-2" fill="none" viewBox="0 0 50 50">
-                            <path d="M10 25 C 20 25, 30 15, 40 15 M 35 10 L 40 15 L 35 20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+                        <svg class="hidden md:block w-12 h-12 text-gray-400 rotate-12 mt-2" fill="none"
+                            viewBox="0 0 50 50">
+                            <path d="M10 25 C 20 25, 30 15, 40 15 M 35 10 L 40 15 L 35 20" stroke="currentColor"
+                                stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
                         </svg>
-                        <p class="font-hand text-xl md:text-2xl text-[#896161] dark:text-gray-400 -rotate-1 origin-left">
-                            A peek into the <span class="text-primary underline decoration-wavy decoration-1 underline-offset-4">datasheets</span> of my life.
+                        <p
+                            class="font-hand text-xl md:text-2xl text-[#896161] dark:text-gray-400 -rotate-1 origin-left">
+                            A peek into the <span
+                                class="text-primary underline decoration-wavy decoration-1 underline-offset-4">datasheets</span>
+                            of my life.
                         </p>
                     </div>
                 </div>
@@ -664,24 +851,38 @@
                     <!-- Left Column: Bio + Skills -->
                     <div class="lg:col-span-7 flex flex-col gap-8 order-2 lg:order-1">
                         <!-- Bio Card -->
-                        <div class="relative bg-white dark:bg-[#1a0b0b] p-6 md:p-8 rounded-sm shadow-sm border border-gray-200 dark:border-gray-700 rotate-[-1deg] transition-transform hover:rotate-0 duration-300">
-                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-primary/20 backdrop-blur-sm -rotate-2"></div>
+                        <div
+                            class="relative bg-white dark:bg-[#1a0b0b] p-6 md:p-8 rounded-sm shadow-sm border border-gray-200 dark:border-gray-700 rotate-[-1deg] transition-transform hover:rotate-0 duration-300">
+                            <div
+                                class="absolute -top-3 left-1/2 -translate-x-1/2 w-24 h-6 bg-primary/20 backdrop-blur-sm -rotate-2">
+                            </div>
                             <p class="text-lg md:text-xl leading-relaxed font-normal text-gray-800 dark:text-gray-200">
                                 I build <span class="relative inline-block mx-1">
-                                    <span class="absolute inset-x-0 top-1/2 h-0.5 bg-primary transform -rotate-2"></span>
+                                    <span
+                                        class="absolute inset-x-0 top-1/2 h-0.5 bg-primary transform -rotate-2"></span>
                                     <span class="opacity-50">circuits</span>
                                 </span>
                                 <span class="font-bold text-primary">intelligent hardware systems</span>.
                             </p>
-                            <p class="text-lg md:text-xl leading-relaxed font-normal mt-4 text-gray-800 dark:text-gray-200">
-                                I am an Embedded Systems Engineer who loves turning silicon and code into functional reality. My approach is disciplined: logic circuit design and sensor integration must be robust, but <span class="relative whitespace-nowrap z-10 font-medium">innovation
-                                <svg class="absolute -bottom-1 left-0 w-full h-3 -z-10 text-primary/30" preserveAspectRatio="none" viewBox="0 0 100 10">
-                                    <path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="8"></path>
-                                </svg></span> is what drives IoT solutions forward.
+                            <p
+                                class="text-lg md:text-xl leading-relaxed font-normal mt-4 text-gray-800 dark:text-gray-200">
+                                I am an Embedded Systems Engineer who loves turning silicon and code into functional
+                                reality. My approach is disciplined: logic circuit design and sensor integration must be
+                                robust, but <span class="relative whitespace-nowrap z-10 font-medium">innovation
+                                    <svg class="absolute -bottom-1 left-0 w-full h-3 -z-10 text-primary/30"
+                                        preserveAspectRatio="none" viewBox="0 0 100 10">
+                                        <path d="M0 5 Q 50 10 100 5" fill="none" stroke="currentColor" stroke-width="8">
+                                        </path>
+                                    </svg></span> is what drives IoT solutions forward.
                             </p>
                             <div class="hidden md:block absolute -right-6 top-1/3 translate-x-full w-32">
-                                <p class="font-hand text-sm text-primary -rotate-6 leading-tight">*obsessed with logic timing!</p>
-                                <svg class="w-8 h-8 text-primary -ml-2 -mt-1 rotate-180 animate-wiggle-arrow" fill="none" viewBox="0 0 50 50"><path d="M40 10 C 30 20, 20 20, 10 40 M 15 35 L 10 40 L 5 35" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg>
+                                <p class="font-hand text-sm text-primary -rotate-6 leading-tight">*obsessed with logic
+                                    timing!</p>
+                                <svg class="w-8 h-8 text-primary -ml-2 -mt-1 rotate-180 animate-wiggle-arrow"
+                                    fill="none" viewBox="0 0 50 50">
+                                    <path d="M40 10 C 30 20, 20 20, 10 40 M 15 35 L 10 40 L 5 35" stroke="currentColor"
+                                        stroke-linecap="round" stroke-width="1.5"></path>
+                                </svg>
                             </div>
                         </div>
 
@@ -689,33 +890,46 @@
                         <div class="mt-4">
                             <div class="flex items-center gap-3 mb-6">
                                 <h3 class="text-3xl font-bold tracking-tight dark:text-white">Engineering Toolkit</h3>
-                                <span class="block h-[2px] flex-1 bg-gray-200 dark:bg-gray-800 relative overflow-hidden">
+                                <span
+                                    class="block h-[2px] flex-1 bg-gray-200 dark:bg-gray-800 relative overflow-hidden">
                                     <span class="absolute inset-0 bg-primary/20 w-1/2"></span>
                                 </span>
                             </div>
                             <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                                <div class="group flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] rounded-lg hover:border-primary/50 transition-all cursor-default">
-                                    <span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">memory</span>
+                                <div
+                                    class="group flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] rounded-lg hover:border-primary/50 transition-all cursor-default">
+                                    <span
+                                        class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">memory</span>
                                     <span class="font-medium">C / C++</span>
                                 </div>
-                                <div class="group flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] rounded-lg hover:border-primary/50 transition-all cursor-default">
-                                    <span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">developer_board</span>
+                                <div
+                                    class="group flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] rounded-lg hover:border-primary/50 transition-all cursor-default">
+                                    <span
+                                        class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">developer_board</span>
                                     <span class="font-medium">Embedded Systems</span>
                                 </div>
-                                <div class="group flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] rounded-lg hover:border-primary/50 transition-all cursor-default">
-                                    <span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">settings_input_component</span>
+                                <div
+                                    class="group flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] rounded-lg hover:border-primary/50 transition-all cursor-default">
+                                    <span
+                                        class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">settings_input_component</span>
                                     <span class="font-medium">Logic Circuits</span>
                                 </div>
-                                <div class="group flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] rounded-lg hover:border-primary/50 transition-all cursor-default">
-                                    <span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">wifi_tethering</span>
+                                <div
+                                    class="group flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] rounded-lg hover:border-primary/50 transition-all cursor-default">
+                                    <span
+                                        class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">wifi_tethering</span>
                                     <span class="font-medium">Arduino/ESP32</span>
                                 </div>
-                                <div class="group flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] rounded-lg hover:border-primary/50 transition-all cursor-default">
-                                    <span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">hub</span>
+                                <div
+                                    class="group flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] rounded-lg hover:border-primary/50 transition-all cursor-default">
+                                    <span
+                                        class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">hub</span>
                                     <span class="font-medium">IoT Prototyping</span>
                                 </div>
-                                <div class="group flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] rounded-lg hover:border-primary/50 transition-all cursor-default">
-                                    <span class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">sensors</span>
+                                <div
+                                    class="group flex items-center gap-3 p-3 border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] rounded-lg hover:border-primary/50 transition-all cursor-default">
+                                    <span
+                                        class="material-symbols-outlined text-gray-400 group-hover:text-primary transition-colors">sensors</span>
                                     <span class="font-medium">Sensors &amp; Analog</span>
                                 </div>
                             </div>
@@ -723,13 +937,15 @@
 
                         <!-- CTA -->
                         <div class="mt-4 flex flex-col sm:flex-row gap-4 items-center">
-                            <a href="#contact" class="relative group px-8 py-3 bg-primary text-white font-bold rounded-lg shadow-lg hover:shadow-primary/30 transition-all hover:-translate-y-1 overflow-hidden no-underline">
+                            <a href="#contact"
+                                class="relative group px-8 py-3 bg-primary text-white font-bold rounded-lg shadow-lg hover:shadow-primary/30 transition-all hover:-translate-y-1 overflow-hidden no-underline">
                                 <span class="relative z-10 flex items-center gap-2">
                                     Let's build hardware
                                     <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
                                 </span>
                             </a>
-                            <a class="font-hand text-lg text-gray-600 dark:text-gray-400 hover:text-primary underline decoration-dashed decoration-1 underline-offset-4" href="#contact">
+                            <a class="font-hand text-lg text-gray-600 dark:text-gray-400 hover:text-primary underline decoration-dashed decoration-1 underline-offset-4"
+                                href="#contact">
                                 or discuss prototypes!
                             </a>
                         </div>
@@ -739,36 +955,52 @@
                     <div class="lg:col-span-5 order-1 lg:order-2 flex flex-col items-center pt-8">
                         <!-- Photo Polaroid -->
                         <div class="relative group rotate-2 hover:rotate-0 transition-transform duration-500">
-                            <svg class="absolute -top-8 -left-8 w-16 h-16 text-primary z-20" fill="none" viewBox="0 0 100 100">
-                                <path d="M20 50 Q 50 20 80 50 T 20 80" fill="none" stroke="currentColor" stroke-dasharray="5 5" stroke-width="2"></path>
+                            <svg class="absolute -top-8 -left-8 w-16 h-16 text-primary z-20" fill="none"
+                                viewBox="0 0 100 100">
+                                <path d="M20 50 Q 50 20 80 50 T 20 80" fill="none" stroke="currentColor"
+                                    stroke-dasharray="5 5" stroke-width="2"></path>
                             </svg>
-                            <div class="bg-white dark:bg-[#1a1a1a] p-3 pb-12 shadow-xl border border-gray-200 dark:border-gray-700 rounded-sm max-w-[320px] w-full relative z-10">
-                                <div class="aspect-[4/5] w-full overflow-hidden bg-gray-100 dark:bg-gray-800 grayscale-0 group-hover:grayscale transition-all duration-500 relative">
-                                    <div class="absolute inset-0 bg-primary/10 mix-blend-multiply z-10 pointer-events-none"></div>
-                                    <img src="img/prince-cooking.jpg" alt="Prince Tagadiya" class="w-full h-full object-cover mix-blend-multiply dark:mix-blend-normal" />
+                            <div
+                                class="bg-white dark:bg-[#1a1a1a] p-3 pb-12 shadow-xl border border-gray-200 dark:border-gray-700 rounded-sm max-w-[320px] w-full relative z-10">
+                                <div
+                                    class="aspect-[4/5] w-full overflow-hidden bg-gray-100 dark:bg-gray-800 grayscale-0 group-hover:grayscale transition-all duration-500 relative">
+                                    <div
+                                        class="absolute inset-0 bg-primary/10 mix-blend-multiply z-10 pointer-events-none">
+                                    </div>
+                                    <img src="img/prince-cooking.jpg" alt="Prince Tagadiya"
+                                        class="w-full h-full object-cover mix-blend-multiply dark:mix-blend-normal" />
                                 </div>
                                 <div class="mt-4 flex justify-center">
-                                    <p class="font-hand text-gray-500 dark:text-gray-400 text-xl rotate-[-2deg]">cooking something at 3AM...</p>
+                                    <p class="font-hand text-gray-500 dark:text-gray-400 text-xl rotate-[-2deg]">cooking
+                                        something at 3AM...</p>
                                 </div>
                             </div>
-                            <div class="absolute -bottom-6 -right-6 bg-[#fef3c7] text-[#92400e] px-4 py-2 font-hand font-bold text-lg shadow-md rotate-[-10deg] rounded-sm z-20 border border-[#fcd34d]">
+                            <div
+                                class="absolute -bottom-6 -right-6 bg-[#fef3c7] text-[#92400e] px-4 py-2 font-hand font-bold text-lg shadow-md rotate-[-10deg] rounded-sm z-20 border border-[#fcd34d]">
                                 Engineer
                             </div>
                         </div>
 
                         <!-- Fun Fact Sticky Note -->
-                        <div class="mt-16 relative w-64 rotate-[-3deg] self-end lg:mr-8 group hover:rotate-0 transition-transform duration-300">
-                            <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary shadow-sm z-20 border-2 border-red-800"></div>
-                            <div class="bg-[#fffdcc] dark:bg-yellow-600/80 p-6 shadow-md border-b-4 border-r-4 border-[#e8e6b0] dark:border-yellow-700">
-                                <h4 class="font-hand text-xl font-bold mb-2 text-gray-800 dark:text-gray-100 flex items-center gap-2">
+                        <div
+                            class="mt-16 relative w-64 rotate-[-3deg] self-end lg:mr-8 group hover:rotate-0 transition-transform duration-300">
+                            <div
+                                class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 rounded-full bg-primary shadow-sm z-20 border-2 border-red-800">
+                            </div>
+                            <div
+                                class="bg-[#fffdcc] dark:bg-yellow-600/80 p-6 shadow-md border-b-4 border-r-4 border-[#e8e6b0] dark:border-yellow-700">
+                                <h4
+                                    class="font-hand text-xl font-bold mb-2 text-gray-800 dark:text-gray-100 flex items-center gap-2">
                                     <span class="material-symbols-outlined text-primary text-[20px]">lightbulb</span>
                                     Fun Fact:
                                 </h4>
                                 <p class="font-hand text-lg text-gray-700 dark:text-gray-200 leading-snug">
                                     I treat noise like a villain: decoupling caps first, questions later.
                                 </p>
-                                <svg class="w-full h-4 mt-2 text-primary/40" preserveAspectRatio="none" viewBox="0 0 100 10">
-                                    <path d="M0 5 Q 10 0 20 5 T 40 5 T 60 5 T 80 5 T 100 5" fill="none" stroke="currentColor" stroke-width="2"></path>
+                                <svg class="w-full h-4 mt-2 text-primary/40" preserveAspectRatio="none"
+                                    viewBox="0 0 100 10">
+                                    <path d="M0 5 Q 10 0 20 5 T 40 5 T 60 5 T 80 5 T 100 5" fill="none"
+                                        stroke="currentColor" stroke-width="2"></path>
                                 </svg>
                             </div>
                         </div>
@@ -780,85 +1012,131 @@
                  CONTACT SECTION (includes footer)
                  ========================================== -->
             <div class="snap-start relative min-h-screen flex flex-col" id="contact">
-                <div class="absolute top-10 right-10 w-32 h-32 bg-[#181111]/5 dark:bg-white/5 rounded-full blur-3xl ink-stain pointer-events-none animate-ink-breathe"></div>
-                <div class="absolute bottom-20 left-40 w-48 h-48 bg-primary/10 rounded-full blur-2xl ink-stain pointer-events-none animate-ink-breathe" style="animation-delay: 1s;"></div>
+                <div
+                    class="absolute top-10 right-10 w-32 h-32 bg-[#181111]/5 dark:bg-white/5 rounded-full blur-3xl ink-stain pointer-events-none animate-ink-breathe">
+                </div>
+                <div class="absolute bottom-20 left-40 w-48 h-48 bg-primary/10 rounded-full blur-2xl ink-stain pointer-events-none animate-ink-breathe"
+                    style="animation-delay: 1s;"></div>
 
                 <!-- Contact Content -->
-                <div class="max-w-6xl w-full mx-auto px-6 py-10 md:py-12 flex-1 flex flex-col justify-center relative z-10">
+                <div
+                    class="max-w-6xl w-full mx-auto px-6 py-10 md:py-12 flex-1 flex flex-col justify-center relative z-10">
                     <div class="flex flex-col lg:flex-row gap-10 lg:gap-20 items-start">
                         <!-- Left: Heading + Social -->
                         <div class="flex-1 w-full space-y-8">
                             <div class="relative">
-                                <h2 class="text-6xl md:text-8xl font-marker text-[#181111] dark:text-white -rotate-2 leading-tight tracking-tight animate-line-boil origin-center">
-                                    Let's <br/>
+                                <h2
+                                    class="text-6xl md:text-8xl font-marker text-[#181111] dark:text-white -rotate-2 leading-tight tracking-tight animate-line-boil origin-center">
+                                    Let's <br />
                                     <span class="relative inline-block mt-2">
                                         chat!
-                                        <svg class="absolute -bottom-4 left-0 w-full h-6 text-primary" preserveAspectRatio="none" viewBox="0 0 100 10">
-                                            <path d="M0 5 Q 25 0, 50 5 T 100 5" fill="none" stroke="currentColor" stroke-width="3"></path>
+                                        <svg class="absolute -bottom-4 left-0 w-full h-6 text-primary"
+                                            preserveAspectRatio="none" viewBox="0 0 100 10">
+                                            <path d="M0 5 Q 25 0, 50 5 T 100 5" fill="none" stroke="currentColor"
+                                                stroke-width="3"></path>
                                         </svg>
                                     </span>
                                 </h2>
-                                <p class="font-hand text-xl md:text-2xl text-primary mt-4 rotate-1 max-w-md leading-relaxed">Got a project in mind? Or just want to say hi? I'm all ears!</p>
+                                <p
+                                    class="font-hand text-xl md:text-2xl text-primary mt-4 rotate-1 max-w-md leading-relaxed">
+                                    Got a project in mind? Or just want to say hi? I'm all ears!</p>
                             </div>
                             <div class="relative pl-6 border-l-4 border-primary/20">
-                                <p class="font-display font-bold uppercase tracking-widest text-xs text-[#181111]/50 dark:text-white/50 mb-4">Connect with me</p>
+                                <p
+                                    class="font-display font-bold uppercase tracking-widest text-xs text-[#181111]/50 dark:text-white/50 mb-4">
+                                    Connect with me</p>
                                 <div class="flex flex-wrap gap-4 items-center">
-                                    <a class="group flex items-center gap-2 bg-white dark:bg-white/5 px-3 py-1.5 rounded-shaky border-2 border-transparent hover:border-[#181111] dark:hover:border-white transition-all shadow-sm hover:shadow-md no-underline text-[#181111] dark:text-white" href="https://github.com/Prince-Tagadiya" target="_blank">
-                                        <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">data_object</span>
+                                    <a class="group flex items-center gap-2 bg-white dark:bg-white/5 px-3 py-1.5 rounded-shaky border-2 border-transparent hover:border-[#181111] dark:hover:border-white transition-all shadow-sm hover:shadow-md no-underline text-[#181111] dark:text-white"
+                                        href="https://github.com/Prince-Tagadiya" target="_blank">
+                                        <span
+                                            class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">data_object</span>
                                         <span class="font-hand text-base">GitHub</span>
                                     </a>
-                                    <a class="group flex items-center gap-2 bg-white dark:bg-white/5 px-3 py-1.5 rounded-shaky border-2 border-transparent hover:border-[#181111] dark:hover:border-white transition-all shadow-sm hover:shadow-md no-underline text-[#181111] dark:text-white" href="https://www.linkedin.com/in/prince-tagadiya/" target="_blank">
-                                        <span class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">work</span>
+                                    <a class="group flex items-center gap-2 bg-white dark:bg-white/5 px-3 py-1.5 rounded-shaky border-2 border-transparent hover:border-[#181111] dark:hover:border-white transition-all shadow-sm hover:shadow-md no-underline text-[#181111] dark:text-white"
+                                        href="https://www.linkedin.com/in/prince-tagadiya/" target="_blank">
+                                        <span
+                                            class="material-symbols-outlined text-xl group-hover:text-primary transition-colors">work</span>
                                         <span class="font-hand text-base">LinkedIn</span>
                                     </a>
                                 </div>
                             </div>
                             <div class="hidden lg:flex items-center gap-4 pt-4">
-                                <svg class="text-primary w-12 h-12 transform -rotate-12 animate-wiggle-arrow" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 100 100">
-                                    <path d="M10,50 C30,20 70,20 90,50 M90,50 L75,40 M90,50 L80,65" stroke-linecap="round" stroke-linejoin="round"></path>
+                                <svg class="text-primary w-12 h-12 transform -rotate-12 animate-wiggle-arrow"
+                                    fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 100 100">
+                                    <path d="M10,50 C30,20 70,20 90,50 M90,50 L75,40 M90,50 L80,65"
+                                        stroke-linecap="round" stroke-linejoin="round"></path>
                                 </svg>
-                                <p class="font-hand text-[#181111]/60 dark:text-white/60 text-lg -rotate-2">Fill out the form →</p>
+                                <p class="font-hand text-[#181111]/60 dark:text-white/60 text-lg -rotate-2">Fill out the
+                                    form →</p>
                             </div>
                         </div>
 
                         <!-- Right: Contact Form -->
                         <div class="w-full lg:w-[460px] relative">
-                            <div class="absolute inset-0 bg-white dark:bg-[#2a1a1a] translate-x-3 translate-y-3 rounded-lg border border-gray-300 dark:border-gray-700 shadow-sm rotate-2"></div>
-                            <div class="absolute inset-0 bg-white dark:bg-[#2a1a1a] translate-x-1.5 translate-y-1.5 rounded-lg border border-gray-300 dark:border-gray-700 shadow-sm -rotate-1"></div>
-                            <div class="relative bg-white dark:bg-[#1f1212] p-6 md:p-8 rounded-lg border-2 border-[#181111] dark:border-white shadow-2xl">
-                                <div class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed border-gray-200 dark:border-gray-700">
+                            <div
+                                class="absolute inset-0 bg-white dark:bg-[#2a1a1a] translate-x-3 translate-y-3 rounded-lg border border-gray-300 dark:border-gray-700 shadow-sm rotate-2">
+                            </div>
+                            <div
+                                class="absolute inset-0 bg-white dark:bg-[#2a1a1a] translate-x-1.5 translate-y-1.5 rounded-lg border border-gray-300 dark:border-gray-700 shadow-sm -rotate-1">
+                            </div>
+                            <div
+                                class="relative bg-white dark:bg-[#1f1212] p-6 md:p-8 rounded-lg border-2 border-[#181111] dark:border-white shadow-2xl">
+                                <div
+                                    class="flex justify-between items-center mb-6 pb-3 border-b-2 border-dashed border-gray-200 dark:border-gray-700">
                                     <div class="flex gap-2">
                                         <div class="w-3 h-3 rounded-full bg-red-400 border border-red-500"></div>
                                         <div class="w-3 h-3 rounded-full bg-yellow-400 border border-yellow-500"></div>
                                         <div class="w-3 h-3 rounded-full bg-green-400 border border-green-500"></div>
                                     </div>
-                                    <span class="font-marker text-xs opacity-50 uppercase tracking-widest rotate-2">New Message</span>
+                                    <span class="font-marker text-xs opacity-50 uppercase tracking-widest rotate-2">New
+                                        Message</span>
                                 </div>
                                 <form class="space-y-4" id="contact-form">
                                     <div class="space-y-1.5">
-                                        <label class="font-bold font-display text-xs uppercase tracking-wide text-[#181111]/70 dark:text-white/70 ml-1" for="contact-name">Your Name</label>
-                                        <input class="w-full bg-[#fdfbf7] dark:bg-black/20 border-[#181111]/20 dark:border-white/20 focus:ring-2 focus:ring-primary/50 focus:border-primary hand-input font-hand text-lg px-3 py-2 placeholder-[#181111]/30 dark:placeholder-white/30" id="contact-name" placeholder="Prince Tagadiya" type="text" required/>
+                                        <label
+                                            class="font-bold font-display text-xs uppercase tracking-wide text-[#181111]/70 dark:text-white/70 ml-1"
+                                            for="contact-name">Your Name</label>
+                                        <input
+                                            class="w-full bg-[#fdfbf7] dark:bg-black/20 border-[#181111]/20 dark:border-white/20 focus:ring-2 focus:ring-primary/50 focus:border-primary hand-input font-hand text-lg px-3 py-2 placeholder-[#181111]/30 dark:placeholder-white/30"
+                                            id="contact-name" placeholder="Prince Tagadiya" type="text" required />
                                     </div>
                                     <div class="space-y-1.5">
-                                        <label class="font-bold font-display text-xs uppercase tracking-wide text-[#181111]/70 dark:text-white/70 ml-1" for="contact-email">Your Email</label>
-                                        <input class="w-full bg-[#fdfbf7] dark:bg-black/20 border-[#181111]/20 dark:border-white/20 focus:ring-2 focus:ring-primary/50 focus:border-primary hand-input font-hand text-lg px-3 py-2 placeholder-[#181111]/30 dark:placeholder-white/30" id="contact-email" placeholder="princetagadiya11@gmail.com" type="email" required/>
+                                        <label
+                                            class="font-bold font-display text-xs uppercase tracking-wide text-[#181111]/70 dark:text-white/70 ml-1"
+                                            for="contact-email">Your Email</label>
+                                        <input
+                                            class="w-full bg-[#fdfbf7] dark:bg-black/20 border-[#181111]/20 dark:border-white/20 focus:ring-2 focus:ring-primary/50 focus:border-primary hand-input font-hand text-lg px-3 py-2 placeholder-[#181111]/30 dark:placeholder-white/30"
+                                            id="contact-email" placeholder="princetagadiya11@gmail.com" type="email"
+                                            required />
                                     </div>
                                     <div class="space-y-1.5">
-                                        <label class="font-bold font-display text-xs uppercase tracking-wide text-[#181111]/70 dark:text-white/70 ml-1" for="contact-message">Message</label>
-                                        <textarea class="w-full bg-transparent border-2 border-[#181111]/20 dark:border-white/20 focus:ring-2 focus:ring-primary/50 focus:border-primary rounded-lg font-hand text-lg px-3 py-2 placeholder-[#181111]/30 dark:placeholder-white/30 resize-none notepad-line min-h-[120px]" style="background-color: rgba(255,255,255,0.02);" id="contact-message" placeholder="Start typing here..." required></textarea>
+                                        <label
+                                            class="font-bold font-display text-xs uppercase tracking-wide text-[#181111]/70 dark:text-white/70 ml-1"
+                                            for="contact-message">Message</label>
+                                        <textarea
+                                            class="w-full bg-transparent border-2 border-[#181111]/20 dark:border-white/20 focus:ring-2 focus:ring-primary/50 focus:border-primary rounded-lg font-hand text-lg px-3 py-2 placeholder-[#181111]/30 dark:placeholder-white/30 resize-none notepad-line min-h-[120px]"
+                                            style="background-color: rgba(255,255,255,0.02);" id="contact-message"
+                                            placeholder="Start typing here..." required></textarea>
                                     </div>
                                     <div class="pt-4 flex items-center justify-between">
-                                        <span class="font-hand text-xs text-[#181111]/50 dark:text-white/50 rotate-1 max-w-[100px] leading-tight hidden md:block">I usually respond within 24hrs!</span>
+                                        <span
+                                            class="font-hand text-xs text-[#181111]/50 dark:text-white/50 rotate-1 max-w-[100px] leading-tight hidden md:block">I
+                                            usually respond within 24hrs!</span>
                                         <button class="relative group" type="button" id="send-btn">
-                                            <div class="absolute inset-0 bg-[#181111] dark:bg-white translate-x-1.5 translate-y-1.5 rounded-shaky transition-transform group-hover:translate-x-1 group-hover:translate-y-1"></div>
-                                            <div class="relative px-6 py-2.5 bg-primary text-white font-marker text-base md:text-lg border-2 border-[#181111] dark:border-white rounded-shaky transform transition-transform group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 flex items-center gap-2 shadow-lg group-active:translate-x-1 group-active:translate-y-1" id="send-btn-inner">
+                                            <div
+                                                class="absolute inset-0 bg-[#181111] dark:bg-white translate-x-1.5 translate-y-1.5 rounded-shaky transition-transform group-hover:translate-x-1 group-hover:translate-y-1">
+                                            </div>
+                                            <div class="relative px-6 py-2.5 bg-primary text-white font-marker text-base md:text-lg border-2 border-[#181111] dark:border-white rounded-shaky transform transition-transform group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 flex items-center gap-2 shadow-lg group-active:translate-x-1 group-active:translate-y-1"
+                                                id="send-btn-inner">
                                                 <span id="send-btn-text">Send It</span>
-                                                <span class="material-symbols-outlined text-[20px]" id="send-btn-icon">send</span>
+                                                <span class="material-symbols-outlined text-[20px]"
+                                                    id="send-btn-icon">send</span>
                                             </div>
                                         </button>
                                     </div>
                                 </form>
-                                <div class="absolute -bottom-6 -left-6 md:-left-10 bg-yellow-200 dark:bg-yellow-600 text-[#181111] font-hand p-3 w-36 text-center text-sm leading-tight rounded-sm shadow-lg -rotate-6 border border-yellow-300/50 z-20 hover:rotate-2 transition-transform">
+                                <div
+                                    class="absolute -bottom-6 -left-6 md:-left-10 bg-yellow-200 dark:bg-yellow-600 text-[#181111] font-hand p-3 w-36 text-center text-sm leading-tight rounded-sm shadow-lg -rotate-6 border border-yellow-300/50 z-20 hover:rotate-2 transition-transform">
                                     <div class="w-full h-3 bg-black/5 mb-1.5 mx-auto"></div>
                                     Let's build something cool!
                                 </div>
@@ -868,17 +1146,20 @@
                 </div>
 
                 <!-- Footer (inside contact snap section) -->
-                <footer class="px-6 md:px-20 lg:px-32 max-w-7xl w-full mx-auto shrink-0 py-4 border-t-2 border-dashed border-[#e5e5e5] dark:border-[#333] flex flex-col md:flex-row justify-between items-center gap-3 opacity-70 hover:opacity-100 transition-opacity">
+                <footer
+                    class="px-6 md:px-20 lg:px-32 max-w-7xl w-full mx-auto shrink-0 py-4 border-t-2 border-dashed border-[#e5e5e5] dark:border-[#333] flex flex-col md:flex-row justify-between items-center gap-3 opacity-70 hover:opacity-100 transition-opacity">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-primary">copyright</span>
                         <p class="text-sm font-medium" id="footer-text">2026 Prince Tagadiya. Built with passion.</p>
                     </div>
                     <div class="flex gap-6" id="social-links">
-                        <a class="text-[#181111] dark:text-white hover:text-primary transition-transform hover:-translate-y-1 no-underline" href="https://github.com/Prince-Tagadiya" id="footer-github" target="_blank">
+                        <a class="text-[#181111] dark:text-white hover:text-primary transition-transform hover:-translate-y-1 no-underline"
+                            href="https://github.com/Prince-Tagadiya" id="footer-github" target="_blank">
                             <span class="sr-only">GitHub</span>
                             <span class="font-bold border-b-2 border-transparent hover:border-primary">GitHub</span>
                         </a>
-                        <a class="text-[#181111] dark:text-white hover:text-primary transition-transform hover:-translate-y-1 no-underline" href="https://www.linkedin.com/in/prince-tagadiya/" id="footer-linkedin" target="_blank">
+                        <a class="text-[#181111] dark:text-white hover:text-primary transition-transform hover:-translate-y-1 no-underline"
+                            href="https://www.linkedin.com/in/prince-tagadiya/" id="footer-linkedin" target="_blank">
                             <span class="sr-only">LinkedIn</span>
                             <span class="font-bold border-b-2 border-transparent hover:border-primary">LinkedIn</span>
                         </a>
@@ -889,14 +1170,19 @@
     </div>
 
     <!-- Certificate Modal -->
-    <div class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 modal-overlay overflow-y-auto" id="cert-modal">
+    <div class="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6 modal-overlay overflow-y-auto"
+        id="cert-modal">
         <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" data-close-cert-modal></div>
         <div class="relative w-full max-w-2xl transform rotate-1 transition-all my-auto">
-            <div class="bg-[#fcfbf9] text-black p-8 md:p-12 shadow-paper-sheet relative mx-auto max-w-[600px] max-h-[calc(100vh-2rem)] md:max-h-[calc(100vh-3rem)] overflow-y-auto min-h-[400px]">
+            <div
+                class="bg-[#fcfbf9] text-black p-8 md:p-12 shadow-paper-sheet relative mx-auto max-w-[600px] max-h-[calc(100vh-2rem)] md:max-h-[calc(100vh-3rem)] overflow-y-auto min-h-[400px]">
                 <div class="pin"></div>
-                <a class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center cursor-pointer group" href="#" data-close-cert-modal>
-                    <svg class="w-8 h-8 text-gray-400 group-hover:text-red-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"></path>
+                <a class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center cursor-pointer group"
+                    href="#" data-close-cert-modal>
+                    <svg class="w-8 h-8 text-gray-400 group-hover:text-red-600 transition-colors" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+                        </path>
                     </svg>
                 </a>
                 <div id="cert-modal-body" class="flex flex-col gap-6 items-center text-center">
@@ -907,22 +1193,30 @@
     </div>
 
     <!-- Success/Error Popup -->
-    <div id="msg-popup" class="fixed inset-0 z-[200] flex items-center justify-center p-4 pointer-events-none opacity-0 transition-all duration-500" style="backdrop-filter: blur(0px);">
+    <div id="msg-popup"
+        class="fixed inset-0 z-[200] flex items-center justify-center p-4 pointer-events-none opacity-0 transition-all duration-500"
+        style="backdrop-filter: blur(0px);">
         <div class="relative transform scale-75 rotate-2 transition-all duration-500" id="msg-popup-card">
-            <div class="bg-white dark:bg-[#1f1212] p-8 md:p-10 rounded-lg border-2 border-[#181111] dark:border-white shadow-2xl max-w-[420px] w-full text-center relative">
+            <div
+                class="bg-white dark:bg-[#1f1212] p-8 md:p-10 rounded-lg border-2 border-[#181111] dark:border-white shadow-2xl max-w-[420px] w-full text-center relative">
                 <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-32 h-8 mask-tape z-20"></div>
                 <div id="msg-popup-icon" class="text-6xl mb-4"></div>
-                <h3 id="msg-popup-title" class="text-2xl md:text-3xl font-marker font-bold mb-2 text-[#181111] dark:text-white"></h3>
+                <h3 id="msg-popup-title"
+                    class="text-2xl md:text-3xl font-marker font-bold mb-2 text-[#181111] dark:text-white"></h3>
                 <p id="msg-popup-text" class="font-hand text-lg text-gray-600 dark:text-gray-300 mb-6"></p>
                 <button onclick="closePopup()" class="relative group cursor-pointer">
-                    <div class="absolute inset-0 bg-[#181111] dark:bg-white translate-x-1.5 translate-y-1.5 rounded-shaky"></div>
-                    <div class="relative px-8 py-2.5 bg-primary text-white font-marker text-lg border-2 border-[#181111] dark:border-white rounded-shaky flex items-center gap-2 shadow-lg">
+                    <div
+                        class="absolute inset-0 bg-[#181111] dark:bg-white translate-x-1.5 translate-y-1.5 rounded-shaky">
+                    </div>
+                    <div
+                        class="relative px-8 py-2.5 bg-primary text-white font-marker text-lg border-2 border-[#181111] dark:border-white rounded-shaky flex items-center gap-2 shadow-lg">
                         <span>Got It!</span>
                         <span class="material-symbols-outlined text-[20px]">check_circle</span>
                     </div>
                 </button>
             </div>
-            <div class="absolute -bottom-4 -right-4 bg-yellow-200 text-[#181111] font-hand p-2 text-sm rounded-sm shadow-md rotate-6 border border-yellow-300/50" id="msg-popup-note"></div>
+            <div class="absolute -bottom-4 -right-4 bg-yellow-200 text-[#181111] font-hand p-2 text-sm rounded-sm shadow-md rotate-6 border border-yellow-300/50"
+                id="msg-popup-note"></div>
         </div>
     </div>
 
@@ -1009,4 +1303,5 @@
         });
     </script>
 </body>
+
 </html>
